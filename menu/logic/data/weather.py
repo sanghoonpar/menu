@@ -16,20 +16,19 @@ def weather(crd):
             weather_data['tmp'] = item['fcstValue']
 
         #기상상태
-        if item['category'] == 'PTY':
-            weather_code = item['fcstValue']
-            if weather_code == '1':
+        elif item['category'] == 'PTY':
+            if item['fcstValue'] == '1':
                 weather_state = '비'
-            elif weather_code == '2':
+            elif item['fcstValue'] == '2':
                 weather_state = '비/눈'
-            elif weather_code == '3':
+            elif item['fcstValue'] == '3':
                 weather_state = '눈'
-            elif weather_code == '4':
+            elif item['fcstValue'] == '4':
                 weather_state = '소나기'
             else:
                 weather_state = '없음'
 
-            weather_data['code'] = weather_code
+            weather_data['code'] = item['fcstValue']
             weather_data['state'] = weather_state
 
     data['weather'] = weather_data
