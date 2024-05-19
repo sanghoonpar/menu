@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+<head>
+  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
+    <script src = 'https://code.jquery.com/jquery-3.6.4.min.js'></script>
+    <title>메뉴추천</title>
+</head>
+
+<body>
+  <div style = 'width: 290px; height: 76px; left: 10px; top :20px; position: absolute; color: black; font-size: 64px; font-family: Inter; font-weight: 350; word-wrap: break-word'>메뉴추천</div>
+  <div style = 'width: 350px; height: 44px; left: 10px; top :120px; position: absolute; color: black; font-size: 35px; font-family: Inter; font-weight: 320; word-wrap: break-word'>메뉴 추천하는 앱</div>
+  <img style = 'width: 138px; height: 140px; left: 275px; top :20px; position: absolute' src = '/static/images/logo.png' />
+   
+  {% if key %}
+  <a href = {{call_back_url}} >
+    <img style = 'width: 154px; height: 84px; left: 11px; top: 200px; position: absolute' src = '/static/images/login.png' alt = '' onclick = '' >
+  </a>
+
+  {% else %}
+  <a href = '/logout'>
+    <img style = 'width: 154px; height: 84px; left: 11px; top: 200px; position: absolute' src = '/static/images/logout.png' alt = '' onclick = '' >
+  </a>
+  {% endif %}
+      
+  <a href = '/map'>
+    <img type = 'button' style = 'width: 145px; height: 84px; left: 165px; top: 200px; position: absolute' src = '/static/images/map.png' alt = '' onclick = 'openZone()' >
+  </a>
+
+  <button type = 'button' onclick = 'allergy()' style = 'width: 80px; height: 80px; left: 320px; top: 200px; position: absolute'>
+    알레르기
+  </button>
+
+<img style = 'width: 400px; height: 400px; left: 5px; top: 300px; position: absolute' src = '/static/images/menu1.jpg' />
+<img style = 'width: 400px; height: 400px; left: 5px; top: 700px; position: absolute' src = '/static/images/menu2.avif' />
+<img style = 'width: 400px; height: 400px; left: 5px; top: 1100px; position: absolute' src = '/static/images/menu3.jpg' />
+<img style = 'width: 400px; height: 400px; left: 5px; top: 1500px; position: absolute' src = '/static/images/menu4.webp' />
+<img style = 'width: 400px; height: 400px; left: 5px; top: 1900px; position: absolute' src = '/static/images/menu5.avif' />
+<img style = 'width: 400px; height: 400px; left: 5px; top: 2300px; position: absolute' src = '/static/images/menu6.jpg' />
+<img style = 'width: 400px; height: 400px; left: 5px; top: 2700px; position: absolute' src = '/static/images/menu7.jpg' />
+<img style = 'width: 400px; height: 400px; left: 5px; top: 3100px; position: absolute' src = '/static/images/menu8.jpg' />
+<img style = 'width: 400px; height: 400px; left: 5px; top: 3500px; position: absolute' src = '/static/images/menu9.jpg' />
+<img style = 'width: 400px; height: 400px; left: 5px; top: 3900px; position: absolute' src = '/static/images/menu10.jpg' />
+<img style = 'width: 400px; height: 400px; left: 5px; top: 4300px; position: absolute' src = '/static/images/menu11.jpg' />
+<img style = 'width: 400px; height: 400px; left: 5px; top: 4700px; position: absolute' src = '/static/images/menu12.png' />
+<img style = 'width: 400px; height: 400px; left: 5px; top: 5100px; position: absolute' src = '/static/images/menu13.jpg' />
+<img style = 'width: 400px; height: 400px; left: 5px; top: 5500px; position: absolute' src = '/static/images/menu14.jpg' />
+<img style = 'width: 400px; height: 400px; left: 5px; top: 5900px; position: absolute' src = '/static/images/menu15.png' />
+<img style = 'width: 400px; height: 400px; left: 5px; top: 6300px; position: absolute' src = '/static/images/menu16.avif' />
+<img style = 'width: 400px; height: 400px; left: 5px; top: 6700px; position: absolute' src = '/static/images/menu17.jpg' />
+
+  <script>
+    function openZone() {window.location.href = 'https://127.0.0.1:5051/map';}
+
+    function allergy() {window.location.href = 'https://127.0.0.1:5051/allergy';}
+
+    function service() {window.location.href = 'https://127.0.0.1:5051/service';}
+
+    function loadImage() {var input = document.getElementById('fileInput');
+
+      var reader = new FileReader();
+
+      reader.onload = function(e) {document.getElementById('image').src = e.target.result;
+      };
+      reader.readAsDataURL(input.files[0]);}
+  </script>
+</body>
+</html>
+
