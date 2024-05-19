@@ -3,13 +3,7 @@ import urllib, json, requests
 
 def send(token, location, res, data):
     a = 0
-    url = 'https://kapi.kakao.com/v2/api/talk/memo/default/send'
-    header = {'Authorization': 'Bearer ' + {'access_token' : token}.get('access_token'), 'scope':'talk_message'}
-    wea = 'https://search.naver.com/search.naver?sm=top_hty&fbm=0&ie=utf8&query=날씨'
-    wea = {'web_url': wea, 'mobile_web_url': wea}
-    dat = {'template_object' : json.dumps({'object_type': 'text', 'text': text, 'link': wea, 'button_title': '날씨 상세보기'})}
 
-    #날씨 정보 만들기 
     text = f'''\
     위치 정보 : {location}
     날씨 정보 ({data['date']})
@@ -17,6 +11,12 @@ def send(token, location, res, data):
     기우  : {data['weather']['state']}
     미세먼지 : {data['dust']['pm10']['value']} {data['dust']['pm10']['state']}
     '''
+
+    url = 'https://kapi.kakao.com/v2/api/talk/memo/default/send'
+    header = {'Authorization': 'Bearer ' + {'access_token' : token}.get('access_token'), 'scope':'talk_message'}
+    wea = 'https://search.naver.com/search.naver?sm=top_hty&fbm=0&ie=utf8&query=날씨'
+    wea = {'web_url': wea, 'mobile_web_url': wea}
+    dat = {'template_object' : json.dumps({'object_type': 'text', 'text': text, 'link': wea, 'button_title': '날씨 상세보기'})}
 
     #카카오톡 보내기
     
