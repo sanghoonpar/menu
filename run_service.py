@@ -1,9 +1,9 @@
-from data.menu_choose import menu_choose 
-from data.weather import weather
-from data.dust_weather import dust_weather
-from service.kakao_send import send
+from menu_choose import menu_choose 
+from weather import weather
+from dust_weather import dust_weather
+from kakao_send import send
 from geopy.geocoders import Nominatim
-from service.naver_search import search_res
+from naver_search import search_res
 import requests
 
 def serve_code(location, token, crd):
