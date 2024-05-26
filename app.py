@@ -6,10 +6,7 @@ load_dotenv()
 access_token, crd, address, allergy = None, None, None, None
 app = Flask(__name__, template_folder = 'templates')
 
-with open('cert.pem', 'w') as certfile:
-    certfile.write(os.environ.get('cert_str'))
-with open('private_key.pem', 'w') as keyfile:
-    keyfile.write(os.environ.get('pri_key_str'))
+
 
 @app.route('/', methods = ['GET', 'POST'])
 def inintial(): return render_template('home.html')
@@ -68,5 +65,10 @@ def service():
 if __name__ == '__main__':
     #ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS)
     #ssl_context.load_cert_chain(certfile = 'self_signed_certificate.pem', keyfile = 'private_key.pem')
+
+    with open('cert.pem', 'w') as certfile:
+        certfile.write(os.environ.get('cert_str'))
+    with open('private_key.pem', 'w') as keyfile:
+        keyfile.write(os.environ.get('pri_key_str'))
 
     app.run(port = 5051, ssl_context = ('cert.pem', 'private_key.pem'))
