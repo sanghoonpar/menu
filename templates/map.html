@@ -5,25 +5,15 @@
   <title>메뉴추천</title>
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1'>
   <script type = 'text/javascript' src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey={{java_key}}&libraries=services'></script>
-  <style>
-    body {margin: 0; padding: 0;}
-  </style>
-  <style>
-    body, html {margin: 0; padding: 0; width: 100%; height: 100%;}
+  <style>body {margin: 0; padding: 0;}</style>
+  <style>body, html {margin: 0; padding: 0; width: 100%; height: 100%;}
+    #map {width: 100%; height: 80%;}</style>
 
-    #map {width: 100%; height: 80%;}
-  </style>
-</head>
-<body>
-<div id = 'map'></div>
+</head><body><div id = 'map'></div>
 
-<h2 id = 'currentLocation'>현재위치 :</h2>
-<script src = 'script.js'></script>
-</br>
+<h2 id = 'currentLocation'>현재위치 :</h2><script src = 'script.js'></script></br>
 
-<button type = 'button' onclick = 'returnmain()'>
-  <img style = 'height: 50px; width: 50px; left: 5px' src = '/static/images/back.webp' alt = '' onclick = ''> 
-</button>
+<button type = 'button' onclick = 'returnmain()'><img style = 'height: 50px; width: 50px' src = '/static/images/back.webp' alt = '' onclick = ''></button>
 
 <script>
 lat = 0
@@ -41,8 +31,8 @@ if (navigator.geolocation) {navigator.geolocation.getCurrentPosition(function(po
         var mapOption = {center: locPosition, level: 5}; 
         var map = new kakao.maps.Map(mapContainer, mapOption);
 
-        var circle = new kakao.maps.Circle({center : new kakao.maps.LatLng(lat, lon), radius: 1500, strokeWeight: 5, strokeColor: '#6B8E23', strokeOpacity: 0.5, fillColor: '#6B8E23', fillOpacity: 0.4}); circle.setMap(map);});
-} else {var locPosition = new kakao.maps.LatLng(37.566826, 126.9786567);
+        var circle = new kakao.maps.Circle({center : new kakao.maps.LatLng(lat, lon), radius: 1500, strokeWeight: 5, strokeColor: '#6B8E23', strokeOpacity: 0.5, fillColor: '#6B8E23', fillOpacity: 0.4}); circle.setMap(map);});} 
+else {var locPosition = new kakao.maps.LatLng(37.566826, 126.9786567);
     var message = 'geolocation을 사용할수 없음';
     displayMarker(locPosition, message);}
 
@@ -52,6 +42,4 @@ function displayMarker(locPosition, message) {var marker = new kakao.maps.Marker
     infowindow.open(map, marker);
     map.setCenter(locPosition);}
 
-</script>
-</body>
-</html>
+</script></body></html>

@@ -12,7 +12,7 @@
   <img style = 'width: 138px; height: 140px; left: 275px; top :20px; position: absolute' src = '/static/images/logo.png' />
    
   {% if key %}
-  <a href = {{call_back_url}} >
+  <a href = {{c_b_u}} >
     <img style = 'width: 154px; height: 84px; left: 11px; top: 200px; position: absolute' src = '/static/images/login.png' alt = '' onclick = '' >
   </a>
 
@@ -59,8 +59,7 @@
 
       var reader = new FileReader();
 
-      reader.onload = function(e) {document.getElementById('image').src = e.target.result;
-      };
+      reader.onload = function(e) {document.getElementById('image').src = e.target.result;};
       reader.readAsDataURL(input.files[0]);}
   </script>
 </body>

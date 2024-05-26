@@ -6,59 +6,24 @@
 <title>메뉴추천</title>
 <style>
 
-    label {
-        display: block;
-        margin-bottom: 10px;
-    }
+    label {display: block;
+        margin-bottom: 10px;}
 </style>
 </head>
 <body>
     <h3>알레르기 선택</h3>
     <form id = 'allergy'>
-        <label>
-            <input type = 'checkbox' name = 'allergy' value = '갑각류'>
-            갑각류
-        </label>
-        <label>
-            <input type = 'checkbox' name = 'allergy' value = '견과류'>
-            견과류
-        </label>
-        <label>
-            <input type = 'checkbox' name = 'allergy' value = '밀가루'>
-            밀가루
-        </label>
-        <label>
-            <input type = 'checkbox' name = 'allergy' value = '해산물'>
-            해산물
-        </label>
-        <label>
-            <input type = 'checkbox' name = 'allergy' value = '양고기'>
-            양고기
-        </label>
-        <label>
-            <input type = 'checkbox' name = 'allergy' value = '소고기'>
-            소고기
-        </label>
-        <label>
-            <input type = 'checkbox' name = 'allergy' value = '우유'>
-            우유
-        </label>
-        <label>
-            <input type = 'checkbox' name = 'allergy' value = '과일'>
-            과일
-        </label>
-        <label>
-            <input type = 'checkbox' name = 'allergy' value = '달걀'>
-            달걀
-        </label>
-        <label>
-            <input type = 'checkbox' name = 'allergy' value = '생선'>
-            생선
-        </label>
-        <label>
-            <input type = 'checkbox' name = 'allergy' value = '대두'>
-            대두
-        </label>
+        <label><input type = 'checkbox' name = 'allergy' value = '갑각류'>갑각류</label>
+        <label><input type = 'checkbox' name = 'allergy' value = '견과류'>견과류</label>
+        <label><input type = 'checkbox' name = 'allergy' value = '밀가루'>밀가루</label>
+        <label><input type = 'checkbox' name = 'allergy' value = '해산물'>해산물</label>
+        <label><input type = 'checkbox' name = 'allergy' value = '양고기'>양고기</label>
+        <label><input type = 'checkbox' name = 'allergy' value = '소고기'>소고기</label>
+        <label><input type = 'checkbox' name = 'allergy' value = '우유'>우유</label>
+        <label><input type = 'checkbox' name = 'allergy' value = '과일'>과일</label>
+        <label><input type = 'checkbox' name = 'allergy' value = '달걀'>달걀</label>
+        <label><input type = 'checkbox' name = 'allergy' value = '생선'>생선</label>
+        <label><input type = 'checkbox' name = 'allergy' value = '대두'>대두</label>
         <button type = 'button' onclick = 'submitForm()'>선택 완료</button>
     </form>
     <form method = 'post', action = '/allergy'>
@@ -69,12 +34,12 @@
 
       </br>
 
-      <button type = 'button' onclick = 'returnmain()'><img style="height: 50px; width: 50px;" src = '/static/images/back.webp' alt = '' onclick = ''> </button>
+      <button type = 'button' onclick = 'returnmain()'><img style = 'height: 50px; width: 50px;' src = '/static/images/back.webp' alt = '' onclick = ''> </button>
 
     <script>
         window.alert(['없으면 작성 X'])
 
-        function submitForm() {var selected_allergy = document.querySelector('input[name="allergy"]:checked');}
+        function submitForm() {var selected_allergy = document.querySelector('input[name="알레르기"]:checked');}
         function returnmain() {window.location.href = 'https://127.0.0.1:5051/main';}
     </script>
 </body>

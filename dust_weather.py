@@ -3,7 +3,7 @@ import xml.etree.ElementTree as elemTree, requests
 def dust_weather(data, service_key):
 
     dust_data = dict()
-    dust_data['pm10'] = {'value' : float(elemTree.fromstring(requests.get('http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=서울&pageNo=1&numOfRows=100&returnType=xml&serviceKey=%s&ver=1.0'%(service_key) + 'serviceKey=' + service_key + '&dataType=json&dataGubun=HOUR&searchCondition=WEEK&itemCode=PM10').text).find('body').find('items').find('item').findtext('pm10' + 'Value'))}
+    dust_data['pm10'] = {'value' : float(elemTree.fromstring(requests.get('http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=서울&pageNo=1&numOfRows=100&returnType=xml&serviceKey=%s&ver=1.0'%(service_key) + 'serviceKey=' + service_key + '&dataType=json&dataGubun=HOUR&searchCondition=WEEK&itemCode=PM10').text).find('body').find('items').find('item').findtext('pm10Value'))}
 
     if dust_data.get('pm10').get('value') <= 30: pm10_state = '좋음'
     elif dust_data.get('pm10').get('value') <= 80: pm10_state = '보통'
