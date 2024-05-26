@@ -59,8 +59,12 @@ def allergy():
 
 def service():
 
-    if run_service.serve_code(address, access_token, crd) == 2: return render_template('success.html')
-    else: return render_template('fail.html')
+    if run_service.serve_code(address, access_token, crd) == 2:
+        address, access_token, crd = None, None, None
+        return render_template('success.html')
+    else: 
+        address, access_token, crd = None, None, None
+        return render_template('fail.html')
 
 if __name__ == '__main__':
     #ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS)
