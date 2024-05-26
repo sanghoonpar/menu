@@ -58,7 +58,7 @@ def allergy():
     return render_template('allergy.html')
 
 def service():
-
+    global address, access_token, crd
     if run_service.serve_code(address, access_token, crd) == 2:
         address, access_token, crd = None, None, None
         return render_template('success.html')
