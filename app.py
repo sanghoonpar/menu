@@ -14,16 +14,16 @@ def inintial(): return render_template('home.html')
 @app.route('/main')
 def login():
     global crd, address
-    
+
     if request.method == 'GET':
         if request.args.get('lat') != None and request.args.get('lon') != None:
             address = run_service.get_address(request.args.get('lat') + ', ' + request.args.get('lon'))
             crd = request.args.get('lat') + ', ' + request.args.get('lon')
-            
+
             if access_token != None: return service()
-    
+
     elif request.method == 'POST': webbrowser.open(os.environ.get('c_b_u'))
-    
+
     if access_token != None: key = 0
     else: key = 1
 
