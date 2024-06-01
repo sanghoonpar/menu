@@ -48,6 +48,9 @@ def logout():
 @app.route('/map')
 def map(): return render_template('map.html', java_key = os.environ.get('k_java_key'))
 
+@app.route('/manual')
+def map(): return render_template('manual.html')
+
 def service():
     global address, access_token, crd
     if run_service.serve_code(address, access_token, crd) == 2:
