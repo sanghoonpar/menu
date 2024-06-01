@@ -1,4 +1,4 @@
-import webbrowser, os, run_service, requests, ssl, io
+import webbrowser, os, run_service, requests
 from flask import Flask, render_template, request
 from dotenv import load_dotenv
 load_dotenv()
@@ -48,19 +48,12 @@ def logout():
 @app.route('/map')
 def map(): return render_template('map.html', java_key = os.environ.get('k_java_key'))
 
-@app.route('/allergy', methods = ['GET', 'POST'])
-def allergy():
-    global allergy
-    
-    if request.method == 'GET': pass
-    elif request.method == 'POST': allergy = request.form.getlist('allergy')
-
-    return render_template('allergy.html')
-
 def service():
     global address, access_token, crd
     if run_service.serve_code(address, access_token, crd) == 2:
-        address, access_token, crd = None, None, None
+        address = None
+        access_token = None
+        crd = None
         return render_template('success.html')
     else:
         address, access_token, crd = None, None, None
