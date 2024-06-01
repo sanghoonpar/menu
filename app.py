@@ -49,7 +49,7 @@ def logout():
 def map(): return render_template('map.html', java_key = os.environ.get('k_java_key'))
 
 @app.route('/manual')
-def map(): return render_template('manual.html')
+def manual(): return render_template('manual.html')
 
 def service():
     global address, access_token, crd
