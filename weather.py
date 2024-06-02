@@ -5,10 +5,11 @@ load_dotenv()
 
 def weather(crd):
     data = dict()
-    data['date'] = str(datetime.now().date().strftime('%Y%m%d')[:4] + '/' + datetime.now().date().strftime('%Y%m%d')[4:6] + '/' + datetime.now().date().strftime('%Y%m%d')[6:])
+    date = datetime.now().date().strftime('%Y%m%d')
+    data['date'] = str(date[:4] + '/' + date[4:6] + '/' + date[6:])
     weather_data = dict()
 
-    for item in requests.get('http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=' + os.environ.get('ser_key') + '&dataType=json&base_date=' + datetime.now().date().strftime('%Y%m%d') + '&base_time=0800&nx=' + crd[0] + '&ny=' + crd[1]).json().get('response').get('body').get('items')['item']:
+    for item in requests.get('http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=' + os.environ.get('ser_key') + '&dataType=json&base_date=' + date + '&base_time=0800&nx=' + crd[0] + '&ny=' + crd[1]).json().get('response').get('body').get('items')['item']:
 
         if item['category'] == 'TMP': weather_data['tmp'] = item['fcstValue']
 
