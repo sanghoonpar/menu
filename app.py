@@ -6,8 +6,6 @@ load_dotenv()
 access_token, crd, address, allergy = None, None, None, None
 app = Flask(__name__, template_folder = 'templates')
 
-
-
 @app.route('/', methods = ['GET', 'POST'])
 def inintial(): return render_template('home.html')
 
