@@ -51,14 +51,8 @@ def manual(): return render_template('manual.html')
 
 def service():
     global address, access_token, crd
-    if run_service.serve_code(address, access_token, crd) == 2:
-        address = None
-        access_token = None
-        crd = None
-        return render_template('success.html')
-    else:
-        address, access_token, crd = None, None, None
-        return render_template('fail.html')
+    if run_service.serve_code(address, access_token, crd) == 2: return render_template('success.html')
+    else: return render_template('fail.html')
 
 if __name__ == '__main__':
     with open('cert.pem', 'w') as certfile: certfile.write(os.environ.get('cert_str'))
