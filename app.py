@@ -36,6 +36,7 @@ def kakaocallback():
     if address != None: return service()
 
     return render_template('kakaocallback.html', nick_name = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f"Bearer {access_token}"}).json()['properties']['nickname'])
+
 @app.route('/logout')
 def logout():
     global access_token
