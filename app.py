@@ -63,9 +63,7 @@ def service():
         return render_template('fail.html')
 
 if __name__ == '__main__':
-    with open('cert.pem', 'w') as certfile:
-        certfile.write(os.environ.get('cert_str'))
-    with open('private_key.pem', 'w') as keyfile:
-        keyfile.write(os.environ.get('pri_key_str'))
+    with open('cert.pem', 'w') as certfile: certfile.write(os.environ.get('cert_str'))
+    with open('private_key.pem', 'w') as keyfile: keyfile.write(os.environ.get('pri_key_str'))
 
     app.run(port = 5051, ssl_context = ('cert.pem', 'private_key.pem'))
