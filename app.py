@@ -51,6 +51,7 @@ def map(): return render_template('map.html', java_key = os.environ.get('k_java_
 def manual(): return render_template('manual.html')
 
 def service():
+    
     global address, access_token, crd
     if run_service.serve_code(address, access_token, crd) == 2: return render_template('success.html')
     else: return render_template('fail.html')
