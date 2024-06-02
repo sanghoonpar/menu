@@ -2,7 +2,7 @@
 import urllib, json, requests
 
 def send(token, location, res, data):
-    
+
     a = 0
     text = f'''\
     위치 정보 : {location}
@@ -11,7 +11,7 @@ def send(token, location, res, data):
     기우  : {data['weather']['state']}
     미세먼지 : {data['dust']['pm10']['value']} {data['dust']['pm10']['state']}
     '''
-    
+
     def li(url): return {'web_url': url, 'mobile_web_url': url}
     def req(a, b, c): return requests.post(url = a, data = b, headers = {'Authorization': 'Bearer ' + {'access_token' : c}.get('access_token'), 'scope':'talk_message'}).json()
     url = 'https://kapi.kakao.com/v2/api/talk/memo/default/send'
