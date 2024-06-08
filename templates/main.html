@@ -26,8 +26,8 @@
     <img type = 'button' style = 'width: 120px; height: 84px; left: 165px; top: 200px; position: absolute' src = '/static/images/map.png' alt = '' onclick = 'openZone()' >
   </a>
 
-  <a href = '/main'>
-    <img type = 'button' style = 'width: 120px; height: 84px; left: 300px; top: 200px; position: absolute' src = '/static/images/send.png' alt = '' onclick = 'openZone()' >
+  <a href = '/service'>
+    <img type = 'button' style = 'width: 120px; height: 84px; left: 300px; top: 200px; position: absolute' src = '/static/images/send.png' alt = '' onclick = 'runservice()' >
   </a>
 
   <button href = '/manual' alt = '' onclick = 'openmanual()'>설명서</button>
@@ -36,6 +36,8 @@
 
   <script>
     function openZone() {window.location.href = '/map';}
+
+    function openZone() {window.location.href = '/service';}
 
     function openmanual() {window.location.href = '/manual';}
 

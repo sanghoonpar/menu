@@ -19,8 +19,6 @@ def login():
             address = run_service.get_address(request.args.get('lat') + ', ' + request.args.get('lon'))
             crd = request.args.get('lat') + ', ' + request.args.get('lon')
 
-            if access_token != None: return service()
-
     elif request.method == 'POST': webbrowser.open(os.environ.get('c_b_u'))
 
     if access_token != None: key = 0
@@ -33,8 +31,6 @@ def kakaocallback():
     global access_token
 
     access_token = run_service.get_token(request.args.get('code'), os.environ.get('k_cli_id'), os.environ.get('k_red_uri'))
-
-    if address != None: return service()
 
     return render_template('kakaocallback.html', nick_name = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f"Bearer {access_token}"}).json()['properties']['nickname'])
 
@@ -51,6 +47,7 @@ def map(): return render_template('map.html', java_key = os.environ.get('k_java_
 @app.route('/manual')
 def manual(): return render_template('manual.html')
 
+@app.route('/service')
 def service():
     
     global address, access_token, crd
