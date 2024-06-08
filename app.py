@@ -3,7 +3,7 @@ from flask import Flask, render_template, request
 from dotenv import load_dotenv
 load_dotenv()
 
-access_token, crd, address, allergy = None, None, None, None
+access_token, crd, address = None, None, None, None
 app = Flask(__name__, template_folder = 'templates')
 
 @app.route('/', methods = ['GET', 'POST'])

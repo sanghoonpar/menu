@@ -3,7 +3,7 @@ import urllib, json, requests
 
 def send(token, location, res, data):
 
-    a = 0
+    suc = 0
     text = f'''\
     위치 정보 : {location}
     날씨 정보 ({data['date']})
@@ -18,7 +18,7 @@ def send(token, location, res, data):
     wea = li('https://search.naver.com/search.naver?sm=top_hty&fbm=0&ie=utf8&query=날씨')
     dat = {'template_object' : json.dumps({'object_type': 'text', 'text': text, 'link': wea, 'button_title': '날씨 상세보기'})}
 
-    if req(url, dat, token).get('result_code') == 0: a += 1
+    if req(url, dat, token).get('result_code') == 0: suc += 1
     else: print('메시지를 성공적으로 보내지 못했습니다. 오류메시지 : ', str(req(url, dat, token)))
 
     contents = []
@@ -30,7 +30,7 @@ def send(token, location, res, data):
         contents.append({'title': '[' + place.get('category') + '] ' + title, 'description': ''.join(place.get('address').split()[1:]), 'image_url': 'https://freesvg.org/img/bentolunch.png?w=150&h=150&fit=fill', 'image_width': 50, 'image_height': 50, 'link': li(urlliB)})
 
     dat = {'template_object' : json.dumps({'object_type' : 'list', 'header_title' : '현재 날씨에 따른 음식 추천', 'header_link' : wea, 'contents' : contents, 'buttons' : [{'title' : '날씨 상세보기', 'link' : wea}]})}
-    if req(url, dat, token).get('result_code') == 0: a += 1
+    if req(url, dat, token).get('result_code') == 0: suc += 1
     else: print('메시지를 성공적으로 보내지 못했습니다. 오류메시지 : ', str(req(url, dat, token)))
 
-    return a
+    return suc

@@ -13,7 +13,7 @@ def search_res(loca, listf):
         if req:
             res.append(req[0])
             
-            if len(res) >= 4: break
+            if len(res) >= 3: break
 
     for i in range(len(res) - 1):
         if res[0] == res[1]: res.remove(res[0])
