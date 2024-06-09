@@ -28,11 +28,12 @@ def login():
 
 @app.route('/kakaocallback')
 def kakaocallback():
-    global access_token
+    global access_token, nick_names
 
     access_token = run_service.get_token(request.args.get('code'), os.environ.get('k_cli_id'), os.environ.get('k_red_uri'))
-
-    return render_template('kakaocallback.html', nick_name = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f"Bearer {access_token}"}).json()['properties']['nickname'])
+    nick_name = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f"Bearer {access_token}"}).json()['properties']['nickname']
+    nick_names.append(nick_name)
+    return render_template('kakaocallback.html')
 
 @app.route('/logout')
 def logout():
@@ -51,7 +52,7 @@ def manual(): return render_template('manual.html')
 def service():
     
     global address, access_token, crd
-    if run_service.serve_code(address, access_token, crd) == 2: return render_template('success.html')
+    if run_service.serve_code(address, access_token, crd) == 1: return render_template('success.html')
     else: return render_template('fail.html')
 
 if __name__ == '__main__':
