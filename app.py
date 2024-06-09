@@ -6,11 +6,7 @@ load_dotenv()
 access_token, crd, address = None, None, None
 
 app = Flask(__name__, template_folder = 'templates')
-app.secret_key = os.environ.get('secret_key')
-
-k_cli_id = os.environ.get('k_cli_id')
-k_cli_sec = os.environ.get('k_cli_sec')
-k_red_uri = os.environ.get('k_red_uri')
+app.secret_key = os.environ.get('sec_key')
 
 @app.route('/')
 def inintial(): 
@@ -57,7 +53,7 @@ def kakaocallback():
     
     user_info = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {access_token}', 'Content-Type': 'application/x-www-form-urlencoded',}).json()
     user_infor = {'id': user_info['id'], 'nickname': user_info['properties']['nickname'],}
-    save_user_to_db(user_infor)
+    user_inform = save_user_to_db(user_infor)
 
     session['user'] = user_infor
     resp = make_response(redirect(url_for('home')))
@@ -87,14 +83,13 @@ def service():
     else: return render_template('try_again.html')
 
 def save_user_to_db(user):
-    user_info = []
-    user_info.append(user)
-    pass
+    user_inform = {}
+    user_inform[user['id']] = user['id'], user['nickname']
+    return user_inform
 
-def get_user_from_db(user_id):
-    # 여기에 사용자 정보를 데이터베이스에서 가져오는 코드를 추가하세요.
-    # 예시로 임시 사용자 데이터 반환
-    return {'id': user_id, 'nickname': 'TempUser'}
+def get_user_from_db(user_id, user_inform):
+    nick = user_inform[user_id]['nickname']
+    return {'id': user_id, 'nickname': nick}
 
 if __name__ == '__main__':
     with open('cert.pem', 'w') as certfile: certfile.write(os.environ.get('cert_str'))
