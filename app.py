@@ -78,7 +78,7 @@ def service():
     
     global address, access_token, crd
     if address != None and access_token != None:    
-        if run_service.serve_code(address, access_token, crd) == 2: return render_template('success.html')
+        if run_service.serve_code(address, access_token, crd) == 1: return render_template('success.html')
         else: return render_template('fail.html')
     else: return render_template('try_again.html')
 
