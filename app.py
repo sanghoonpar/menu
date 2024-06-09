@@ -1,14 +1,37 @@
 import webbrowser, os, run_service, requests
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, url_for, redirect, flash, make_response
 from dotenv import load_dotenv
 load_dotenv()
 
 access_token, crd, address = None, None, None
-nick_names = []
-app = Flask(__name__, template_folder = 'templates')
 
-@app.route('/', methods = ['GET', 'POST'])
-def inintial(): return render_template('home.html')
+app = Flask(__name__, template_folder = 'templates')
+app.secret_key = os.environ.get('secret_key')
+
+k_cli_id = os.environ.get('k_cli_id')
+k_cli_sec = os.environ.get('k_cli_sec')
+k_red_uri = os.environ.get('k_red_uri')
+
+@app.route('/')
+def inintial(): 
+
+    if session.get('user'):
+        return render_template('home.html', user = session.get('user'))
+    if request.cookies.get('user_id'):
+        if get_user_from_db(request.cookies.get('user_id')):
+            session['user'] = get_user_from_db(request.cookies.get('user_id'))
+            return render_template('home.html', user = get_user_from_db(request.cookies.get('user_id')))
+    return render_template('home.html', user = None)
+
+@app.route('/login')
+def login(): return redirect(os.environ.get('c_b_u2'))
+
+@app.route('/logout')
+def logout():
+    session.pop('user', None)
+    resp = make_response(redirect(url_for('home')))
+    resp.set_cookie('user_id', '', expires = 0)
+    return resp
 
 @app.route('/main')
 def login():
@@ -28,14 +51,20 @@ def login():
 
 @app.route('/kakaocallback')
 def kakaocallback():
-    global access_token, nick_names
+    global access_token
 
     access_token = run_service.get_token(request.args.get('code'), os.environ.get('k_cli_id'), os.environ.get('k_red_uri'))
-    nick_name = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f"Bearer {access_token}"}).json()['properties']['nickname']
-    nick_names.append(nick_name)
-    return render_template('kakaocallback.html', nick_name = nick_name)
+    
+    user_info = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {access_token}', 'Content-Type': 'application/x-www-form-urlencoded',}).json()
+    user_infor = {'id': user_info['id'], 'nickname': user_info['properties']['nickname'],}
+    save_user_to_db(user_infor)
 
-@app.route('/logout')
+    session['user'] = user_infor
+    resp = make_response(redirect(url_for('home')))
+    resp.set_cookie('user_id', str(user_info['id']), max_age = 30 * 24 * 60 * 60)
+    return render_template('kakaocallback.html', nick_name = user_info['properties']['nickname'], resp = resp)
+
+@app.route('/k_logout')
 def logout():
     global access_token
     
@@ -56,6 +85,16 @@ def service():
         if run_service.serve_code(address, access_token, crd) == 2: return render_template('success.html')
         else: return render_template('fail.html')
     else: return render_template('try_again.html')
+
+def save_user_to_db(user):
+    user_info = []
+    user_info.append(user)
+    pass
+
+def get_user_from_db(user_id):
+    # 여기에 사용자 정보를 데이터베이스에서 가져오는 코드를 추가하세요.
+    # 예시로 임시 사용자 데이터 반환
+    return {'id': user_id, 'nickname': 'TempUser'}
 
 if __name__ == '__main__':
     with open('cert.pem', 'w') as certfile: certfile.write(os.environ.get('cert_str'))
