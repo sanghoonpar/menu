@@ -5,14 +5,13 @@ load_dotenv()
 res = []
 def search_res(loca, listf):
     for food in listf:
-        listf.append('국밥')
         req = requests.get('https://openapi.naver.com/v1/search/local.json?', params = 'sort=comment&query='+ loca + ' ' + food + ' 맛집&display=5', headers = {'X-Naver-Client-Id' : os.environ.get('n_cli_id'), 'X-Naver-Client-Secret' : os.environ.get('n_cli_secret')}).json().get('items')
-        
+
         if not req: print('검색 실패', food)
 
         if req:
             res.append(req[0])
-            
+
             if len(res) >= 3: break
 
     for i in range(len(res) - 1):
