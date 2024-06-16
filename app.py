@@ -10,21 +10,20 @@ app.secret_key = os.environ.get('sec_key')
 user = {}
 
 @app.route('/')
-def inintial(): 
-    return render_template('home.html')
+def inintial(): return render_template('home.html')
 
-@app.route('/make_cookie', methods=['POST'])
-def make_cookie(): 
-    username = request.form['username']
-    password = request.form['password']    
-    if username in user and user[username]['password'] == password:
-       session['username'] = username
+# @app.route('/make_cookie', methods=['POST'])
+# def make_cookie(): 
+#     username = request.form['username']
+#     password = request.form['password']    
+#     if username in user and user[username]['password'] == password:
+#        session['username'] = username
 
-    if 'username' in session: 
-       username = session['username']
-       return render_template('home.html', user = f'로그인 완료 {username}님')
+#     if 'username' in session: 
+#        username = session['username']
+#        return render_template('home.html', user = f'로그인 완료 {username}님')
     
-    return render_template('home.html', user = '로그인 실패')
+#     return render_template('home.html', user = '로그인 실패')
 
 @app.route('/main')
 def login():
@@ -50,11 +49,11 @@ def kakaocallback():
     
     user_info = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {access_token}', 'Content-Type': 'application/x-www-form-urlencoded',}).json()
 
-    session['username'] = username
+    # session['username'] = username
 
-    if 'username' in session: 
-       username = session['username']
-       return render_template('main.html', user = f'로그인 완료 {username}님')
+    # if 'username' in session: 
+    #    username = session['username']
+    #    return render_template('main.html', user = f'로그인 완료 {username}님')
     
 
 
