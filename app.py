@@ -20,7 +20,7 @@ def inintial():
     return render_template('home.html', user = None)
 
 @app.route('/login')
-def login(): return redirect(os.environ.get('c_b_u2'))
+def login(): return os.environ.get('c_b_u')#redirect(os.environ.get('c_b_u2'))
 
 #@app.route('/logout')
 #def logout():
