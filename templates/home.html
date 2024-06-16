@@ -7,15 +7,27 @@
 </head>
 <body> 
    <h1>메뉴 추천하는 사이트</h1>
+   
+   <form method = 'post' action = '/make_cookie'>
+      <p><input type = 'text' name = 'username'>
+      <p><input type = 'password' name = 'password'>
+      <p><input type = 'submit' value = '로그인'>
+  </form>
+
    <button type = 'button' onclick = 'openlogin()'>
       <img style = 'height: 250px; width: 250px;' src = '/static/images/enter.jpg' alt = '' onclick = ''> 
    </button>
-   
-      <img style = 'width: 300px; height: 300px;' src = '/static/images/menu1.jpg' />
-
+   <img style = 'width: 300px; height: 300px;' src = '/static/images/menu1.jpg' />
    <script>
-      //  window.alert(['환영합니다~! '] + '{{user}}' + '님')
+      window.alert('{{user}}')
+
       function openlogin(){window.location.href = '/main';}
+
+      function makecookie(){
+         window.alert('제발 성공해줘')
+         window.location.href = '/make_cookie';
+      }
    </script>
 </body>
-</meta></html>
+</meta>
+</html>
