@@ -1,5 +1,5 @@
 import webbrowser, os, run_service, requests
-from flask import Flask, render_template, request, session, url_for, redirect, flash, make_response
+from flask import Flask, render_template, request#, session, url_for, redirect, flash, make_response
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -17,7 +17,7 @@ def inintial():
      #   if get_user_from_db(request.cookies.get('user_id')):
       #      session['user'] = get_user_from_db(request.cookies.get('user_id'))
        #     return render_template('home.html', user = get_user_from_db(request.cookies.get('user_id')))
-    return render_template('home.html', user = None)
+    return render_template('home.html')#, user = None)
 
 @app.route('/login')
 def login(): return os.environ.get('c_b_u')#redirect(os.environ.get('c_b_u2'))
