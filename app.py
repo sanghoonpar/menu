@@ -49,13 +49,12 @@ def kakaocallback():
     access_token = run_service.get_token(request.args.get('code'), os.environ.get('k_cli_id'), os.environ.get('k_red_uri'))
     
     user_info = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {access_token}', 'Content-Type': 'application/x-www-form-urlencoded',}).json()
-    print(user_info)
 
     session['username'] = username
 
     if 'username' in session: 
        username = session['username']
-       return render_template('home.html', user = f'로그인 완료 {username}님')
+       return render_template('main.html', user = f'로그인 완료 {username}님')
     
 
 

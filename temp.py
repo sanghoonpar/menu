@@ -39,7 +39,7 @@ def oauth():
 
     session['user'] = user_data
     resp = make_response(redirect(url_for('home')))
-    resp.set_cookie('user_id', str(user_id), max_age = 30 * 24 * 60 * 60)  # 쿠키 유효기간 30일
+    resp.set_cookie('user_id', str(user_id), max_age = 30 * 24 * 60 * 60)
     return resp
 
 def save_user_to_db(user):
