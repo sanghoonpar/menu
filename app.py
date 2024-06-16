@@ -65,7 +65,7 @@ def logout():
     global access_token
     
     access_token = None
-    return login()
+    return render_template('main.html')
    # session.pop('user', None)
     #return redirect(url_for('index')), login()
 
