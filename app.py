@@ -6,8 +6,8 @@ load_dotenv()
 access_token, crd, address = None, None, None
 
 app = Flask(__name__, template_folder = 'templates')
-app.secret_key = os.environ.get('sec_key')
-user = {}
+#app.secret_key = os.environ.get('sec_key')
+#user = {}
 
 @app.route('/')
 def inintial(): return render_template('home.html')
@@ -62,7 +62,7 @@ def kakaocallback():
 @app.route('/k_logout')
 def logout():
     global access_token
-    
+
     access_token = None
     return render_template('main.html')
    # session.pop('user', None)
@@ -78,7 +78,7 @@ def manual(): return render_template('manual.html')
 def service():
     
     global address, access_token, crd
-    if address != None and access_token != None:    
+    if address != None and access_token != None:
         if run_service.serve_code(address, access_token, crd) == 2: return render_template('success.html')
         else: return render_template('fail.html')
     else: return render_template('try_again.html')
