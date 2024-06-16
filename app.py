@@ -87,9 +87,7 @@ def save_user_to_db(user):
     user_inform[user['id']] = user['id'], user['nickname']
     return user_inform
 
-def get_user_from_db(user_id, user_inform):
-    nick = user_inform[user_id]['nickname']
-    return {'id': user_id, 'nickname': nick}
+def get_user_from_db(user_id, user_inform): return {'id': user_id, 'nickname': user_inform[user_id]['nickname']}
 
 if __name__ == '__main__':
     with open('cert.pem', 'w') as certfile: certfile.write(os.environ.get('cert_str'))
