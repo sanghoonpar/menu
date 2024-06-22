@@ -21,10 +21,18 @@
     <img style = 'width: 154px; height: 84px; left: 11px; top: 200px; position: absolute' src = '/static/images/logout.png' alt = '' onclick = '' >
   </a>
   {% endif %}
-      
+  
+  {%  if key1 %}
   <a href = '/map'>
     <img type = 'button' style = 'width: 120px; height: 84px; left: 165px; top: 200px; position: absolute' src = '/static/images/map.png' alt = '' onclick = 'openZone()' >
   </a>
+
+  {% else %}
+  <a href = '/map'>
+    <img type = 'button' style = 'width: 120px; height: 84px; left: 165px; top: 200px; position: absolute' src = '/static/images/map.png' alt = '' onclick = 'openZone()' >
+  </a>
+  <img style = 'width: 24px; height: 16.8; left: 245px; top: 200px; position: absolute;' src = '/static/images/check.png'
+  {% endif %}
 
   <a href = '/service'>
     <img type = 'button' style = 'width: 120px; height: 84px; left: 285px; top: 200px; position: absolute' src = '/static/images/send.png' alt = '' onclick = 'runservice()' >

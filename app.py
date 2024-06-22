@@ -39,7 +39,10 @@ def login():
     if access_token != None: key = 0
     else: key = 1
 
-    return render_template('main.html', c_b_u = os.environ.get('c_b_u'), key = key)
+    if crd != None: key1 = 0
+    else: key1 = 1
+
+    return render_template('main.html', c_b_u = os.environ.get('c_b_u'), key = key, key1 = key1)
 
 @app.route('/kakaocallback')
 def kakaocallback():
