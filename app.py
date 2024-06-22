@@ -1,5 +1,5 @@
 import webbrowser, os, run_service, requests
-from flask import Flask, render_template, request, session#, url_for, redirect, make_response
+from flask import Flask, render_template, request#, session, url_for, redirect, make_response
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -61,10 +61,10 @@ def kakaocallback():
 
 @app.route('/k_logout')
 def logout():
-    global access_token
+    global access_token, crd, address
 
-    access_token = None
-    return render_template('main.html')
+    access_token, crd, address = None, None, None
+    return render_template('home.html')
    # session.pop('user', None)
     #return redirect(url_for('index')), login()
 
