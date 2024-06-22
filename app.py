@@ -1,13 +1,13 @@
 import webbrowser, os, run_service, requests
-from flask import Flask, render_template, request#, session, url_for, redirect, make_response
+from flask import Flask, render_template, request, session, url_for, redirect
 from dotenv import load_dotenv
 load_dotenv()
 
 access_token, crd, address = None, None, None
 
 app = Flask(__name__, template_folder = 'templates')
-#app.secret_key = os.environ.get('sec_key')
-#user = {}
+app.secret_key = os.environ.get('sec_key')
+user = {}
 
 @app.route('/')
 def inintial(): return render_template('home.html')
