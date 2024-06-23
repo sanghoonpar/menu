@@ -6,53 +6,82 @@
     <title>메뉴추천</title>
     <link rel = 'stylesheet' href = 'media.css' />
     <style>
-      #home {
+      #btn {
         display: flex;
+        height: 100%;
+        /* background-color: red; */
+      }
+      #title {
+        width: 360px; 
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        position: relative;
+        /* background-color: blue; */
+      }
+      #image {
+        width: 360px; 
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        position: relative;
+        /* background-color: violet; */
+      }
+      #object {
+        display: flex;
+        /* background-color: darkcyan; */
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100%;
-        position: relative;
       }
+
     </style>
 </head>
 
 <body>
-    <button href = '/manual' alt = '' onclick = 'openmanual()'>메뉴얼</button>
-    <div style = 'width: 290px; height: 76px; left: 10px; top :20px; color: black; font-size: 64px; font-family: Inter; font-weight: 350; word-wrap: break-word'>메뉴추천</div>
-    <div style = 'width: 350px; height: 44px; left: 10px; top :120px; color: black; font-size: 35px; font-family: Inter; font-weight: 320; word-wrap: break-word'>메뉴 추천하는 앱</div>
-    <div id = 'btn'>
-    <img class = 'box' style = 'width: 138px; height: 140px;' src = '/static/images/logo.png' />
-    
-    {% if key %}
-    <a href = '{{c_b_u}}' >
-      <img style = 'width: 154px; height: 84px; left: 11px; top: 200px;' src = '/static/images/login.png' alt = '' onclick = '' >
-    </a>
+    <div id = 'object'>
+      <div id = 'title'>
+        <div>
+          <div style = 'width: 280px; height: 66px; color: black; font-size: 64px; font-family: Inter; font-weight: 350; word-wrap: break-word'>메뉴추천</div>
+          <div style = 'width: 280px; height: 34px; color: black; font-size: 35px; font-family: Inter; font-weight: 320; word-wrap: break-word'>메뉴 추천하는 앱</div>
+        </div>
+        <img class = 'box' style = 'width: 130px; height: 132px;' src = '/static/images/logo.png' />
+      </div>
 
-    {% else %}
-    <a href = '/k_logout'>
-      <img style = 'width: 154px; height: 84px; left: 11px; top: 200px;' src = '/static/images/logout.png' alt = '' onclick = '' >
-    </a>
-    {% endif %}
-    
-    {%  if key1 %}
-    <a href = '/map'>
-      <img type = 'button' style = 'width: 120px; height: 84px; left: 165px; top: 200px;' src = '/static/images/map.png' alt = '' onclick = 'openZone()' >
-    </a>
+      <div id = 'btn'>
+        {% if key %}
+        <a href = '{{c_b_u}}' >
+          <img style = 'width: 154px; height: 84px; left: 11px; top: 200px;' src = '/static/images/login.png' alt = '' onclick = '' >
+        </a>
 
-    {% else %}
-    <a href = '/map'>
-      <img type = 'button' style = 'width: 120px; height: 84px; left: 165px; top: 200px;' src = '/static/images/map.png' alt = '' onclick = 'openZone()' >
-    </a>
-    <img style = 'width: 24px; height: 16.8; left: 245px; top: 200px;' src = '/static/images/check.png'>
-    
-    {% endif %}
+        {% else %}
+        <a href = '/k_logout'>
+          <img style = 'width: 154px; height: 84px; left: 11px; top: 200px;' src = '/static/images/logout.png' alt = '' onclick = '' >
+        </a>
+        {% endif %}
 
-    <a href = '/service'>
-      <img type = 'button' style = 'width: 120px; height: 84px; left: 285px; top: 200px;' src = '/static/images/send.png' alt = '' onclick = 'runservice()' >
-    </a>
+        {%  if key1 %}
+        <a href = '/map'>
+          <img type = 'button' style = 'width: 120px; height: 84px; left: 165px; top: 200px;' src = '/static/images/map.png' alt = '' onclick = 'openZone()' >
+        </a>
+
+        {% else %}
+        <a href = '/map'>
+          <img type = 'button' style = 'width: 120px; height: 84px; left: 165px; top: 200px;' src = '/static/images/map.png' alt = '' onclick = 'openZone()' >
+        </a>
+        <img style = 'width: 24px; height: 16.8px; left: 265px; top: 200px;' src = '/static/images/check.png'>
+        
+        {% endif %}
+
+        <a href = '/service'>
+          <img type = 'button' style = 'width: 120px; height: 84px; left: 285px; top: 200px;' src = '/static/images/send.png' alt = '' onclick = 'runservice()' >
+        </a>
+      </div>
+      
+      <div id = 'image'></div>
+        <img style = 'width: 400px; height: 400px; left: 5px; top: 300px;' src = '/static/images/menu1.jpg' />
+      </div>
     </div>
-    <img style = 'width: 400px; height: 400px; left: 5px; top: 300px;' src = '/static/images/menu1.jpg' />
 
     <script>
       function runservice() {window.location.href = '/service';}
