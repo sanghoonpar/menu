@@ -16,8 +16,6 @@
 <button type = 'button' onclick = 'returnmain()'><img style = 'height: 50px; width: 50px' src = '/static/images/back.webp' alt = '' onclick = ''></button>
 
 <script>
-lat = 0
-lon = 0
 function returnmain() {window.location.href = '/main?lat=' + lat + '&lon=' + lon;}
 
 if (navigator.geolocation) {navigator.geolocation.getCurrentPosition(function(position) {lat = position.coords.latitude; 
