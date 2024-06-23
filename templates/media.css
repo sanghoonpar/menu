@@ -1,21 +1,25 @@
 @media only screen and (max-width: 600px) {
 
-    .box {
+    #home {
       position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
       width: 100%;
       left: 50%;
-      right: 50%;
       top: 0;
-    }
-    
-    .box img {
+    } 
+    #home image {
       width: 100%;
+      left: 50%;
       height: auto;
     }
   }
-  
+
   @media only screen and (min-width: 601px) and (max-width: 1024px) {
-    .box {
+    #home {
         width: 50%;
         height: 50%
     }
