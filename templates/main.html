@@ -1,107 +1,132 @@
 <!DOCTYPE html>
-<html lang = 'en'>
+<html lang='en'>
+
 <head>
-  <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
-    <script src = 'https://code.jquery.com/jquery-3.6.4.min.js'></script>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <script src='https://code.jquery.com/jquery-3.6.4.min.js'></script>
     <title>메뉴추천</title>
-    <link rel = 'stylesheet' href = 'media.css' />
+    <link rel='stylesheet' href='media.css' />
     <style>
-      #btn {
-        display: flex;
-        height: 100%;
-        /* background-color: red; */
-      }#title {
-        width: 360px; 
-        display: flex;
-        flex-direction: row;
-        height: 100%;
-        position: relative;
-        /* background-color: blue; */
-      }#image {
-        width: 360px; 
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        position: relative;
-        /* background-color: violet; */
-      }#object {
-        display: flex;
-        /* background-color: darkcyan; */
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }#my_bg {
-            background-image: url('/static/images/background.avif');
-            background-repeat: repeat;
-            background-size: cover;
-            background-position: center;
+        body {
+            margin: 0;
+            padding: 0;
+        }#my_bg {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            opacity: 0.7;
+            background-image: url('/static/images/background.avif');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.7; /* 배경 이미지에만 투명도 적용 */
+        }#object {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            color: black; /* 기본 텍스트 색상 설정 */
+        }#title {
+            width: 360px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 200px; /* 제목 위치 조정 */
+        }#title a {
+            color: black; /* 링크 색상 설정 */
+        }.title-text {
+            width: 280px;
+            font-size: 64px;
+            font-family: Inter;
+            font-weight: 350;
+            word-wrap: break-word;
+            text-align: center;
+            margin-top: 10px; /* 텍스트 간격 조정 */
+        }.subtitle-text {
+            width: 280px;
+            font-size: 35px;
+            font-family: Inter;
+            font-weight: 320;
+            word-wrap: break-word;
+            text-align: center;
+            margin-top: 5px; /* 부제목 간격 조정 */
+        }#image {
+            width: 130px;
+            height: 132px;
+            margin-top: 20px; /* 로고 위치 조정 */
+        }#btn {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px; /* 버튼 위치 조정 */
+        }#btn a {
+            margin: 0 10px; /* 링크 간격 조정 */
+        }#btn img {
+            width: 120px;
+            height: 84px;
         }
-
     </style>
 </head>
 
 <body>
-    <div id = 'my_bg'>  
-      <div id = 'object'>
-        <div id = 'title'>
-          <div>
-            <a href = '/manual'alt = '' onclick = 'openZone()'>메뉴얼</a>
-            <div style = 'width: 280px; height: 66px; color: black; font-size: 64px; font-family: Inter; font-weight: 350; word-wrap: break-word'>메뉴추천</div>
-            <div style = 'width: 280px; height: 34px; color: black; font-size: 35px; font-family: Inter; font-weight: 320; word-wrap: break-word'>메뉴 추천하는 앱</div>
-          </div>
-          <img class = 'box' style = 'width: 130px; height: 132px;' src = '/static/images/logo.png' />
+    <div id='my_bg'></div>
+    <div id='object'>
+        <div id='title'>
+            <a href='/manual' alt='' onclick='openZone()'>메뉴얼</a>
+            <div class='title-text'>메뉴추천</div>
+            <div class='subtitle-text'>메뉴 추천하는 앱</div>
+            <img id='image' class='box' src='/static/images/logo.png' />
         </div>
 
-        <div id = 'btn'>
-          {% if key %}
-          <a href = '{{c_b_u}}' >
-            <img style = 'width: 154px; height: 84px; left: 11px; top: 200px;' src = '/static/images/login.png' alt = '' onclick = '' >
-          </a>
+        <div id='btn'>
+            {% if key %}
+            <a href='{{c_b_u}}'>
+                <img src='/static/images/login.png' alt='' onclick=''>
+            </a>
+            {% else %}
+            <a href='/k_logout'>
+                <img src='/static/images/logout.png' alt='' onclick=''>
+            </a>
+            {% endif %}
 
-          {% else %}
-          <a href = '/k_logout'>
-            <img style = 'width: 154px; height: 84px; left: 11px; top: 200px;' src = '/static/images/logout.png' alt = '' onclick = '' >
-          </a>
-          {% endif %}
+            {% if key1 %}
+            <a href='/map'>
+                <img src='/static/images/map.png' alt='' onclick='openZone()'>
+            </a>
+            {% else %}
+            <a href='/map'>
+                <img src='/static/images/map.png' alt='' onclick='openZone()'>
+            </a>
+            <img src='/static/images/check.png' style = 'width: 25px; height: 25px;'>
+            {% endif %}
 
-          {%  if key1 %}
-          <a href = '/map'>
-            <img type = 'button' style = 'width: 120px; height: 84px; left: 165px; top: 200px;' src = '/static/images/map.png' alt = '' onclick = 'openZone()' >
-          </a>
-
-          {% else %}
-          <a href = '/map'>
-            <img type = 'button' style = 'width: 120px; height: 84px; left: 165px; top: 200px;' src = '/static/images/map.png' alt = '' onclick = 'openZone()' >
-          </a>
-          <img style = 'width: 24px; height: 16.8px; left: 265px; top: 200px;' src = '/static/images/check.png'>
-          
-          {% endif %}
-
-          <a href = '/service'>
-            <img type = 'button' style = 'width: 120px; height: 84px; left: 285px; top: 200px;' src = '/static/images/send.png' alt = '' onclick = 'runservice()' >
-          </a>
+            <a href='/service'>
+                <img src='/static/images/send.png' alt='' onclick='runservice()'>
+            </a>
         </div>
-      </div>
     </div>
 
     <script>
-      function runservice() {window.location.href = '/service';}
-      function openmanual() {window.location.href = '/manual';}
-      function service() {window.location.href = '/service';}
-      function openZone() {window.location.href = '/map';}
+        function runservice() {
+            window.location.href = '/service';
+        }
 
-      function loadImage() {var input = document.getElementById('fileInput');
+        function openmanual() {
+            window.location.href = '/manual';
+        }
 
-        var reader = new FileReader();
+        function service() {window.location.href = '/service';}
 
-        reader.onload = function(e) {document.getElementById('image').src = e.target.result;};
-        reader.readAsDataURL(input.files[0]);}
+        function openZone() {window.location.href = '/map';}
+
+        function loadImage() {
+            var input = document.getElementById('fileInput');
+            var reader = new FileReader();
+            reader.onload = function(e) {document.getElementById('image').src = e.target.result;};reader.readAsDataURL(input.files[0]);}
     </script>
 </body>
+
 </html>
