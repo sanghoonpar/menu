@@ -4,20 +4,31 @@
    <meta charset = 'utf-8'>
     <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
     <title>메뉴추천</title>
+    <style>
+      #object {
+         display: flex;
+        /* background-color: darkcyan; */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
 </head>
 <body> 
-   <h1>메뉴 추천하는 사이트</h1>
-   
-   <!-- <form method = 'post' action = '/make_cookie'>
-      <p><input type = 'text' name = 'username'>
-      <p><input type = 'password' name = 'password'>
-      <p><input type = 'submit' value = '로그인'>
-  </form> -->
+   <div id = 'object'>
+      <h1>메뉴 추천하는 사이트</h1>
+      
+      <!-- <form method = 'post' action = '/make_cookie'>
+         <p><input type = 'text' name = 'username'>
+         <p><input type = 'password' name = 'password'>
+         <p><input type = 'submit' value = '로그인'>
+   </form> -->
 
-   <button type = 'button' onclick = 'openlogin()'>
-      <img style = 'height: 250px; width: 250px;' src = '/static/images/enter.jpg' alt = '' onclick = ''> 
-   </button>
-   <img style = 'width: 300px; height: 300px;' src = '/static/images/menu1.jpg' />
+      <button type = 'button' onclick = 'openlogin()'>
+         <img style = 'height: 250px; width: 250px;' src = '/static/images/enter.jpg' alt = '' onclick = ''> 
+      </button>
+      <img style = 'width: 300px; height: 300px;' src = '/static/images/menu1.jpg' />
+   </div>
    <script>
       // window.alert('{{user}}')
 

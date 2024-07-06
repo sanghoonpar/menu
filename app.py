@@ -57,8 +57,6 @@ def kakaocallback():
     # if 'username' in session: 
     #    username = session['username']
     #    return render_template('main.html', user = f'로그인 완료 {username}님')
-    
-
 
     return render_template('kakaocallback.html', nick_name = user_info['properties']['nickname'])
 
