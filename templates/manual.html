@@ -4,25 +4,45 @@
   <meta charset = 'utf-8'>
   <title>메뉴추천</title>
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1'>
+  <style>
+    #object {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }#my_bg {
+        background-image: url('/static/images/background.avif');
+        background-repeat: repeat;
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+</style>
 </head>
 <body>
-  <div id = 'object'>
-    <div id = 'text'>
-      <h2>1. 카카오 로그인하기</h2>
-      <h2>2. 지도에 들어가 지도가 나올때까지</h2>
-      <h2>기다린 후 지도 좀 구경한 후 뒤로가기 누르기</h2>
-      <h2>그럼 체크표시가 뜰 거임</h2>
-      <h2>3. 전송버튼 누르기</h2>
-      <h2>4. 카카오톡에서 결과물 구경하기</h2>
-      <h2>5. 지도는 대한민국 안에서만 사용가능함</h2>
-      <h2>6. 만약 카톡을 확인할 때 기우가 '없음'이고,</h2>
-      <h2>미세먼지가 '좋음'이라면 그냥 근처 '한식, 중식, 양식, 일식'중에서 3개 추천됨</h2>
-      <h2>7. 로그아웃을 누르면 첫 화면으로 돌아감</h2>
-      <h2>8. 날씨는 8시 기준임</h2>
-      <h2>9. 컴퓨터로 실행할 경우 위치정보가 다를 수 있음</h2>
-    </div>  
-      <button type = 'button' onclick = 'returnmain()'><img style = 'height: 50px; width: 50px' src = '/static/images/back.webp' alt = '' onclick = ''></button>
-    </div>  
+  <div id = 'my_bg'>  
+    <div id = 'object'>
+      <div id = 'text'>
+        <h2>1. 카카오 로그인하기</h2>
+        <h2>2. 지도에 들어가 지도가 나올때까지</h2>
+        <h2>기다린 후 지도 좀 구경한 후 뒤로가기 누르기</h2>
+        <h2>그럼 체크표시가 뜰 거임</h2>
+        <h2>3. 전송버튼 누르기</h2>
+        <h2>4. 카카오톡에서 결과물 구경하기</h2>
+        <h2>5. 지도는 대한민국 안에서만 사용가능함</h2>
+        <h2>6. 만약 카톡을 확인할 때 기우가 '없음'이고,</h2>
+        <h2>미세먼지가 '좋음'이라면 그냥 근처 '한식, 중식, 양식, 일식'중에서 3개 추천됨</h2>
+        <h2>7. 로그아웃을 누르면 첫 화면으로 돌아감</h2>
+        <h2>8. 날씨는 8시 기준임</h2>
+        <h2>9. 컴퓨터로 실행할 경우 위치정보가 다를 수 있음</h2>
+      </div>  
+        <button type = 'button' onclick = 'returnmain()'><img style = 'height: 50px; width: 50px' src = '/static/images/back.webp' alt = '' onclick = ''></button>
+    </div>
+  </div>
   <script>
       function returnmain(){window.location.href = '/main'}
   </script>

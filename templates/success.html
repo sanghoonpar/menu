@@ -12,18 +12,30 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+    }#my_bg {
+        background-image: url('/static/images/background.avif');
+        background-repeat: repeat;
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
     }
 </style>
 <body>
-    <div id = 'object'>
-        <h1 style = 'left: 500px;'>전송 성공</h1>
+    <div id = 'my_bg'>
+        <div id = 'object'>
+            <h1 style = 'left: 500px;'>전송 성공</h1>
 
-        <img style = 'height: 400px; width: 400px; top: 850px' src = '/static/images/ryan.png'>
+            <img style = 'height: 400px; width: 400px; top: 850px' src = '/static/images/ryan.png'>
 
-        <button type = 'button' onclick = 'openlogin()'>
-            <img style = 'height: 50px; width: 50px;' src = '/static/images/back.webp' alt = '' onclick = ''> 
-        </button>
-    </div>
+            <button type = 'button' onclick = 'openlogin()'>
+                <img style = 'height: 50px; width: 50px;' src = '/static/images/back.webp' alt = '' onclick = ''> 
+            </button>
+        </div>
+    </div>  
     <script>
         function openlogin() {window.location.href = '/main';}
     </script>
