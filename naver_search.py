@@ -9,7 +9,7 @@ def search_res(loca, listf):
 
         if not req: print('검색 실패', food)
 
-        if req:
+        else:
             res.append(req[0])
 
             if len(res) >= 3: break
@@ -20,5 +20,4 @@ def search_res(loca, listf):
         if res[0] == res[2]: res.remove(res[0])
     if len(res) >= 3:
         if res[1] == res[2]: res.remove(res[1])
-
     return res
