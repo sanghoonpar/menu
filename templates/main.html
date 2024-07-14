@@ -35,15 +35,13 @@
             justify-content: center;
             flex-direction: column;
             text-align: center;
-            top: 5px;
-        }#title a {
             color: black;
             text-decoration: none;
-        }.title-text {
             font-size: 64px;
             font-family: Inter;
             font-weight: 350;
             word-wrap: break-word;
+            top: 5px;
         }.subtitle-text {
             font-size: 35px;
             font-family: Inter;
@@ -74,11 +72,12 @@
     <div id = 'my_bg'></div>
     <div id = 'object'>
         <div id = 'title'>
-            <img id = 'image' class = 'box' src = '/static/images/logo.png' />
             <div class = 'title-text'>메뉴추천</div>
+        </div>
+            
+        <img id = 'image' class = 'box' src = '/static/images/logo.png' />
             <div class = 'subtitle-text'>메뉴 추천하는 앱</div>
             <a href = '/manual' onclick = 'openZone()'>메뉴얼</a>
-        </div>
 
         <div id='btn'>
             {% if key %}

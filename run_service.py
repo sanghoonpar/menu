@@ -16,4 +16,6 @@ def get_address(lat_lng):
     
     for i in range(len(str(geocoders.Nominatim(user_agent = 'South Korea', timeout = None).reverse(lat_lng)).split(', '))):
         address = str(geocoders.Nominatim(user_agent = 'South Korea', timeout = None).reverse(lat_lng)).split(', ')[i]
-        if '동' in address: return address
+        if '동' in address: 
+            print(address)
+            return address
