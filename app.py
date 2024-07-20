@@ -1,5 +1,5 @@
 import webbrowser, os, run_service, requests
-from flask import Flask, render_template, request, session, url_for, redirect
+from flask import Flask, request, session, url_for, redirect, render_template
 from dotenv import load_dotenv
 load_dotenv()
 
