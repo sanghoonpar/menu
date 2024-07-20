@@ -88,8 +88,8 @@ def service():
         else: return render_template('fail' + h)
     else: return render_template('try_again' + h)
 
-@app.route('/')
-def inintial(): return render_template('user' + h)
+@app.route('/user')
+def user(): return render_template('user' + h)
 
 if __name__ == '__main__':
     with open('cert.pem', 'w') as certfile: certfile.write(os.environ.get('cert_str'))
