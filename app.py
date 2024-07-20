@@ -12,7 +12,15 @@ app.secret_key = os.environ.get('sec_key')
 user = {}
 
 @app.route('/')
-def inintial(): return render_template('home.html')
+def inintial(): 
+    
+    if access_token != n: key = 0
+    else: key = 1
+
+    if crd != n: key1 = 0
+    else: key1 = 1
+    
+    return render_template('home.html', c_b_u = os.environ.get('c_b_u'), key = key, key1 = key1)
 
 # @app.route('/make_cookie', methods=['POST'])
 # def make_cookie(): 
@@ -37,14 +45,8 @@ def login():
             crd = request.args.get('lat') + ', ' + request.args.get('lon')
 
     elif request.method == 'POST': webbrowser.open(os.environ.get('c_b_u'))
-    
-    if access_token != n: key = 0
-    else: key = 1
 
-    if crd != n: key1 = 0
-    else: key1 = 1
-
-    return render_template('main' + h, c_b_u = os.environ.get('c_b_u'), key = key, key1 = key1)
+    return render_template('main' + h)
 
 @app.route('/kakaocallback')
 def kakaocallback():
