@@ -12,7 +12,7 @@ app.secret_key = os.environ.get('sec_key')
 user = {}
 
 @app.route('/')
-def inintial(): 
+def inintial():
     
     if access_token != n: key = 0
     else: key = 1
@@ -87,6 +87,9 @@ def service():
         if run_service.serve_code(address, access_token, crd) == 2: return render_template('success' + h)
         else: return render_template('fail' + h)
     else: return render_template('try_again' + h)
+
+@app.route('/')
+def inintial(): return render_template('user' + h)
 
 if __name__ == '__main__':
     with open('cert.pem', 'w') as certfile: certfile.write(os.environ.get('cert_str'))
