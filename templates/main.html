@@ -51,9 +51,6 @@
             height: 84px;
         }.check-overlay {
             position: absolute;
-            left: 0;
-            width: 120px;
-            height: 120px;
             z-index: 2;
         }
     </style>
@@ -84,11 +81,11 @@
             {% if key1 %}
             <a href = '/map' style = 'position: relative;'>
               <img src = '/static/images/map.png' style = 'width: 120px;' alt = '' onclick = 'openZone()'>
+              <img src = '/static/images/spot.png' style = 'width: 10px; height: 10px;' class = 'check-overlay'>
             </a>
             {% else %}
             <a href = '/map' style = 'position: relative;'>
               <img src = '/static/images/map.png' style = 'width: 120px;' alt = '' onclick = 'openZone()'>
-              <img src = '/static/images/check.png' class = 'check-overlay'>
             </a>
             {% endif %}
 
