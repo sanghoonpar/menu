@@ -5,7 +5,7 @@ load_dotenv()
 
 n = None
 h = '.html'
-access_token, crd, address, alle, pw, rec = n, n, n, n, n, n
+access_token, crd, address, alle, pw, rec, Id = n, n, n, n, n, n, n
 
 app = Flask(__name__, template_folder = 'templates')
 app.secret_key = os.environ.get('sec_key')
@@ -51,8 +51,8 @@ def kakaocallback():
     # if 'username' in session: 
     #    username = session['username']
     #    return render_template('main.html', user = f'로그인 완료 {username}님')
-
-    return render_template('kakaocallback' + h, nick_name = user_info['properties']['nickname'])
+    Id = user_info['properties']['nickname']
+    return render_template('kakaocallback' + h, nick_name = Id)
 
 @app.route('/k_logout')
 def logout():
@@ -67,7 +67,7 @@ def logout():
 def map(): return render_template('map' + h, java_key = os.environ.get('k_java_key'))
 
 @app.route('/user')
-def user(): return render_template('user' + h, alle = alle, id = user_info['properties']['nickname'], pw = pw, rec = rec)
+def user(): return render_template('user' + h, alle = alle, id = Id, pw = pw, rec = rec)
 
 @app.route('/alle')
 def allergy(): return render_template('alle' + h)
@@ -86,7 +86,7 @@ def service():
             crd = request.args.get('lat') + ', ' + request.args.get('lon')
 
     if address != n and access_token != n:
-        if run_service.serve_code(address, access_token, crd, alle) == 2: return render_template('success' + h)
+        if run_service.serve_code(address, access_token, crd, alle) == 1: return render_template('success' + h)
         else: return render_template('fail' + h)
     else: return render_template('try_again' + h)
 
