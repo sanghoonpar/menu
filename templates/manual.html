@@ -49,10 +49,12 @@
         <h2>9. 컴퓨터로 실행할 경우 위치정보가 다를 수 있음</h2>
         <h2>10. 지도에서 뒤로가기를 누르면 충분히 기다려야함 아니면 오류 뜰 수 있음</h2>
       </div>  
-      <button type = 'button' href = '/main'>
-        <img style = 'height: 50px; width: 50px' src = '/static/images/back.png' alt = ''>
-      </button>
+      <button type = 'button' onclick = 'returnmain()'><img style = 'height: 50px; width: 50px' src = '/static/images/back.png' alt = '' onclick = ''></button>
+
     </div>
   </div>
+  <script>
+    function returnmain() {window.location.href = '/main'}
+  </script>
 </body>
 </html>
