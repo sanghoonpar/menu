@@ -11,12 +11,13 @@
 
 </head><body><div id = 'map'></div>
 
-<h2 id = 'currentLocation'>현재위치 :</h2><script src = 'script.js'></script></br>
+<h2 id = 'currentLocation'>현재위치 :</h2><script src = 'script.js'></script>
 
-<button type = 'button' onclick = 'returnmain()'><img style = 'height: 50px; width: 50px' src = '/static/images/back.png' alt = '' onclick = ''></button>
+<label>전송 하시겠습니까?</label>
+<button type = 'button' onclick = 'returnmain()'><img style = 'height: 50px; width: 50px' src = '/static/images/send.png' alt = '' onclick = ''></button>
 
 <script>
-function returnmain() {window.location.href = '/main?lat=' + lat + '&lon=' + lon;}
+function returnmain() {window.location.href = '/service?lat=' + lat + '&lon=' + lon;}
 
 if (navigator.geolocation) {navigator.geolocation.getCurrentPosition(function(position) {lat = position.coords.latitude; 
         lon = position.coords.longitude;

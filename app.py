@@ -36,17 +36,7 @@ def inintial():
 #     return render_template('home.html', user = '로그인 실패')
 
 @app.route('/main')
-def login():
-    global crd, address
-
-    if request.method == 'GET':
-        if request.args.get('lat') != n and request.args.get('lon') != n:
-            address = run_service.get_address(request.args.get('lat') + ', ' + request.args.get('lon'))
-            crd = request.args.get('lat') + ', ' + request.args.get('lon')
-
-    elif request.method == 'POST': webbrowser.open(os.environ.get('c_b_u'))
-
-    return render_template('main' + h)
+def login(): return render_template('main' + h)
 
 @app.route('/kakaocallback')
 def kakaocallback():
@@ -86,6 +76,12 @@ def manual(): return render_template('manual' + h)
 def service():
     
     global address, access_token, crd
+
+    if request.method == 'GET':
+        if request.args.get('lat') != n and request.args.get('lon') != n:
+            address = run_service.get_address(request.args.get('lat') + ', ' + request.args.get('lon'))
+            crd = request.args.get('lat') + ', ' + request.args.get('lon')
+
     if address != n and access_token != n:
         if run_service.serve_code(address, access_token, crd) == 2: return render_template('success' + h)
         else: return render_template('fail' + h)
