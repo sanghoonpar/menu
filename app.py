@@ -76,6 +76,9 @@ def logout():
 @app.route('/map')
 def map(): return render_template('map' + h, java_key = os.environ.get('k_java_key'))
 
+@app.route('/alle')
+def alle(): return render_template('alle' + h)
+
 @app.route('/manual')
 def manual(): return render_template('manual' + h)
 

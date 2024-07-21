@@ -51,7 +51,7 @@
             height: 84px;
         }.check-overlay {
             position: absolute;
-            z-index: 2;
+            z-index: 3;
             left: 110px
         }.navbar {
             position: fixed;
@@ -116,7 +116,19 @@
         <div class = 'navbar'>
             <a href = '/user'><img id = 'image' class = 'box' src = '/static/images/user.png' />User</a>
             <a href = '/'><img id = 'image' class = 'box' src = '/static/images/home.png' />Home</a>
-            <a href = '/map'><img id = 'image' class = 'box' src = '/static/images/map.png'/>Map</a>
+            <a href = '/alle'><img id = 'image' class = 'box' src = '/static/images/allergy.png' />Allergy</a>
+            
+            {% if key1 %}
+                <a href = '/map'>
+                    <img src = '/static/images/map.png' style = 'width: 120px;' alt = ''>Map
+                    <img src = '/static/images/spot.png' id = 'image' style = 'width: 10px; height: 10px;' class = 'check-overlay'>
+                    <p id = 'output'></p>
+                </a>
+
+            {% else %}
+                <a href = '/map'><img id = 'image' class = 'box' src = '/static/images/map.png'/>Map</a>
+            {% endif %}
+            
             <a href = '/manual'><img id = 'image' class = 'box' src = '/static/images/manual.png' />Manual</a>
             <a href = '/service'><img id = 'image' class = 'box' src = '/static/images/send.png'/>Send</a>
         </div>
