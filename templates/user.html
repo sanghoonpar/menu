@@ -88,17 +88,12 @@
                 
                 <a href = '/manual'><img id = 'image' class = 'box' style = 'width: 60px; height: 60px;' src = '/static/images/manual.png' /></a>
             </div>
-            
-            <h2>id : {{id}}</h2>
-            <h2>pw : {{pw}}</h2>
-            <h2>allergy : {{alle}}</h2>
-            <h2>record : {{rec}}</h2>
-            <button type = 'button' onclick = 'returnmain()'>
-                <img style = 'height: 50px; width: 50px;' src = '/static/images/back.png' alt = '' onclick = ''> 
-            </button>
+            <div id = 'text'>
+                <h2>id : {{id}}</h2>
+                <h2>pw : {{pw}}</h2>
+                <h2>allergy : {{alle}}</h2>
+                <h2>record : {{rec}}</h2>
+            </div>
         </div>
-<script>
-    function returnmain() {window.location.href = '/main';}
-</script>
-</body>
+    </body>
 </html>

@@ -13,7 +13,9 @@ user = {}
 
 @app.route('/')
 def inintial():
+    global Id
     
+    Id = n
     if access_token != n: key = 0
     else: key = 1
 
@@ -40,7 +42,7 @@ def login(): return render_template('main' + h)
 
 @app.route('/kakaocallback')
 def kakaocallback():
-    global access_token, user_info
+    global access_token, Id
 
     access_token = run_service.get_token(request.args.get('code'), os.environ.get('k_cli_id'), os.environ.get('k_red_uri'))
     
@@ -56,9 +58,9 @@ def kakaocallback():
 
 @app.route('/k_logout')
 def logout():
-    global access_token, crd, address
+    global access_token, crd, address, Id
 
-    access_token, crd, address = n, n, n
+    access_token, crd, address, Id = n, n, n, n
     return render_template('home' + h)
    # session.pop('user', None)
     #return redirect(url_for('index')), login()
@@ -69,8 +71,16 @@ def map(): return render_template('map' + h, java_key = os.environ.get('k_java_k
 @app.route('/user')
 def user(): return render_template('user' + h, alle = alle, id = Id, pw = pw, rec = rec)
 
-@app.route('/alle')
-def allergy(): return render_template('alle' + h)
+@app.route('/alle', methods=['POST'])
+def al(): 
+    food_allergies = request.form.getlist('food_allergy[]')
+
+    data = {'알레르기 목록': food_allergies}
+
+    with open('allergies.txt', 'a', encoding = 'utf-8') as file:
+        file.write(str(data) + '\n')
+
+    return render_template('alle' + h)
 
 @app.route('/manual')
 def manual(): return render_template('manual' + h)
@@ -86,7 +96,7 @@ def service():
             crd = request.args.get('lat') + ', ' + request.args.get('lon')
 
     if address != n and access_token != n:
-        if run_service.serve_code(address, access_token, crd, alle) == 1: return render_template('success' + h)
+        if run_service.serve_code(address, access_token, crd, alle) == 2: return render_template('success' + h)
         else: return render_template('fail' + h)
     else: return render_template('try_again' + h)
 
