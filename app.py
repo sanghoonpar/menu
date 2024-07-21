@@ -5,7 +5,7 @@ load_dotenv()
 
 n = None
 h = '.html'
-access_token, crd, address = n, n, n
+access_token, crd, address, alle, pw, rec = n, n, n, n, n, n
 
 app = Flask(__name__, template_folder = 'templates')
 app.secret_key = os.environ.get('sec_key')
@@ -40,7 +40,7 @@ def login(): return render_template('main' + h)
 
 @app.route('/kakaocallback')
 def kakaocallback():
-    global access_token
+    global access_token, user_info
 
     access_token = run_service.get_token(request.args.get('code'), os.environ.get('k_cli_id'), os.environ.get('k_red_uri'))
     
@@ -66,8 +66,11 @@ def logout():
 @app.route('/map')
 def map(): return render_template('map' + h, java_key = os.environ.get('k_java_key'))
 
+@app.route('/user')
+def user(): return render_template('user' + h, alle = alle, id = user_info['properties']['nickname'], pw = pw, rec = rec)
+
 @app.route('/alle')
-def alle(): return render_template('alle' + h)
+def allergy(): return render_template('alle' + h)
 
 @app.route('/manual')
 def manual(): return render_template('manual' + h)
@@ -75,7 +78,7 @@ def manual(): return render_template('manual' + h)
 @app.route('/service')
 def service():
     
-    global address, access_token, crd
+    global address, access_token, crd, alle
 
     if request.method == 'GET':
         if request.args.get('lat') != n and request.args.get('lon') != n:
@@ -83,12 +86,9 @@ def service():
             crd = request.args.get('lat') + ', ' + request.args.get('lon')
 
     if address != n and access_token != n:
-        if run_service.serve_code(address, access_token, crd) == 2: return render_template('success' + h)
+        if run_service.serve_code(address, access_token, crd, alle) == 2: return render_template('success' + h)
         else: return render_template('fail' + h)
     else: return render_template('try_again' + h)
-
-@app.route('/user')
-def user(): return render_template('user' + h)
 
 if __name__ == '__main__':
     with open('cert.pem', 'w') as certfile: certfile.write(os.environ.get('cert_str'))
