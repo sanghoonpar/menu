@@ -1,4 +1,4 @@
-import webbrowser, os, run_service, requests
+import os, run_service, requests
 from flask import Flask, request, session, url_for, redirect, render_template
 from dotenv import load_dotenv
 load_dotenv()

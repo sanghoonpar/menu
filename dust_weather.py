@@ -1,20 +1,20 @@
 import xml.etree.ElementTree as elemTree, requests
 
-def dust_weather(data, key):
+def dust_weather(dt, k):
 
-    dust_data = dict()
-    dust_data['pm10'] = {'value' : float(elemTree.fromstring(requests.get('http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=서울&pageNo=1&numOfRows=100&returnType=xml&serviceKey=%s&ver=1.0'%(key) + 'serviceKey=' + key + '&dataType=json&dataGubun=HOUR&searchCondition=WEEK&itemCode=PM10').text).find('body').find('items').find('item').findtext('pm10Value'))}
-    d_d = dust_data.get('pm10').get('value')
-    if d_d <= 30: pm10_state = '좋음'
-    elif d_d <= 80: pm10_state = '보통'
-    elif d_d <= 150: pm10_state = '나쁨'
-    else: pm10_state = '매우나쁨'
+    u_d = dict()
+    u_d['pm10'] = {'value' : float(elemTree.fromstring(requests.get('http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=서울&pageNo=1&numOfRows=100&returnType=xml&serviceKey=%s&ver=1.0'%(k) + 'serviceKey=' + k + '&dataType=json&dataGubun=HOUR&searchCondition=WEEK&itemCode=PM10').text).find('body').find('items').find('item').findtext('pm10Value'))}
+    d_d = u_d.get('pm10').get('value')
+    if d_d <= 30: p_s = '좋음'
+    elif d_d <= 80: p_s = '보통'
+    elif d_d <= 150: p_s = '나쁨'
+    else: p_s = '매우나쁨'
 
-    if d_d > 60: dust_code = '1'
-    else: dust_code = '0'
+    if d_d > 60: d_c = '1'
+    else: d_c = '0'
 
-    dust_data.get('pm10')['state'] = pm10_state
-    dust_data['code'] = dust_code
-    data['dust'] = dust_data
+    u_d.get('pm10')['state'] = p_s
+    u_d['code'] = d_c
+    dt['dust'] = u_d
     
-    return data
+    return dt

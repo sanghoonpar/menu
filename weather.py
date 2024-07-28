@@ -4,12 +4,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def weather(crd):
-    data = dict()
-    date = datetime.now().date().strftime('%Y%m%d')
-    data['date'] = str(date[:4] + '/' + date[4:6] + '/' + date[6:])
+    dt = dict()
+    de = datetime.now().date().strftime('%Y%m%d')
+    dt['date'] = str(de[:4] + '/' + de[4:6] + '/' + de[6:])
     w_d = dict()
 
-    for item in requests.get('http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=' + os.environ.get('ser_key') + '&dataType=json&base_date=' + date + '&base_time=0800&nx=' + crd[0] + '&ny=' + crd[1]).json().get('response').get('body').get('items')['item']:
+    for item in requests.get('http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=' + os.environ.get('ser_key') + '&dataType=json&base_date=' + de + '&base_time=0800&nx=' + crd[0] + '&ny=' + crd[1]).json().get('response').get('body').get('items')['item']:
         it = item['fcstValue']
         if item['category'] == 'TMP': w_d['tmp'] = it
 
@@ -23,6 +23,6 @@ def weather(crd):
             w_d['code'] = it
             w_d['state'] = w_s
 
-    data['weather'] = w_d
+    dt['weather'] = w_d
     
-    return [data, os.environ.get('ser_key')]
+    return [dt, os.environ.get('ser_key')]
