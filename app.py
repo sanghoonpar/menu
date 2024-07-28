@@ -5,7 +5,7 @@ load_dotenv()
 
 n = None
 h = '.html'
-access_token, crd, address, alle, rec, Id, pw = n, n, n, n, n, n, n
+a_t, crd, address, alle, rec, Id, pw = n, n, n, n, n, n, n
 
 app = Flask(__name__, template_folder = 'templates')
 app.secret_key = os.environ.get('sec_key')
@@ -16,7 +16,7 @@ def inintial():
     global Id
     
     Id = n
-    if access_token != n: key = 0
+    if a_t != n: key = 0
     else: key = 1
 
     if crd != n: key1 = 0
@@ -42,11 +42,11 @@ def login(): return render_template('main' + h)
 
 @app.route('/kakaocallback')
 def kakaocallback():
-    global access_token, Id
+    global a_t, Id
 
-    access_token = run_service.get_token(request.args.get('code'), os.environ.get('k_cli_id'), os.environ.get('k_red_uri'))
+    a_t = run_service.get_token(request.args.get('code'), os.environ.get('k_cli_id'), os.environ.get('k_red_uri'))
     
-    user_info = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {access_token}', 'Content-Type': 'application/x-www-form-urlencoded',}).json()
+    user_info = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {a_t}', 'Content-Type': 'application/x-www-form-urlencoded',}).json()
     # session['username'] = username
 
     # if 'username' in session: 
@@ -57,9 +57,9 @@ def kakaocallback():
 
 @app.route('/k_logout')
 def logout():
-    global access_token, crd, address, Id, Pw
+    global a_t, crd, address, Id, Pw
 
-    access_token, crd, address, Id = n, n, n, n
+    a_t, crd, address, Id = n, n, n, n
     return render_template('home' + h)
    # session.pop('user', None)
     #return redirect(url_for('index')), login()
@@ -79,15 +79,15 @@ def manual(): return render_template('manual' + h)
 @app.route('/service')
 def service():
     
-    global address, access_token, crd, alle
+    global address, a_t, crd, alle
 
     if request.method == 'GET':
         if request.args.get('lat') != n and request.args.get('lon') != n:
             address = run_service.get_address(request.args.get('lat') + ', ' + request.args.get('lon'))
             crd = request.args.get('lat') + ', ' + request.args.get('lon')
 
-    if address != n and access_token != n:
-        if run_service.serve_code(address, access_token, crd, alle) == 2: return render_template('success' + h)
+    if address != n and a_t != n:
+        if run_service.serve_code(address, a_t, crd, alle) == 2: return render_template('success' + h)
         else: return render_template('fail' + h)
     else: return render_template('try_again' + h)
 
