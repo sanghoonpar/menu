@@ -5,7 +5,7 @@ load_dotenv()
 
 n = None
 h = '.html'
-access_token, crd, address, alle, pw, rec, Id = n, n, n, n, n, n, n
+access_token, crd, address, alle, rec, Id, pw = n, n, n, n, n, n, n
 
 app = Flask(__name__, template_folder = 'templates')
 app.secret_key = os.environ.get('sec_key')
@@ -47,7 +47,8 @@ def kakaocallback():
     access_token = run_service.get_token(request.args.get('code'), os.environ.get('k_cli_id'), os.environ.get('k_red_uri'))
     
     user_info = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {access_token}', 'Content-Type': 'application/x-www-form-urlencoded',}).json()
-
+    email = user_info.get('kakao_account', {}).get('email')
+    print(email)
     # session['username'] = username
 
     # if 'username' in session: 
@@ -58,7 +59,7 @@ def kakaocallback():
 
 @app.route('/k_logout')
 def logout():
-    global access_token, crd, address, Id
+    global access_token, crd, address, Id, Pw
 
     access_token, crd, address, Id = n, n, n, n
     return render_template('home' + h)
