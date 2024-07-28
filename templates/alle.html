@@ -90,6 +90,7 @@
             </div>
         <form action = 'http://localhost:5000/submit' method = 'post' onsubmit = 'allergy()'>
             <h3>어떤 음식 알레르기가 있습니까?</h3>
+            <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '기타' onclick = 'input(this)'>
             <label for = 'allergy_fish'>견과류</label><br>
             <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '기타' onclick = 'input(this)'>
             <label for = 'allergy_fish'>갑각류</label><br>
@@ -105,8 +106,6 @@
             <label for = 'allergy_fish'>복숭아</label><br>
             <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '기타' onclick = 'input(this)'>
             <label for = 'allergy_fish'>콩</label><br>
-            <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '기타' onclick = 'input(this)'>
-            <label for = 'allergy_other'>기타</label><br>
             <input type = 'text' id = 'other_allergy_input' placeholder = '기타 알레르기 입력' style = 'display: none;'><br>
             
             <button type = 'submit'>전송</button>
