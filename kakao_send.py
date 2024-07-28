@@ -23,10 +23,10 @@ def send(tk, lc, res, dt):
 
     ct = []
 
-    for place in res:
-        tt = place.get('title').replace('<b>','').replace('</b>','')
-        if place.get('telephone'): tt = tt, '\ntel) ', place.get('telephone')
-        ct.append({'title': '[' + place.get('category') + '] ' + tt, 'description': ''.join(place.get('address').split()[1:]), 'image_url': 'https://freesvg.org/img/bentolunch.png?w=150&h=150&fit=fill', 'image_width': 50, 'image_height': 50, 'link': li('https://search.naver.com/search.naver?query=' + urllib.parse.quote(place.get('address') + '' + tt))})
+    for pl in res:
+        tt = pl.get('title').replace('<b>','').replace('</b>','')
+        if pl.get('telephone'): tt = tt, '\ntel) ', pl.get('telephone')
+        ct.append({'title': '[' + pl.get('category') + '] ' + tt, 'description': ''.join(pl.get('address').split()[1:]), 'image_url': 'https://freesvg.org/img/bentolunch.png?w=150&h=150&fit=fill', 'image_width': 50, 'image_height': 50, 'link': li('https://search.naver.com/search.naver?query=' + urllib.parse.quote(pl.get('address') + '' + tt))})
 
     dat = {'template_object' : json.dumps({'object_type' : 'list', 'header_title' : '현재 날씨에 따른 음식 추천', 'header_link' : wea, 'contents' : ct, 'buttons' : [{'title' : '날씨 상세보기', 'link' : wea}]})}
     if req().get('result_code') == 0: suc += 1
