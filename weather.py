@@ -10,17 +10,17 @@ def weather(crd):
     weather_data = dict()
 
     for item in requests.get('http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=' + os.environ.get('ser_key') + '&dataType=json&base_date=' + date + '&base_time=0800&nx=' + crd[0] + '&ny=' + crd[1]).json().get('response').get('body').get('items')['item']:
-        itemf = item['fcstValue']
-        if item['category'] == 'TMP': weather_data['tmp'] = itemf
+        it = item['fcstValue']
+        if item['category'] == 'TMP': weather_data['tmp'] = it
 
         elif item['category'] == 'PTY':
-            if itemf == '1': weather_state = '비'
-            elif itemf == '2': weather_state = '비/눈'
-            elif itemf == '3': weather_state = '눈'
-            elif itemf == '4': weather_state = '소나기'
+            if it == '1': weather_state = '비'
+            elif it == '2': weather_state = '비/눈'
+            elif it == '3': weather_state = '눈'
+            elif it == '4': weather_state = '소나기'
             else: weather_state = '없음'
 
-            weather_data['code'] = itemf
+            weather_data['code'] = it
             weather_data['state'] = weather_state
 
     data['weather'] = weather_data
