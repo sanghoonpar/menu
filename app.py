@@ -57,7 +57,7 @@ def kakaocallback():
 
 @app.route('/k_logout')
 def logout():
-    global a_t, crd, address, Id, Pw
+    global a_t, crd, address, Id, pw
 
     a_t, crd, address, Id = n, n, n, n
     return render_template('home' + h)
