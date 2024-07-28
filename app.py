@@ -71,16 +71,8 @@ def map(): return render_template('map' + h, java_key = os.environ.get('k_java_k
 @app.route('/user')
 def user(): return render_template('user' + h, alle = alle, id = Id, pw = pw, rec = rec)
 
-@app.route('/alle', methods=['POST'])
-def al(): 
-    food_allergies = request.form.getlist('food_allergy[]')
-
-    data = {'알레르기 목록': food_allergies}
-
-    with open('allergies.txt', 'a', encoding = 'utf-8') as file:
-        file.write(str(data) + '\n')
-
-    return render_template('alle' + h)
+@app.route('/alle')
+def al(): return render_template('alle' + h)
 
 @app.route('/manual')
 def manual(): return render_template('manual' + h)
