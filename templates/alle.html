@@ -4,26 +4,108 @@
     <meta charset = 'utf-8'>
     <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
     <title>음식 알레르기 체크</title>
+    <style>
+        body {
+                margin: 0;
+                padding: 0;
+            }#my_bg {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-image: url('/static/images/bg.avif');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                opacity: 0.5;
+            }#object {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                z-index: 1;
+            }.navbar {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                height: 10%;
+                background-color: whitesmoke;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }.navbar a {
+                float: left;
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 20px;
+                text-decoration: none;
+            }.navbar a:hover {
+                background-color: rgb(225, 177, 110);
+                color: black;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+            }.navbar .dropdown {
+                float: left;
+                overflow: hidden;
+            }.navbar .dropdown .dropbtn {
+                cursor: pointer;
+                font-size: 10px;
+                border: none;
+                outline: none;
+                color: black;
+                padding: 14px 20px;
+                background-color: inherit;
+                font-family: inherit;
+                margin: 0;
+            }.navbar .dropdown-content {
+                display: none;
+                position: absolute;
+                min-width: 160px;
+            }.navbar .dropdown-content a {
+                float: none;
+                color: rgb(225, 177, 110);
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }.navbar .dropdown-content a:hover {
+                background-color: rgb(225, 177, 110);
+            }.navbar .dropdown:hover .dropdown-content {
+                display: block;
+            }
+    </style>
 </head>
 <body>
-    <form action = 'http://localhost:5000/submit' method = 'post' onsubmit = 'combineOtherAllergy()'>
+    <div id = 'my_bg'></div>
+        <div id = 'object'>
+            <div class = 'navbar'>
+                <a href = '/user'><img id = 'image' class = 'box' style = 'width: 60px; height: 60px;' src = '/static/images/user.png' /></a>
+                <a href = '/'><img id = 'image' class = 'box' style = 'width: 60px; height: 60px;' src = '/static/images/home.png' /></a>
+                
+                <a href = '/manual'><img id = 'image' class = 'box' style = 'width: 60px; height: 60px;' src = '/static/images/manual.png' /></a>
+            </div>
+    <form action = 'http://localhost:5000/submit' method = 'post' onsubmit = 'allergy()'>
         <h3>어떤 음식 알레르기가 있습니까?</h3>
         <label for = 'allergy_fish'>견과류</label><br>
-        <input type = 'checkbox' id = 'allergy_other' name = 'food_allergy[]' value = '기타' onclick = 'toggleOtherInput(this)'>
+        <input type = 'checkbox' id = 'allergy_other' name = 'food_allergy[]' value = '기타' onclick = 'input(this)'>
         <label for = 'allergy_fish'>갑각류</label><br>
-        <input type = 'checkbox' id = 'allergy_other' name = 'food_allergy[]' value = '기타' onclick = 'toggleOtherInput(this)'>
+        <input type = 'checkbox' id = 'allergy_other' name = 'food_allergy[]' value = '기타' onclick = 'input(this)'>
         <label for = 'allergy_fish'>달걀</label><br>
-        <input type = 'checkbox' id = 'allergy_other' name = 'food_allergy[]' value = '기타' onclick = 'toggleOtherInput(this)'>
-        <label for = 'allergy_fish'>우유</label><br>
-        <input type = 'checkbox' id = 'allergy_other' name = 'food_allergy[]' value = '기타' onclick = 'toggleOtherInput(this)'>
+        <input type = 'checkbox' id = 'allergy_other' name = 'food_allergy[]' value = '기타' onclick = 'input(this)'>
+        <label for = 'allergy_fish'>우유및 유제품</label><br>
+        <input type = 'checkbox' id = 'allergy_other' name = 'food_allergy[]' value = '기타' onclick = 'input(this)'>
         <label for = 'allergy_fish'>생선</label><br>
-        <input type = 'checkbox' id = 'allergy_other' name = 'food_allergy[]' value = '기타' onclick = 'toggleOtherInput(this)'>
+        <input type = 'checkbox' id = 'allergy_other' name = 'food_allergy[]' value = '기타' onclick = 'input(this)'>
         <label for = 'allergy_fish'>조개</label><br>
-        <input type = 'checkbox' id = 'allergy_other' name = 'food_allergy[]' value = '기타' onclick = 'toggleOtherInput(this)'>
+        <input type = 'checkbox' id = 'allergy_other' name = 'food_allergy[]' value = '기타' onclick = 'input(this)'>
         <label for = 'allergy_fish'>복숭아</label><br>
-        <input type = 'checkbox' id = 'allergy_other' name = 'food_allergy[]' value = '기타' onclick = 'toggleOtherInput(this)'>
+        <input type = 'checkbox' id = 'allergy_other' name = 'food_allergy[]' value = '기타' onclick = 'input(this)'>
         <label for = 'allergy_fish'>콩</label><br>
-        <input type = 'checkbox' id = 'allergy_other' name = 'food_allergy[]' value = '기타' onclick = 'toggleOtherInput(this)'>
+        <input type = 'checkbox' id = 'allergy_other' name = 'food_allergy[]' value = '기타' onclick = 'input(this)'>
         <label for = 'allergy_other'>기타</label><br>
         <input type = 'text' id = 'other_allergy_input' placeholder = '기타 알레르기 입력' style = 'display: none;'><br>
         
@@ -31,18 +113,14 @@
     </form>
 
     <script>
-        function toggleOtherInput(checkbox) {
-            document.getElementById('other_allergy_input').style.display = checkbox.checked ? 'block' : 'none';
-        }
+        function input(checkbox) {document.getElementById('other_allergy_input').style.display = checkbox.checked ? 'block' : 'none';}
 
-        function combineOtherAllergy() {
-            var otherInput = document.getElementById('other_allergy_input');
-            var otherCheckbox = document.getElementById('allergy_other');
-            if (otherCheckbox.checked && otherInput.value) {
+        function allergy() {
+            if (document.getElementById('allergy_other').checked && document.getElementById('other_allergy_input').value) {
                 var hiddenInput = document.createElement('input');
                 hiddenInput.type = 'hidden';
                 hiddenInput.name = 'food_allergy[]';
-                hiddenInput.value = otherInput.value;
+                hiddenInput.value = document.getElementById('other_allergy_input').value;
                 document.forms[0].appendChild(hiddenInput);
             }
         }
