@@ -75,29 +75,31 @@
                 <a onclick = 'history.back()'><img id = 'image' class = 'box' style = 'width: 60px; height: 60px;' src = '/static/images/back.png' /></a>
                 <a href = '/manual'><img id = 'image' class = 'box' style = 'width: 60px; height: 60px;' src = '/static/images/manual.png' /></a>
             </div>
-        <form action = 'http://localhost:5000/submit' method = 'post' onsubmit = 'allergy()'>
-            <h3>어떤 음식 알레르기가 있습니까? 혹은 싫어하는 음식이 있습니까?</h3>
-            <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '견과류' onclick = 'input(this)'>
-            <label for = 'allergy_fish'>견과류</label><br>
-            <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '갑각류' onclick = 'input(this)'>
-            <label for = 'allergy_fish'>갑각류</label><br>
-            <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '달걀' onclick = 'input(this)'>
-            <label for = 'allergy_fish'>달걀</label><br>
-            <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '우유 및 유제품' onclick = 'input(this)'>
-            <label for = 'allergy_fish'>우유 및 유제품</label><br>
-            <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '생선' onclick = 'input(this)'>
-            <label for = 'allergy_fish'>생선</label><br>
-            <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '조개' onclick = 'input(this)'>
-            <label for = 'allergy_fish'>조개</label><br>
-            <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '복숭아' onclick = 'input(this)'>
-            <label for = 'allergy_fish'>복숭아</label><br>
-            <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '콩' onclick = 'input(this)'>
-            <label for = 'allergy_fish'>콩</label><br>
-            <input type = 'text' id = 'other_allergy_input' placeholder = '기타 알레르기 입력' style = 'display: none;'><br>
-            
-            <button type = 'submit' href = '/map'>전송</button>
+        <form action = 'http://127.0.0.1:5051/alle_sub' method = 'post' onsubmit = 'allergy()'>
+            <div id = 'ob'>  
+                <h3>어떤 음식 알레르기가 있습니까? 혹은 싫어하는 음식이 있습니까?</h3>
+                <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '견과류' onclick = 'input(this)'>
+                <label for = 'allergy_fish'>견과류</label><br>
+                <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '갑각류' onclick = 'input(this)'>
+                <label for = 'allergy_fish'>갑각류</label><br>
+                <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '과일류' onclick = 'input(this)'>
+                <label for = 'allergy_fish'>과일류</label><br>
+                <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '유제품' onclick = 'input(this)'>
+                <label for = 'allergy_fish'>유제품</label><br>
+                <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '돼지고기' onclick = 'input(this)'>
+                <label for = 'allergy_fish'>돼지고기</label><br>
+                <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '소고기' onclick = 'input(this)'>
+                <label for = 'allergy_fish'>소고기</label><br>
+                <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '생선' onclick = 'input(this)'>
+                <label for = 'allergy_fish'>생선</label><br>
+                <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '콩' onclick = 'input(this)'>
+                <label for = 'allergy_fish'>콩</label><br>
+                <input type = 'text' id = 'other_allergy_input' placeholder = '기타 알레르기 입력' style = 'display: none;'><br>
+                
+                <button type = 'submit' href = '/map'>전송</button>
+            </div>
         </form>
-    </div>
+        </div>
     <script>
         function input(checkbox) {document.getElementById('other_allergy_input').style.display = checkbox.checked ? 'block' : 'none';}
 
