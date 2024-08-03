@@ -5,7 +5,7 @@ load_dotenv()
 
 n = None
 h = '.html'
-a_t, crd, ad, alle, rec, Id, pw = n, n, n, n, n, n, n
+a_t, crd, ad, alle, rec, Id = n, n, n, n, n, n
 
 app = Flask(__name__, template_folder = 'templates')
 app.secret_key = os.environ.get('sec_key')
@@ -57,9 +57,9 @@ def kakaocallback():
 
 @app.route('/k_logout')
 def logout():
-    global a_t, crd, ad, Id, pw, rec
+    global a_t, crd, ad, Id, rec
 
-    a_t, crd, ad, Id, rec = n, n, n, n, n
+    a_t, crd, ad, Id, rec = n, n, n, n
     return render_template('home' + h)
    # session.pop('user', None)
     #return redirect(url_for('index')), login()
@@ -68,7 +68,7 @@ def logout():
 def map(): return render_template('map' + h, java_key = os.environ.get('k_java_key'))
 
 @app.route('/user')
-def user(): return render_template('user' + h, alle = alle, id = Id, pw = pw, rec = rec)
+def user(): return render_template('user' + h, alle = alle, id = Id, rec = rec)
 
 @app.route('/alle')
 def al(): return render_template('alle' + h)
