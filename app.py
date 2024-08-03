@@ -13,9 +13,7 @@ user = {}
 
 @app.route('/')
 def inintial():
-    global Id, rec
     
-    Id, rec = n, n
     if a_t != n: key = 0
     else: key = 1
 
