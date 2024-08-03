@@ -5,7 +5,7 @@ load_dotenv()
 
 n = None
 h = '.html'
-a_t, crd, address, alle, rec, Id, pw = n, n, n, n, n, n, n
+a_t, crd, ad, alle, rec, Id, pw = n, n, n, n, n, n, n
 
 app = Flask(__name__, template_folder = 'templates')
 app.secret_key = os.environ.get('sec_key')
@@ -13,9 +13,9 @@ user = {}
 
 @app.route('/')
 def inintial():
-    global Id
+    global Id, rec
     
-    Id = n
+    Id, rec = n, n
     if a_t != n: key = 0
     else: key = 1
 
@@ -57,9 +57,9 @@ def kakaocallback():
 
 @app.route('/k_logout')
 def logout():
-    global a_t, crd, address, Id, pw
+    global a_t, crd, ad, Id, pw, rec
 
-    a_t, crd, address, Id = n, n, n, n
+    a_t, crd, ad, Id, rec = n, n, n, n, n
     return render_template('home' + h)
    # session.pop('user', None)
     #return redirect(url_for('index')), login()
@@ -79,15 +79,17 @@ def manual(): return render_template('manual' + h)
 @app.route('/service')
 def service():
     
-    global address, a_t, crd, alle
+    global ad, a_t, crd, alle, rec
 
     if request.method == 'GET':
         if request.args.get('lat') != n and request.args.get('lon') != n:
-            address = run_service.get_address(request.args.get('lat') + ', ' + request.args.get('lon'))
+            ad = run_service.get_address(request.args.get('lat') + ', ' + request.args.get('lon'))
             crd = request.args.get('lat') + ', ' + request.args.get('lon')
 
-    if address != n and a_t != n:
-        if run_service.serve_code(address, a_t, crd, alle) == 2: return render_template('success' + h)
+    rec = run_service.serve_code(ad, a_t, crd, alle)[1]
+
+    if ad != n and a_t != n:
+        if run_service.serve_code(ad, a_t, crd, alle)[0] == 2: return render_template('success' + h)
         else: return render_template('fail' + h)
     else: return render_template('try_again' + h)
 

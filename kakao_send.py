@@ -22,9 +22,11 @@ def send(tk, lc, res, dt):
     else: print('메시지를 성공적으로 보내지 못했습니다. 오류메시지 : ', str(req()))
 
     ct = []
+    at = []
 
     for pl in res:
         tt = pl.get('title').replace('<b>','').replace('</b>','')
+        at.append(tt)
         if pl.get('telephone'): tt = tt, '\ntel) ', pl.get('telephone')
         ct.append({'title': '[' + pl.get('category') + '] ' + tt, 'description': ''.join(pl.get('address').split()[1:]), 'image_url': 'https://freesvg.org/img/bentolunch.png?w=150&h=150&fit=fill', 'image_width': 50, 'image_height': 50, 'link': li('https://search.naver.com/search.naver?query=' + urllib.parse.quote(pl.get('address') + '' + tt))})
 
@@ -32,4 +34,4 @@ def send(tk, lc, res, dt):
     if req().get('result_code') == 0: suc += 1
     else: print('메시지를 성공적으로 보내지 못했습니다. 오류메시지 : ', str(req()))
 
-    return suc
+    return [suc, at]
