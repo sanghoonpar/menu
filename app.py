@@ -60,7 +60,7 @@ def logout():
     global a_t, crd, ad, Id, rec
 
     a_t, crd, ad, Id, rec = n, n, n, n
-    return render_template('home' + h)
+    return render_template('lo' + h)
    # session.pop('user', None)
     #return redirect(url_for('index')), login()
 
