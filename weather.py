@@ -23,7 +23,6 @@ def weather(crd):
 
             w_d['code'] = it
             w_d['state'] = w_s
-
     dt['weather'] = w_d
     
     return [dt, ke]
