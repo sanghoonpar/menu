@@ -55,11 +55,11 @@ def kakaocallback():
     Id = user_info['properties']['nickname']
     return render_template('kakaocallback' + h, nick_name = Id)
 
-@app.route('/k_logout')
+@app.route('/logout')
 def logout():
-    global a_t, crd, ad, Id, rec
+    global a_t, crd, ad, Id, rec, alle
 
-    a_t, crd, ad, Id, rec = n, n, n, n
+    a_t, crd, ad, Id, rec, alle = n, n, n, n, n, n
     return render_template('lo' + h)
    # session.pop('user', None)
     #return redirect(url_for('index')), login()
