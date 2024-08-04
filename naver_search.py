@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 res = []
-def search_res(loc, listf, al):
+def search_res(loc, listf):
     for food in listf:
         req = requests.get('https://openapi.naver.com/v1/search/local.json?', params = 'sort=comment&query='+ loc + ' ' + food + ' 맛집&display=5', headers = {'X-Naver-Client-Id' : os.environ.get('n_cli_id'), 'X-Naver-Client-Secret' : os.environ.get('n_cli_secret')}).json().get('items')
 
@@ -20,4 +20,8 @@ def search_res(loc, listf, al):
         if res[0] == res[2]: res.remove(res[0])
     if len(res) >= 3:
         if res[1] == res[2]: res.remove(res[1])
+
+    if len(res) <= 1:
+        req = requests.get('https://openapi.naver.com/v1/search/local.json?', params = 'sort=comment&query='+ loc + ' ' + '국밥맛집&display=5', headers = {'X-Naver-Client-Id' : os.environ.get('n_cli_id'), 'X-Naver-Client-Secret' : os.environ.get('n_cli_secret')}).json().get('items')
+        res.append(req[0])
     return res
