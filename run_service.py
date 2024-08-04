@@ -6,7 +6,7 @@ from geopy import geocoders
 from naver_search import search_res
 import requests
 
-def serve_code(location, token, crd, al): 
+def serve_code(location, token, crd): 
     dust = dust_weather(weather(crd)[0], weather(crd)[1])
     return send(token, location, search_res(location, menu_choose(dust)), dust)
 
