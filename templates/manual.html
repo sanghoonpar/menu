@@ -1,87 +1,152 @@
 <!DOCTYPE html>
-<html lang = 'en'>
-<head>
-  <meta charset = 'utf-8'>
-  <title>메뉴추천</title>
-  <meta name = 'viewport' content = 'width=device-width, initial-scale=1'>
-  <style>
-    body {margin: 0;
-      padding: 0;}#my_bg {position: absolute;
-      width: 100%;
-      height: 100%;}#my_bg::before {content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-image: url('/static/images/bg.avif');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
-      opacity: 0.5;}#object {display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;}.navbar {position: fixed;
-      bottom: 0;
-      width: 100%;
-      height: 10%;
-      background-color: whitesmoke;
-      display: flex;
-      justify-content: center;
-      align-items: center;}.navbar a {float: left;
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 14px 20px;
-      text-decoration: none;}.navbar a:hover {background-color: rgb(225, 177, 110);
-      color: black;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;}.navbar .dropdown {float: left;
-      overflow: hidden;}.navbar .dropdown .dropbtn {cursor: pointer;
-      font-size: 10px;
-      border: none;
-      outline: none;
-      color: black;
-      padding: 14px 20px;
-      background-color: inherit;
-      font-family: inherit;
-      margin: 0;}.navbar .dropdown-content {display: none;
-      position: absolute;
-      min-width: 160px;}.navbar .dropdown-content a {float: none;
-      color: rgb(225, 177, 110);
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      text-align: left;}.navbar .dropdown-content a:hover {background-color: rgb(225, 177, 110);}.navbar .dropdown:hover .dropdown-content {display: block;}
-  </style>
-</head>
-<body>
-  <div id = 'my_bg'>  
-    <div id = 'object'>
-      <div class = 'navbar'>
-        <a onclick = 'history.back()'><img id = 'image' class = 'box' style = 'width: 30px; height: 30px;' src = '/static/images/back.png' /></a>
-        <a href = '/user'><img id = 'image' class = 'box' style = 'width: 30px; height: 30px;' src = '/static/images/user.png' /></a>
-        <a href = '/'><img id = 'image' class = 'box' style = 'width: 30px; height: 30px;' src = '/static/images/home.png' /></a>
-        <a href = '/manual'><img id = 'image' class = 'box' style = 'width: 30px; height: 30px;' src = '/static/images/manual.png' /></a>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>음식점추천</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #my_bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+      #my_bg::before {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: url("/static/images/bg.avif");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.5;
+      }
+      #object {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .navbar {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 10%;
+        background-color: whitesmoke;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+      }
+      .navbar a:hover {
+        background-color: rgb(225, 177, 110);
+        color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .navbar .dropdown {
+        float: left;
+        overflow: hidden;
+      }
+      .navbar .dropdown .dropbtn {
+        cursor: pointer;
+        font-size: 10px;
+        border: none;
+        outline: none;
+        color: black;
+        padding: 14px 20px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+      }
+      .navbar .dropdown-content {
+        display: none;
+        position: absolute;
+        min-width: 160px;
+      }
+      .navbar .dropdown-content a {
+        float: none;
+        color: rgb(225, 177, 110);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+      .navbar .dropdown-content a:hover {
+        background-color: rgb(225, 177, 110);
+      }
+      .navbar .dropdown:hover .dropdown-content {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="my_bg">
+      <div id="object">
+        <div class="navbar">
+          <a onclick="history.back()"
+            ><img
+              id="image"
+              class="box"
+              style="width: 30px; height: 30px"
+              src="/static/images/back.png"
+          /></a>
+          <a href="/user"
+            ><img
+              id="image"
+              class="box"
+              style="width: 30px; height: 30px"
+              src="/static/images/user.png"
+          /></a>
+          <a href="/"
+            ><img
+              id="image"
+              class="box"
+              style="width: 30px; height: 30px"
+              src="/static/images/home.png"
+          /></a>
+          <a href="/manual"
+            ><img
+              id="image"
+              class="box"
+              style="width: 30px; height: 30px"
+              src="/static/images/manual.png"
+          /></a>
+        </div>
+        <div id="text">
+          <h2>1. 입장하기</h2>
+          <h2>2. 지도에 들어가 지도가 나올때까지</h2>
+          <h2>기다린 후 지도 좀 구경한 후 전송하기 누르기</h2>
+          <h2>4. 카카오톡에서 결과물 구경하기</h2>
+          <h2>5. 지도는 대한민국 안에서만 사용가능함</h2>
+          <h2>6. 만약 카톡을 확인할 때 기우가 '없음'이고,</h2>
+          <h2>
+            미세먼지가 '좋음'이라면 그냥 근처 '한식, 중식, 양식, 일식'중에서 3개
+            추천됨
+          </h2>
+          <h2>7. 로그아웃을 누르면 첫 화면으로 돌아감</h2>
+          <h2>8. 날씨는 8시 기준임</h2>
+          <h2>9. 컴퓨터로 실행할 경우 위치정보가 다를 수 있음</h2>
+          <h2>
+            10. 지도에서 뒤로가기를 누르면 충분히 기다려야함 아니면 오류 뜰 수
+            있음
+          </h2>
+        </div>
+      </div>
     </div>
-      <div id = 'text'>
-        <h2>1. 카카오 로그인하기</h2>
-        <h2>2. 지도에 들어가 지도가 나올때까지</h2>
-        <h2>기다린 후 지도 좀 구경한 후 뒤로가기 누르기</h2>
-        <h2>그럼 체크표시가 뜰 거임</h2>
-        <h2>3. 전송버튼 누르기</h2>
-        <h2>4. 카카오톡에서 결과물 구경하기</h2>
-        <h2>5. 지도는 대한민국 안에서만 사용가능함</h2>
-        <h2>6. 만약 카톡을 확인할 때 기우가 '없음'이고,</h2>
-        <h2>미세먼지가 '좋음'이라면 그냥 근처 '한식, 중식, 양식, 일식'중에서 3개 추천됨</h2>
-        <h2>7. 로그아웃을 누르면 첫 화면으로 돌아감</h2>
-        <h2>8. 날씨는 8시 기준임</h2>
-        <h2>9. 컴퓨터로 실행할 경우 위치정보가 다를 수 있음</h2>
-        <h2>10. 지도에서 뒤로가기를 누르면 충분히 기다려야함 아니면 오류 뜰 수 있음</h2>
-      </div>  
-    </div>
-  </div>
-</body>
+  </body>
 </html>

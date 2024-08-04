@@ -1,103 +1,618 @@
 <!DOCTYPE html>
-<html lang = 'en'>
-<head>
-  <meta charset = 'utf-8'>
-  <title>메뉴추천</title>
-  <meta name = 'viewport' content = 'width=device-width, initial-scale=1'>
-  <script type = 'text/javascript' src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey={{java_key}}&libraries=services'></script>
-  <style>body {margin: 0; 
-            padding: 0;}body, html {margin: 0; 
-            padding: 0; 
-            width: 100%; 
-            height: 100%; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            position: relative; 
-            z-index: 1;}#map {width: 100%; 
-            height: 100%;}body {margin: 0;
-            padding: 0;}#object {display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 1;}.navbar {position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 10%;
-            background-color: whitesmoke;
-            display: flex;
-            justify-content: center;
-            align-items: center;}.navbar a {float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;}.navbar a:hover {background-color: rgb(225, 177, 110);
-            color: black;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;}.navbar .dropdown {float: left;
-            overflow: hidden;}.navbar .dropdown .dropbtn {cursor: pointer;
-            font-size: 10px;
-            border: none;
-            outline: none;
-            color: black;
-            padding: 14px 20px;
-            background-color: inherit;
-            font-family: inherit;
-            margin: 0;}.navbar .dropdown-content {display: none;
-            position: absolute;
-            min-width: 160px;}.navbar .dropdown-content a {float: none;
-            color: rgb(225, 177, 110);
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: left;}.navbar .dropdown-content a:hover {background-color: rgb(225, 177, 110);}.navbar .dropdown:hover .dropdown-content {display: block;}</style>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>음식점추천</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      type="text/javascript"
+      src="https://dapi.kakao.com/v2/maps/sdk.js?appkey={{java_key}}&libraries=services"
+    ></script>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+      }
 
-</head><body><div id = 'map'></div>
+      #map {
+        width: 100%;
+        height: 100%;
+      }
 
-<h2 id = 'currentLocation'>현재위치 :</h2><script src = 'script.js'></script>
+      .navbar {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 10%;
+        background-color: whitesmoke;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-<div id = 'my_bg'></div>
-        <div id = 'object'>
-            <div class = 'navbar'>
-                <a onclick = 'history.back()'><img id = 'image' class = 'box' style = 'width: 30px; height: 30px;' src = '/static/images/back.png' /></a>
-                <a href = '/user'><img id = 'image' class = 'box' style = 'width: 30px; height: 30px;' src = '/static/images/user.png' /></a>
-                <a href = '/'><img id = 'image' class = 'box' style = 'width: 30px; height: 30px;' src = '/static/images/home.png' /></a>
-                <a href = '/manual'><img id = 'image' class = 'box' style = 'width: 30px; height: 30px;' src = '/static/images/manual.png' /></a>
-                <a onclick = 'returnmain()'><img id = 'image' class = 'box' style = 'width: 30px; height: 30px;' src = '/static/images/send.png' /></a>
-            </div>
+      .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+      }
 
-<label>전송 하시겠습니까?</label>
-<button type = 'button' onclick = 'returnmain()'><img style = 'height: 50px; width: 50px; top: 5px' src = '/static/images/send.png' alt = '' onclick = ''></button>
+      .navbar a:hover {
+        background-color: rgb(225, 177, 110);
+        color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
 
-<script>
-function returnmain() {window.location.href = '/service?lat=' + lat + '&lon=' + lon;}
+      .navbar .dropdown {
+        float: left;
+        overflow: hidden;
+      }
 
-if (navigator.geolocation) {navigator.geolocation.getCurrentPosition(function(position) {lat = position.coords.latitude; 
-        lon = position.coords.longitude;
-        var locPosition = new window.kakao.maps.LatLng(lat, lon);
+      .navbar .dropdown .dropbtn {
+        cursor: pointer;
+        font-size: 10px;
+        border: none;
+        outline: none;
+        color: black;
+        padding: 14px 20px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+      }
 
-        var currentPosition = lat + ', ' + lon;
-        document.getElementById('currentLocation').innerHTML += ' ' + currentPosition;
-        
-        var mapContainer = document.getElementById('map');
-        var mapOption = {center: locPosition, level: 5}; 
-        var map = new kakao.maps.Map(mapContainer, mapOption);
+      .navbar .dropdown-content {
+        display: none;
+        position: absolute;
+        min-width: 160px;
+      }
 
-        var circle = new kakao.maps.Circle({center : new kakao.maps.LatLng(lat, lon), radius: 1500, strokeWeight: 5, strokeColor: '#6B8E23', strokeOpacity: 0.5, fillColor: '#6B8E23', fillOpacity: 0.4}); circle.setMap(map);});} 
-else {var locPosition = new kakao.maps.LatLng(37.566826, 126.9786567);
-    var message = 'geolocation을 사용할수 없음';
-    displayMarker(locPosition, message);}
+      .navbar .dropdown-content a {
+        float: none;
+        color: rgb(225, 177, 110);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
 
-function displayMarker(locPosition, message) {var marker = new kakao.maps.Marker({map: map, position: locPosition}); 
-    var iwContent = message, iwRemoveable = true;
-    var infowindow = new kakao.maps.InfoWindow({content: iwContent, removable: iwRemoveable});
-    infowindow.open(map, marker);
-    map.setCenter(locPosition);}
+      .navbar .dropdown-content a:hover {
+        background-color: rgb(225, 177, 110);
+      }
 
-</script></body></html>
+      .navbar .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .map_wrap,
+      .map_wrap * {
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+      }
+
+      .map_wrap a,
+      .map_wrap a:hover,
+      .map_wrap a:active {
+        color: #000;
+      }
+
+      .map_wrap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      #menu_wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 250px;
+        margin: 10px 0 30px 10px;
+        padding: 5px;
+        overflow-y: auto;
+        background: rgba(255, 255, 255, 0.7);
+        z-index: 1;
+        font-size: 12px;
+        border-radius: 10px;
+      }
+
+      .bg_white {
+        background: #fff;
+      }
+
+      #menu_wrap hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 2px solid #5f5f5f;
+        margin: 3px 0;
+      }
+
+      #menu_wrap .option {
+        text-align: center;
+      }
+
+      #menu_wrap .option p {
+        margin: 10px 0;
+      }
+
+      #menu_wrap .option button {
+        margin-left: 5px;
+      }
+
+      #placesList li {
+        list-style: none;
+      }
+
+      #placesList .item {
+        position: relative;
+        border-bottom: 1px solid #888;
+        overflow: hidden;
+        cursor: pointer;
+        min-height: 65px;
+      }
+
+      #placesList .item span {
+        display: block;
+        margin-top: 4px;
+      }
+
+      #placesList .item h5,
+      #placesList .item .info {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      #placesList .item .info {
+        padding: 10px 0 10px 55px;
+      }
+
+      #placesList .info .gray {
+        color: #8a8a8a;
+      }
+
+      #placesList .info .jibun {
+        padding-left: 26px;
+        background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
+          no-repeat;
+      }
+
+      #placesList .info .tel {
+        color: #009900;
+      }
+
+      #placesList .item .markerbg {
+        float: left;
+        position: absolute;
+        width: 36px;
+        height: 37px;
+        margin: 10px 0 0 10px;
+        background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
+          no-repeat;
+      }
+
+      #placesList .item .marker_1 {
+        background-position: 0 -10px;
+      }
+
+      #placesList .item .marker_2 {
+        background-position: 0 -56px;
+      }
+
+      #placesList .item .marker_3 {
+        background-position: 0 -102px;
+      }
+
+      #placesList .item .marker_4 {
+        background-position: 0 -148px;
+      }
+
+      #placesList .item .marker_5 {
+        background-position: 0 -194px;
+      }
+
+      #placesList .item .marker_6 {
+        background-position: 0 -240px;
+      }
+
+      #placesList .item .marker_7 {
+        background-position: 0 -286px;
+      }
+
+      #placesList .item .marker_8 {
+        background-position: 0 -332px;
+      }
+
+      #placesList .item .marker_9 {
+        background-position: 0 -378px;
+      }
+
+      #placesList .item .marker_10 {
+        background-position: 0 -423px;
+      }
+
+      #placesList .item .marker_11 {
+        background-position: 0 -470px;
+      }
+
+      #placesList .item .marker_12 {
+        background-position: 0 -516px;
+      }
+
+      #placesList .item .marker_13 {
+        background-position: 0 -562px;
+      }
+
+      #placesList .item .marker_14 {
+        background-position: 0 -608px;
+      }
+
+      #placesList .item .marker_15 {
+        background-position: 0 -654px;
+      }
+
+      #pagination {
+        margin: 10px auto;
+        text-align: center;
+      }
+
+      #pagination a {
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      #pagination .on {
+        font-weight: bold;
+        cursor: default;
+        color: #777;
+      }
+      .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+      }
+      .navbar a:hover {
+        background-color: rgb(225, 177, 110);
+        color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .navbar .dropdown {
+        float: left;
+        overflow: hidden;
+      }
+      .navbar .dropdown .dropbtn {
+        cursor: pointer;
+        font-size: 10px;
+        border: none;
+        outline: none;
+        color: black;
+        padding: 14px 20px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+      }
+      .navbar .dropdown-content {
+        display: none;
+        position: absolute;
+        min-width: 160px;
+      }
+      .navbar .dropdown-content a {
+        float: none;
+        color: rgb(225, 177, 110);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+      .navbar .dropdown-content a:hover {
+        background-color: rgb(225, 177, 110);
+      }
+      .navbar .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      #my_bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: url("/static/images/bg.avif");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="map_wrap">
+      <div
+        id="map"
+        style="width: 100%; height: 100%; position: relative; overflow: hidden"
+      ></div>
+    </div>
+
+    <div id="menu_wrap" class="bg_white">
+      <div class="option">
+        <div>
+          <form onsubmit="searchPlaces(); return false;">
+            키워드 : <input type="text" value="맛집" id="keyword" size="15" />
+          </form>
+        </div>
+      </div>
+      <hr />
+      <ul id="placesList"></ul>
+      <div id="pagination"></div>
+    </div>
+
+    <div id="my_bg"></div>
+    <h2 id="currentLocation">현재위치 :</h2>
+    <div class="navbar">
+      <a onclick="history.back()"
+        ><img
+          id="image"
+          class="box"
+          style="width: 30px; height: 30px"
+          src="/static/images/back.png"
+      /></a>
+      <a href="/user"
+        ><img
+          id="image"
+          class="box"
+          style="width: 30px; height: 30px"
+          src="/static/images/user.png"
+      /></a>
+      <a href="/"
+        ><img
+          id="image"
+          class="box"
+          style="width: 30px; height: 30px"
+          src="/static/images/home.png"
+      /></a>
+      <a href="/manual"
+        ><img
+          id="image"
+          class="box"
+          style="width: 30px; height: 30px"
+          src="/static/images/manual.png" /></a
+      ><a href="/send"
+        ><img
+          id="image"
+          class="box"
+          style="width: 30px; height: 30px"
+          src="/static/images/send.png"
+      /></a>
+    </div>
+
+    <script>
+      function initializeMap() {
+        navigator.geolocation.getCurrentPosition((position) => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          const locPosition = new kakao.maps.LatLng(lat, lng);
+
+          const mapContainer = document.getElementById("map");
+          const mapOption = {
+            center: locPosition,
+            level: 3,
+          };
+
+          const map = new kakao.maps.Map(mapContainer, mapOption);
+
+          const marker = new kakao.maps.Marker({
+            position: locPosition,
+            map: map,
+          });
+
+          const circle = new kakao.maps.Circle({
+            center: locPosition,
+            radius: 2000,
+            strokeWeight: 5,
+            strokeColor: "#75B8FA",
+            strokeOpacity: 1,
+            strokeStyle: "solid",
+            fillColor: "#CFE7FF",
+            fillOpacity: 0.7,
+          });
+          circle.setMap(map);
+
+          displayCurrentLocation(locPosition);
+
+          const ps = new kakao.maps.services.Places();
+
+          function searchPlaces() {
+            const keyword = document.getElementById("keyword").value;
+
+            if (!keyword.trim()) {
+              alert("키워드를 입력해주세요!");
+              return;
+            }
+
+            ps.keywordSearch(keyword, placesSearchCB, {
+              location: locPosition,
+            });
+          }
+
+          function placesSearchCB(data, status, pagination) {
+            if (status === kakao.maps.services.Status.OK) {
+              displayPlaces(data);
+              displayPagination(pagination);
+            } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+              alert("검색 결과가 존재하지 않습니다.");
+            } else if (status === kakao.maps.services.Status.ERROR) {
+              alert("검색 중 오류가 발생했습니다.");
+            }
+          }
+
+          function displayPlaces(places) {
+            const listEl = document.getElementById("placesList");
+            const fragment = document.createDocumentFragment();
+            const bounds = new kakao.maps.LatLngBounds();
+            listEl.innerHTML = "";
+
+            places.forEach((place, index) => {
+              const placePosition = new kakao.maps.LatLng(place.y, place.x);
+              const marker = addMarker(placePosition, index);
+              const itemEl = getListItem(index, place);
+
+              bounds.extend(placePosition);
+
+              (function (marker, place) {
+                kakao.maps.event.addListener(marker, "mouseover", function () {
+                  displayInfowindow(marker, place.place_name);
+                });
+
+                kakao.maps.event.addListener(marker, "mouseout", function () {
+                  infowindow.close();
+                });
+
+                itemEl.onmouseover = function () {
+                  displayInfowindow(marker, place.place_name);
+                };
+
+                itemEl.onmouseout = function () {
+                  infowindow.close();
+                };
+              })(marker, place);
+
+              fragment.appendChild(itemEl);
+            });
+
+            listEl.appendChild(fragment);
+            map.setBounds(bounds);
+          }
+
+          function getListItem(index, place) {
+            const el = document.createElement("li");
+            let itemStr =
+              '<span class="markerbg marker_' +
+              (index + 1) +
+              '"></span>' +
+              '<div class="info">' +
+              "   <h5>" +
+              place.place_name +
+              "</h5>";
+
+            if (place.road_address_name) {
+              itemStr +=
+                "    <span>" +
+                place.road_address_name +
+                "</span>" +
+                '   <span class="jibun gray">' +
+                place.address_name +
+                "</span>";
+            } else {
+              itemStr += "    <span>" + place.address_name + "</span>";
+            }
+
+            itemStr +=
+              '  <span class="tel">' + place.phone + "</span>" + "</div>";
+
+            el.innerHTML = itemStr;
+            el.className = "item";
+
+            return el;
+          }
+
+          function addMarker(position, idx) {
+            const imageSrc =
+              "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png";
+            const imageSize = new kakao.maps.Size(36, 37);
+            const imgOptions = {
+              spriteSize: new kakao.maps.Size(36, 691),
+              spriteOrigin: new kakao.maps.Point(0, idx * 46 + 10),
+              offset: new kakao.maps.Point(13, 37),
+            };
+
+            const markerImage = new kakao.maps.MarkerImage(
+              imageSrc,
+              imageSize,
+              imgOptions
+            );
+            const marker = new kakao.maps.Marker({
+              position: position,
+              image: markerImage,
+            });
+
+            marker.setMap(map);
+            return marker;
+          }
+
+          function displayPagination(pagination) {
+            const paginationEl = document.getElementById("pagination");
+            const fragment = document.createDocumentFragment();
+
+            while (paginationEl.hasChildNodes()) {
+              paginationEl.removeChild(paginationEl.lastChild);
+            }
+
+            for (let i = 1; i <= pagination.last; i++) {
+              const el = document.createElement("a");
+              el.href = "#";
+              el.innerHTML = i;
+
+              if (i === pagination.current) {
+                el.className = "on";
+              } else {
+                el.onclick = (function (i) {
+                  return function () {
+                    pagination.gotoPage(i);
+                  };
+                })(i);
+              }
+
+              fragment.appendChild(el);
+            }
+
+            paginationEl.appendChild(fragment);
+          }
+
+          function displayInfowindow(marker, title) {
+            const content =
+              '<div style="padding:5px;z-index:1;">' + title + "</div>";
+
+            infowindow.setContent(content);
+            infowindow.open(map, marker);
+          }
+
+          function displayCurrentLocation(locPosition) {
+            const locationEl = document.getElementById("currentLocation");
+            locationEl.innerText =
+              "현재위치 : (" +
+              locPosition.getLat() +
+              "), (" +
+              locPosition.getLng() +
+              ")";
+          }
+
+          const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+          searchPlaces();
+        });
+      }
+
+      initializeMap();
+    </script>
+  </body>
+</html>

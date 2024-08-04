@@ -1,123 +1,249 @@
 <!DOCTYPE html>
-<html lang = 'en'>
-<head>
-    <meta charset = 'utf-8'>
-    <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
-    <title>메뉴추천</title>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>음식점추천</title>
     <style>
-        body {margin: 0;
-                padding: 0;}#my_bg {position: absolute;
-                width: 100%;
-                height: 100%;
-                background-image: url('/static/images/bg.avif');
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: center;
-                opacity: 0.5;}#object {display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                position: relative;
-                z-index: 1;}.navbar {position: fixed;
-                bottom: 0;
-                width: 100%;
-                height: 10%;
-                background-color: whitesmoke;
-                display: flex;
-                justify-content: center;
-                align-items: center;}.navbar a {float: left;
-                display: block;
-                color: white;
-                text-align: center;
-                padding: 14px 20px;
-                text-decoration: none;}.navbar a:hover {background-color: rgb(225, 177, 110);
-                color: black;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                position: relative;}.navbar .dropdown {float: left;
-                overflow: hidden;}.navbar .dropdown .dropbtn {cursor: pointer;
-                font-size: 10px;
-                border: none;
-                outline: none;
-                color: black;
-                padding: 14px 20px;
-                background-color: inherit;
-                font-family: inherit;
-                margin: 0;}.navbar .dropdown-content {display: none;
-                position: absolute;
-                min-width: 160px;}.navbar .dropdown-content a {float: none;
-                color: rgb(225, 177, 110);
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-                text-align: left;}.navbar .dropdown-content a:hover {background-color: rgb(225, 177, 110);}.navbar .dropdown:hover .dropdown-content {display: block;}
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #my_bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: url("/static/images/bg.avif");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.5;
+      }
+      #object {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+      }
+      .navbar {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 10%;
+        background-color: whitesmoke;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+      }
+      .navbar a:hover {
+        background-color: rgb(225, 177, 110);
+        color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .navbar .dropdown {
+        float: left;
+        overflow: hidden;
+      }
+      .navbar .dropdown .dropbtn {
+        cursor: pointer;
+        font-size: 10px;
+        border: none;
+        outline: none;
+        color: black;
+        padding: 14px 20px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+      }
+      .navbar .dropdown-content {
+        display: none;
+        position: absolute;
+        min-width: 160px;
+      }
+      .navbar .dropdown-content a {
+        float: none;
+        color: rgb(225, 177, 110);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+      .navbar .dropdown-content a:hover {
+        background-color: rgb(225, 177, 110);
+      }
+      .navbar .dropdown:hover .dropdown-content {
+        display: block;
+      }
     </style>
-</head>
-<body>
-    <div id = 'my_bg'></div>
-        <div id = 'object'>
-            <div class = 'navbar'>
-                <a onclick = 'history.back()'><img id = 'image' class = 'box' style = 'width: 30px; height: 30px;' src = '/static/images/back.png' /></a>
-                <a href = '/user'><img id = 'image' class = 'box' style = 'width: 30px; height: 30px;' src = '/static/images/user.png' /></a>
-                <a href = '/'><img id = 'image' class = 'box' style = 'width: 30px; height: 30px;' src = '/static/images/home.png' /></a>
-                <a href = '/manual'><img id = 'image' class = 'box' style = 'width: 30px; height: 30px;' src = '/static/images/manual.png' /></a>
-            </div>
-        <form action = 'http://127.0.0.1:5051/alle_sub' method = 'post' onsubmit = 'allergy()'>
-            <div id = 'ob'>  
-                <h3>어떤 음식 알레르기가 있습니까? 혹은 싫어하는 음식이 있습니까?</h3>
-                <div id = 'object'
-                <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '견과류' onclick = 'input(this)'>
-                <label for = 'allergy_fish'>견과류</label><br>
-            </div>
-                
-                <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '갑각류' onclick = 'input(this)'>
-                <label for = 'allergy_fish'>갑각류</label><br>
-                
-                
-                <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '과일류' onclick = 'input(this)'>
-                <label for = 'allergy_fish'>과일류</label><br>
-                
-                
-                <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '유제품' onclick = 'input(this)'>
-                <label for = 'allergy_fish'>유제품</label><br>
-                
-                
-                <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '돼지고기' onclick = 'input(this)'>
-                <label for = 'allergy_fish'>돼지고기</label><br>
-                
-                
-                <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '소고기' onclick = 'input(this)'>
-                <label for = 'allergy_fish'>소고기</label><br>
-                
-                
-                <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '생선' onclick = 'input(this)'>
-                <label for = 'allergy_fish'>생선</label><br>
-                
-                
-                <input type = 'checkbox' id = 'allergy_other' style = 'margin-bottom: 20px' name = 'food_allergy[]' value = '콩' onclick = 'input(this)'>
-                <label for = 'allergy_fish'>콩</label><br>
-                
-                
-                <input type = 'text' id = 'other_allergy_input' placeholder = '기타 알레르기 입력' style = 'display: none;'><br>
-                
-                <button type = 'submit' href = '/map'>전송</button>
-            </div>
-        </form>
-        </div>
-    <script>
-        function input(checkbox) {document.getElementById('other_allergy_input').style.display = checkbox.checked ? 'block' : 'none';}
+  </head>
+  <body>
+    <div id="my_bg"></div>
+    <div id="object">
+      <div class="navbar">
+        <a onclick="history.back()"
+          ><img
+            id="image"
+            class="box"
+            style="width: 30px; height: 30px"
+            src="/static/images/back.png"
+        /></a>
+        <a href="/user"
+          ><img
+            id="image"
+            class="box"
+            style="width: 30px; height: 30px"
+            src="/static/images/user.png"
+        /></a>
+        <a href="/"
+          ><img
+            id="image"
+            class="box"
+            style="width: 30px; height: 30px"
+            src="/static/images/home.png"
+        /></a>
+        <a href="/manual"
+          ><img
+            id="image"
+            class="box"
+            style="width: 30px; height: 30px"
+            src="/static/images/manual.png"
+        /></a>
+      </div>
+      <form
+        action="http://127.0.0.1:5051/alle_sub"
+        method="post"
+        onsubmit="allergy()"
+      >
+        <div id="ob">
+          <h3>어떤 음식 알레르기가 있습니까? 혹은 싫어하는 음식이 있습니까?</h3>
+          <div
+            id="object"
+            <input
+            type="checkbox"
+            id="allergy_other"
+            style="margin-bottom: 20px"
+            name="food_allergy[]"
+            value="견과류"
+            onclick="input(this)"
+          >
+            <label for="allergy_fish">견과류</label><br />
+          </div>
 
-        function allergy() {
-            if (document.getElementById('allergy_other').checked && document.getElementById('other_allergy_input').value) {
-                var hiddenInput = document.createElement('input');
-                hiddenInput.type = 'hidden';
-                hiddenInput.name = 'food_allergy[]';
-                hiddenInput.value = document.getElementById('other_allergy_input').value;
-                document.forms[0].appendChild(hiddenInput);
-            }
+          <input
+            type="checkbox"
+            id="allergy_other"
+            style="margin-bottom: 20px"
+            name="food_allergy[]"
+            value="갑각류"
+            onclick="input(this)"
+          />
+          <label for="allergy_fish">갑각류</label><br />
+
+          <input
+            type="checkbox"
+            id="allergy_other"
+            style="margin-bottom: 20px"
+            name="food_allergy[]"
+            value="과일류"
+            onclick="input(this)"
+          />
+          <label for="allergy_fish">과일류</label><br />
+
+          <input
+            type="checkbox"
+            id="allergy_other"
+            style="margin-bottom: 20px"
+            name="food_allergy[]"
+            value="유제품"
+            onclick="input(this)"
+          />
+          <label for="allergy_fish">유제품</label><br />
+
+          <input
+            type="checkbox"
+            id="allergy_other"
+            style="margin-bottom: 20px"
+            name="food_allergy[]"
+            value="돼지고기"
+            onclick="input(this)"
+          />
+          <label for="allergy_fish">돼지고기</label><br />
+
+          <input
+            type="checkbox"
+            id="allergy_other"
+            style="margin-bottom: 20px"
+            name="food_allergy[]"
+            value="소고기"
+            onclick="input(this)"
+          />
+          <label for="allergy_fish">소고기</label><br />
+
+          <input
+            type="checkbox"
+            id="allergy_other"
+            style="margin-bottom: 20px"
+            name="food_allergy[]"
+            value="생선"
+            onclick="input(this)"
+          />
+          <label for="allergy_fish">생선</label><br />
+
+          <input
+            type="checkbox"
+            id="allergy_other"
+            style="margin-bottom: 20px"
+            name="food_allergy[]"
+            value="콩"
+            onclick="input(this)"
+          />
+          <label for="allergy_fish">콩</label><br />
+
+          <input
+            type="text"
+            id="other_allergy_input"
+            placeholder="기타 알레르기 입력"
+            style="display: none"
+          /><br />
+
+          <button type="submit" href="/map">전송</button>
+        </div>
+      </form>
+    </div>
+    <script>
+      function input(checkbox) {
+        document.getElementById("other_allergy_input").style.display =
+          checkbox.checked ? "block" : "none";
+      }
+
+      function allergy() {
+        if (
+          document.getElementById("allergy_other").checked &&
+          document.getElementById("other_allergy_input").value
+        ) {
+          var hiddenInput = document.createElement("input");
+          hiddenInput.type = "hidden";
+          hiddenInput.name = "food_allergy[]";
+          hiddenInput.value = document.getElementById(
+            "other_allergy_input"
+          ).value;
+          document.forms[0].appendChild(hiddenInput);
         }
+      }
     </script>
-</body>
+  </body>
 </html>
