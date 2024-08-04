@@ -8,7 +8,7 @@ import requests
 
 def serve_code(location, token, crd, al): 
     dust = dust_weather(weather(crd)[0], weather(crd)[1])
-    return send(token, location, search_res(location, menu_choose(dust), al), dust)
+    return send(token, location, search_res(location, menu_choose(dust)), dust)
 
 def get_token(code, client_id, redirect_uri): return requests.post('https://kauth.kakao.com/oauth/token', data = {'grant_type': 'authorization_code', 'client_id': client_id, 'redirect_uri': redirect_uri, 'code': code}).json().get('access_token')
 
