@@ -59,8 +59,8 @@ def logout():
 
     a_t, crd, ad, Id, rec, alle = n, n, n, n, n, n
     return render_template('lo' + h)
-#    session.pop('user', None)
-#     return redirect(url_for('index')), login()
+   # session.pop('user', None)
+    #return redirect(url_for('index')), login()
 
 @app.route('/map')
 def map(): return render_template('map' + h, java_key = os.environ.get('k_java_key'))
