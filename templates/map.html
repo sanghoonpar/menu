@@ -59,14 +59,17 @@
     </div>
 
     <script>
+      let lat, lon;
+
       function send() {
-        window.href = 'service?lat=' + lat + '&lon=' + lng
+          window.location.href = 'service?lat=' + lat + '&lon=' + lon;
       }
+
       function initializeMap() {
         navigator.geolocation.getCurrentPosition((position) => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-          const locPosition = new kakao.maps.LatLng(lat, lng);
+          lat = position.coords.latitude;
+          lon = position.coords.longitude;
+          const locPosition = new kakao.maps.LatLng(lat, lon);
 
           const mapContainer = document.getElementById("map");
           const mapOption = {

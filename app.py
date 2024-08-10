@@ -74,7 +74,7 @@ def al(): return render_template('alle' + h)
 @app.route('/manual')
 def manual(): return render_template('manual' + h)
 
-@app.route('/service')
+@app.route('/service', methods = ['Get', 'Post'])
 def service():
     
     global ad, a_t, crd, alle, rec
