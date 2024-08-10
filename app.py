@@ -82,6 +82,7 @@ def service():
     if request.method == 'GET':
         if request.args.get('lat') != n and request.args.get('lon') != n:
             ad = run_service.get_address(request.args.get('lat') + ', ' + request.args.get('lon'))
+            print(ad)
             crd = request.args.get('lat') + ', ' + request.args.get('lon')
 
     rec = run_service.serve_code(ad, a_t, crd)[1]
