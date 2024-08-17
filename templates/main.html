@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/static/css/home.css">
 <body>
     <div id = 'my_bg'></div>
-    <div id = 'object'>
+    <div id = 'object'> 
         <div class = 'navbar'>
             <a href = '/user'><img id = 'image' class = 'box' style = 'width: 30px; height: 30px;' src = '/static/images/user.png' /></a>
             <a href = '/'><img id = 'image' class = 'box' style = 'width: 30px; height: 30px;' src = '/static/images/home.png' /></a>
@@ -26,16 +26,12 @@
     </div>
 
     <script>
-        function loadImage() {
-            var input = document.getElementById('fileInput');
+        function loadImage() {var input = document.getElementById('fileInput');
             var reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('image').src = e.target.result;
-            };
+            reader.onload = function(e) {document.getElementById('image').src = e.target.result;};
             reader.readAsDataURL(input.files[0]);
             const image = document.getElementById('image');
-        const output = document.getElementById('output');
-        }
+        const output = document.getElementById('output');}
     </script>
 </body>
 

@@ -5,7 +5,7 @@ load_dotenv()
 
 n = None
 h = '.html'
-a_t, crd, ad, alle, rec, Id = n, n, n, n, n, n
+a_t, crd, ad, alle, dat, Id = n, n, n, n, [n,n,n,n,n], n
 
 app = Flask(__name__, template_folder = 'templates')
 app.secret_key = os.environ.get('sec_key')
@@ -55,18 +55,18 @@ def kakaocallback():
 
 @app.route('/logout')
 def logout():
-    global a_t, crd, ad, Id, rec, alle
+    global a_t, crd, ad, Id, dat, alle
 
-    a_t, crd, ad, Id, rec, alle = n, n, n, n, n, n
+    a_t, crd, ad, Id, dat, alle = n, n, n, n, [n,n,n,n,n], n
     return render_template('lo' + h)
-   # session.pop('user', None)
+    #session.pop('user', None)
     #return redirect(url_for('index')), login()
 
 @app.route('/map')
 def map(): return render_template('map' + h, java_key = os.environ.get('k_java_key'))
 
 @app.route('/user')
-def user(): return render_template('user' + h, alle = alle, id = Id, rec = rec)
+def user(): return render_template('user' + h, alle = alle, id = Id, rec = dat[1], ad = ad, wea = dat[2], dust = str(dat[3]) + '㎍/㎥', temp = str(dat[4]) + '°C')
 
 @app.route('/alle')
 def al(): return render_template('alle' + h)
@@ -74,17 +74,20 @@ def al(): return render_template('alle' + h)
 @app.route('/manual')
 def manual(): return render_template('manual' + h)
 
+@app.route('/select_menu')
+def select(): return render_template('select_menu' + h)
+
 @app.route('/service', methods = ['Get', 'Post'])
 def service():
     
-    global ad, a_t, crd, alle, rec
+    global ad, a_t, crd, alle, dat
 
     if request.method == 'GET':
         if request.args.get('lat') != n and request.args.get('lon') != n:
             ad = run_service.get_address(request.args.get('lat') + ', ' + request.args.get('lon'))
             crd = request.args.get('lat') + ', ' + request.args.get('lon')
 
-    rec = run_service.serve_code(ad, a_t, crd)[1]
+    dat = run_service.serve_code(ad, a_t, crd)
 
     if ad != n and a_t != n:
         if run_service.serve_code(ad, a_t, crd)[0] == 2: return render_template('success' + h)

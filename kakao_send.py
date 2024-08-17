@@ -34,4 +34,4 @@ def send(tk, lc, res, dt):
     if req().get('result_code') == 0: suc += 1
     else: print('메시지를 성공적으로 보내지 못했습니다. 오류메시지 : ', str(req()))
 
-    return [suc, at]
+    return [suc, at, dt['weather']['state'], dt['dust']['pm10']['value'], dt['weather']['tmp']]

@@ -5,154 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>음식점추천</title>
   </head>
-  <link rel="stylesheet" href="/static/css/alle.css">
+  <link rel="stylesheet" href="/static/css/alle.css" />
   <body>
     <div id="my_bg"></div>
     <div id="object">
       <div class="navbar">
-        <a href="/user"
-          ><img
-            id="image"
-            class="box"
-            style="width: 30px; height: 30px"
-            src="/static/images/user.png"
-        /></a>
-        <a href="/"
-          ><img
-            id="image"
-            class="box"
-            style="width: 30px; height: 30px"
-            src="/static/images/home.png"
-        /></a>
-        <a href="/manual"
-          ><img
-            id="image"
-            class="box"
-            style="width: 30px; height: 30px"
-            src="/static/images/manual.png"
-        /></a>
+        <a href="/user"><img id="image" class="box" style="width: 30px; height: 30px" src="/static/images/user.png" /></a>
+        <a href="/"><img id="image" class="box" style="width: 30px; height: 30px" src="/static/images/home.png" /></a>
+        <a href="/manual"><img id="image" class="box" style="width: 30px; height: 30px" src="/static/images/manual.png" /></a>
       </div>
-      <form
-        action="/alle_sub"
-        method="post"
-        onsubmit="allergy()"
-      >
+      <form action="/alle_sub" method="post" onsubmit="allergy()">
         <div id="ob">
           <h3>어떤 음식 알레르기가 있습니까? 혹은 싫어하는 음식이 있습니까?</h3>
-          <div
-            id="object"
-            <input
-            type="checkbox"
-            id="allergy_other"
-            style="margin-bottom: 20px"
-            name="food_allergy[]"
-            value="견과류"
-            onclick="input(this)"
-          >
+          <div id="object">
+            <input type="checkbox" id="allergy_other" style="margin-bottom: 20px" name="food_allergy[]" value="견과류" onclick="input(this)" />
             <label for="allergy_fish">견과류</label><br />
-          </div>
 
-          <input
-            type="checkbox"
-            id="allergy_other"
-            style="margin-bottom: 20px"
-            name="food_allergy[]"
-            value="갑각류"
-            onclick="input(this)"
-          />
-          <label for="allergy_fish">갑각류</label><br />
+            <input type="checkbox" id="allergy_other" style="margin-bottom: 20px" name="food_allergy[]" value="갑각류" onclick="input(this)" />
+            <label for="allergy_fish">갑각류</label><br />
 
-          <input
-            type="checkbox"
-            id="allergy_other"
-            style="margin-bottom: 20px"
-            name="food_allergy[]"
-            value="과일류"
-            onclick="input(this)"
-          />
-          <label for="allergy_fish">과일류</label><br />
+            <input type="checkbox" id="allergy_other" style="margin-bottom: 20px" name="food_allergy[]" value="과일류" onclick="input(this)" />
+            <label for="allergy_fish">과일류</label><br />
 
-          <input
-            type="checkbox"
-            id="allergy_other"
-            style="margin-bottom: 20px"
-            name="food_allergy[]"
-            value="유제품"
-            onclick="input(this)"
-          />
-          <label for="allergy_fish">유제품</label><br />
+            <input type="checkbox" id="allergy_other" style="margin-bottom: 20px" name="food_allergy[]" value="유제품" onclick="input(this)" />
+            <label for="allergy_fish">유제품</label><br />
 
-          <input
-            type="checkbox"
-            id="allergy_other"
-            style="margin-bottom: 20px"
-            name="food_allergy[]"
-            value="돼지고기"
-            onclick="input(this)"
-          />
-          <label for="allergy_fish">돼지고기</label><br />
+            <input type="checkbox" id="allergy_other" style="margin-bottom: 20px" name="food_allergy[]" value="돼지고기" onclick="input(this)" />
+            <label for="allergy_fish">돼지고기</label><br />
 
-          <input
-            type="checkbox"
-            id="allergy_other"
-            style="margin-bottom: 20px"
-            name="food_allergy[]"
-            value="소고기"
-            onclick="input(this)"
-          />
-          <label for="allergy_fish">소고기</label><br />
+            <input type="checkbox" id="allergy_other" style="margin-bottom: 20px" name="food_allergy[]" value="소고기" onclick="input(this)" />
+            <label for="allergy_fish">소고기</label><br />
 
-          <input
-            type="checkbox"
-            id="allergy_other"
-            style="margin-bottom: 20px"
-            name="food_allergy[]"
-            value="생선"
-            onclick="input(this)"
-          />
-          <label for="allergy_fish">생선</label><br />
+            <input type="checkbox" id="allergy_other" style="margin-bottom: 20px" name="food_allergy[]" value="생선" onclick="input(this)" />
+            <label for="allergy_fish">생선</label><br />
 
-          <input
-            type="checkbox"
-            id="allergy_other"
-            style="margin-bottom: 20px"
-            name="food_allergy[]"
-            value="콩"
-            onclick="input(this)"
-          />
-          <label for="allergy_fish">콩</label><br />
+            <input type="checkbox" id="allergy_other" style="margin-bottom: 20px" name="food_allergy[]" value="콩" onclick="input(this)" />
+            <label for="allergy_fish">콩</label><br />
 
-          <input
-            type="text"
-            id="other_allergy_input"
-            placeholder="기타 알레르기 입력"
-            style="display: none"
-          /><br />
+            <input type="text" id="other_allergy_input" placeholder="기타 알레르기 입력" style="display: none" />
 
           <button type="submit" href="/map">전송</button>
         </div>
       </form>
     </div>
     <script>
-      function input(checkbox) {
-        document.getElementById("other_allergy_input").style.display =
-          checkbox.checked ? "block" : "none";
-      }
+      function input(checkbox) {document.getElementById("other_allergy_input").style.display = checkbox.checked ? "block" : "none";}
 
       function allergy() {
-        if (
-          document.getElementById("allergy_other").checked &&
-          document.getElementById("other_allergy_input").value
-        ) {
-          var hiddenInput = document.createElement("input");
+        if ( document.getElementById("allergy_other").checked &&
+          document.getElementById("other_allergy_input").value ) {var hiddenInput = document.createElement("input");
           hiddenInput.type = "hidden";
           hiddenInput.name = "food_allergy[]";
-          hiddenInput.value = document.getElementById(
-            "other_allergy_input"
-          ).value;
-          document.forms[0].appendChild(hiddenInput);
-        }
-      }
+          hiddenInput.value = document.getElementById("other_allergy_input").value;
+          document.forms[0].appendChild(hiddenInput);}}
     </script>
   </body>
 </html>
