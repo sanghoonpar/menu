@@ -1,7 +1,27 @@
 import os, run_service, requests
-from flask import Flask, request, render_template#, session, url_for, redirect
+from flask import Flask, request, render_template, app#, session, url_for, redirect
+from flask_lucide import Lucide
 from dotenv import load_dotenv
 load_dotenv()
+lucide = Lucide(app)
+
+lucide = Lucide()
+
+
+def create_app(config):
+    app = Flask(__name__)
+    app.config.from_object(config)
+
+    lucide.init_app(app)
+
+lucide = Lucide(import_dir='app\\static\\customsvg')
+
+
+def create_app(config):
+    app = Flask(__name__)
+    app.config.from_object(config)
+
+    lucide.init_app(app)
 
 n = None
 h = '.html'
