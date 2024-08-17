@@ -30,7 +30,7 @@ body,
         padding: 14px 20px;
         text-decoration: none;
       }.navbar a:hover {
-        background-color: rgb(225, 177, 110);
+        background-color: whitesmoke;
         color: black;
         display: flex;
         flex-direction: column;
@@ -56,13 +56,13 @@ body,
         min-width: 160px;
       }.navbar .dropdown-content a {
         float: none;
-        color: rgb(225, 177, 110);
+        color: whitesmoke;
         padding: 12px 16px;
         text-decoration: none;
         display: block;
         text-align: left;
       }.navbar .dropdown-content a:hover {
-        background-color: rgb(225, 177, 110);
+        background-color: whitesmoke;
       }.navbar .dropdown:hover .dropdown-content {
         display: block;
       }.map_wrap,
@@ -87,7 +87,7 @@ body,
         margin: 10px 0 30px 10px;
         padding: 5px;
         overflow-y: auto;
-        background: rgba(255, 255, 255, 0.7);
+        background: whitesmoke;
         z-index: 1;
         font-size: 12px;
         border-radius: 10px;
@@ -187,7 +187,7 @@ body,
         padding: 14px 20px;
         text-decoration: none;
       }.navbar a:hover {
-        background-color: rgb(225, 177, 110);
+        background-color: whitesmoke;
         color: black;
         display: flex;
         flex-direction: column;
@@ -213,13 +213,13 @@ body,
         min-width: 160px;
       }.navbar .dropdown-content a {
         float: none;
-        color: rgb(225, 177, 110);
+        color: whitesmoke;
         padding: 12px 16px;
         text-decoration: none;
         display: block;
         text-align: left;
       }.navbar .dropdown-content a:hover {
-        background-color: rgb(225, 177, 110);
+        background-color: whitesmoke;
       }.navbar .dropdown:hover .dropdown-content {
         display: block;
       }#my_bg {

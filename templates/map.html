@@ -31,18 +31,15 @@
     <div id="my_bg"></div>
     <div class="lat_lon"><h2 id="currentLocation">현재위치 :</h2></div>
     <div class="navbar">
-      <a href="/user"><img id="image" class="box" style="width: 30px; height: 30px" src="/static/images/user.png" /></a>
-      <a href="/"><img id="image" class="box" style="width: 30px; height: 30px" src="/static/images/home.png" /></a>
       <a href="/manual"><img id="image" class="box" style="width: 30px; height: 30px" src="/static/images/manual.png" /></a>
-        <a onclick="send()"><img id="image" class="box" style="width: 30px; height: 30px" src="/static/images/send.png" /></a>
+      <a href="/"><img id="image" class="box" style="width: 30px; height: 30px" src="/static/images/home.png" /></a>  
+      <a onclick="send()"><img id="image" class="box" style="width: 30px; height: 30px" src="/static/images/send.png" /></a>
     </div>
 
     <script>
       let lat, lon;
 
-      function send() {
-        window.location.href = "service?lat=" + lat + "&lon=" + lon;
-      }
+      function send() {window.location.href = "service?lat=" + lat + "&lon=" + lon;}
 
       function initializeMap() {
         navigator.geolocation.getCurrentPosition((position) => {
