@@ -25,7 +25,7 @@ load_dotenv()
 
 n = None
 h = '.html'
-a_t, crd, ad, alle, dat, Id = n, n, n, n, [n,n,n,n,n], n
+a_t, crd, ad, alle, dat, Id = n, n, n, n, [n,'?','?','?','?'], n
 
 app = Flask(__name__, template_folder = 'templates')
 app.secret_key = os.environ.get('sec_key')
@@ -77,7 +77,7 @@ def kakaocallback():
 def logout():
     global a_t, crd, ad, Id, dat, alle
 
-    a_t, crd, ad, Id, dat, alle = n, n, n, n, [n,n,n,n,n], n
+    a_t, crd, ad, Id, dat, alle = n, n, n, n, [n,'?','?','?','?'], n
     return render_template('lo' + h)
     #session.pop('user', None)
     #return redirect(url_for('index')), login()
@@ -110,7 +110,7 @@ def service():
     dat = run_service.serve_code(ad, a_t, crd)
 
     if ad != n and a_t != n:
-        if run_service.serve_code(ad, a_t, crd)[0] == 2: return render_template('success' + h)
+        if dat[0] == 2: return render_template('success' + h)
         else: return render_template('fail' + h)
     else: return render_template('try_again' + h)
 
