@@ -121,5 +121,5 @@ def service():
 if __name__ == '__main__':
     with open('cert.pem', 'w') as certfile: certfile.write(os.environ.get('cert_str'))
     with open('private_key.pem', 'w') as keyfile: keyfile.write(os.environ.get('pri_key_str'))
-
+    app.debug = True
     app.run(port = 5051, ssl_context = ('cert.pem', 'private_key.pem'))
