@@ -232,7 +232,8 @@ body,
         background-position: center;
         opacity: 0.5;
       }.lat_lon {
-        margin-bottom: 90px;
+        margin-bottom: 45px;
+        z-index: 10000;
       }#menu_wrap {
         width: 300px;
         z-index: 100;
