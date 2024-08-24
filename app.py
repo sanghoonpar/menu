@@ -1,5 +1,5 @@
 import os, run_service, requests
-from flask import Flask, request, render_template, app#, session, url_for, redirect
+from flask import Flask, request, render_template#, session, url_for, redirect
 #from flask_lucide import Lucide
 from dotenv import load_dotenv
 load_dotenv()
@@ -25,7 +25,7 @@ load_dotenv()
 
 n = None
 h = '.html'
-a_t, crd, ad, alle, dat, Id = n, n, n, n, [n,'?','?','?','?'], n
+a_t, crd, ad, alle, dat, Id, food = n, n, n, n, n, [n,'?','?','?','?'], n
 
 app = Flask(__name__, template_folder = 'templates')
 app.secret_key = os.environ.get('sec_key')
@@ -75,9 +75,9 @@ def kakaocallback():
 
 @app.route('/logout')
 def logout():
-    global a_t, crd, ad, Id, dat, alle
+    global a_t, crd, ad, Id, dat, alle, food
 
-    a_t, crd, ad, Id, dat, alle = n, n, n, n, [n,'?','?','?','?'], n
+    a_t, crd, ad, Id, dat, alle = n, n, n, n, n, [n,'?','?','?','?'], n
     return render_template('lo' + h)
     #session.pop('user', None)
     #return redirect(url_for('index')), login()
@@ -94,20 +94,24 @@ def al(): return render_template('alle' + h)
 @app.route('/manual')
 def manual(): return render_template('manual' + h)
 
-@app.route('/select_menu')
-def select(): return render_template('select_menu' + h)
+@app.route('/select_menu', methods = ['Get', 'Post'])
+def select():
 
-@app.route('/service', methods = ['Get', 'Post'])
-def service():
-    
-    global ad, a_t, crd, alle, dat
-
+    global ad, crd
     if request.method == 'GET':
         if request.args.get('lat') != n and request.args.get('lon') != n:
             ad = run_service.get_address(request.args.get('lat') + ', ' + request.args.get('lon'))
             crd = request.args.get('lat') + ', ' + request.args.get('lon')
+    return render_template('roulette' + h)
 
-    dat = run_service.serve_code(ad, a_t, crd)
+@app.route('/service', methods = ['Get', 'Post'])
+def service():
+    
+    global ad, a_t, crd, alle, dat, food
+
+    food = request.args.get('food')
+    print(food)
+    dat = run_service.serve_code1(ad, a_t, food, crd)
 
     if ad != n and a_t != n:
         if dat[0] == 2: return render_template('success' + h)

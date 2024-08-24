@@ -17,3 +17,6 @@ def get_address(lat_lng):
     for i in range(len(str(geocoders.Nominatim(user_agent = 'South Korea', timeout = None).reverse(lat_lng)).split(', '))):
         address = str(geocoders.Nominatim(user_agent = 'South Korea', timeout = None).reverse(lat_lng)).split(', ')[i]
         if '동' in address: return address
+
+def serve_code1(location, token, food, crd):
+    return send(token, location, search_res(location, food), dust_weather(weather(crd)[0], weather(crd)[1]))
