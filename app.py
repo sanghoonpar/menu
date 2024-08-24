@@ -1,32 +1,12 @@
 import os, run_service, requests
 from flask import Flask, request, render_template#, session, url_for, redirect
-#from flask_lucide import Lucide
 from dotenv import load_dotenv
 from flask_lucide import Lucide
 load_dotenv()
-# lucide = Lucide(app)
-
-# lucide = Lucide()
-
-
-# def create_app(config):
-#     app = Flask(__name__)
-#     app.config.from_object(config)
-
-#     lucide.init_app(app)
-
-# lucide = Lucide(import_dir='app\\static\\customsvg')
-
-
-# def create_app(config):
-#     app = Flask(__name__)
-#     app.config.from_object(config)
-
-#     lucide.init_app(app)
 
 n = None
 h = '.html'
-a_t, crd, ad, alle, dat, Id, food = n, n, n, n, n, [n,'?','?','?','?'], n
+a_t, crd, ad, alle, Id, dat, food = n, n, n, n, n, [n,'?','?','?','?'], n
 
 app = Flask(__name__, template_folder = 'templates')
 lucide = Lucide(app)
@@ -123,5 +103,4 @@ def service():
 if __name__ == '__main__':
     with open('cert.pem', 'w') as certfile: certfile.write(os.environ.get('cert_str'))
     with open('private_key.pem', 'w') as keyfile: keyfile.write(os.environ.get('pri_key_str'))
-    app.debug = True
     app.run(port = 5051, ssl_context = ('cert.pem', 'private_key.pem'))

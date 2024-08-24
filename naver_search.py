@@ -17,10 +17,10 @@ def search_res(loc, listf):
 
     #         if len(res) >= 3: break
 
-    # for i in range(len(res) - 1):
-    #     if res[0] == res[1]: res.remove(res[0])
-    # if len(res) >= 3:
-    #     if res[0] == res[2]: res.remove(res[0])
-    # if len(res) >= 3:
-    #     if res[1] == res[2]: res.remove(res[1])
+    for i in range(len(res) - 1):
+        if res[0] == res[1]: res.remove(res[0])
+    if len(res) >= 3:
+        if res[0] == res[2]: res.remove(res[0])
+    if len(res) >= 3:
+        if res[1] == res[2]: res.remove(res[1])
     return res

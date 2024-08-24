@@ -10,40 +10,42 @@
     ></script>
     <link rel="stylesheet" href="/static/css/map.css" />
     <link rel="stylesheet" href="/static/css/common.css" />
+    <style>
+
+    </style>
   </head>
   <body>
-    
     <div class="container">
-    <div class="map_wrap">
-      <div
-        id="map"
-        style="width: 100%; height: 100%; position: relative; overflow: hidden"
-      ></div>
-    </div>
-
-    <div id="menu_wrap" class="bg_white">
-      <div class="option">
-        <div>
-          <form onsubmit="searchPlaces(); return false;">
-            <input type="text" value="주변맛집" id="keyword" size="15" />
-          </form>
+      <div id="menu_wrap" class="bg_white">
+        <div class="option">
+          <div>
+            <form onsubmit="searchPlaces(); return false;">
+              <input type="text" value="주변맛집" id="keyword" size="15" />
+            </form>
+          </div>
         </div>
+        <hr />
+        <ul id="placesList"></ul>
+        <div id="pagination"></div>
       </div>
-      <hr />
-      <ul id="placesList"></ul>
-      <div id="pagination"></div>
-    </div>
 
-    <div id="my_bg"></div>
-    <div class="navbar">
-      <a href="/manual">{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}</a>
-      <a href="/">{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}</a>
-      <a onclick="send()">{{ lucide.icon('circle-dot', stroke_width=2, width=32, height=32) }}</a>
+      <div id="drag_handle"></div>
+      
+      <div class="map_wrap">
+        <div
+          id="map"
+          style="width: 100%; height: 100%; position: relative; overflow: hidden"
+        ></div>
+      </div>
+
+      <div id="my_bg"></div>
+      <div class="navbar">
+        <a href="/manual">{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}</a>
+        <a href="/">{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}</a>
+        <a onclick="send()">{{ lucide.icon('circle', stroke_width=2, width=32, height=32) }}</a>
+      </div>
+      <div class="lat_lon"><h2 id="currentLocation">현재위치 :</h2></div>
     </div>
-    <div class="lat_lon"><h2 id="currentLocation">현재위치 :</h2></div>
-    
-    
-  </div>
 
     <script>
       let lat, lon;
@@ -251,6 +253,30 @@
       }
 
       initializeMap();
+
+      const dragHandle = document.getElementById("drag_handle");
+      const menuWrap = document.getElementById("menu_wrap");
+      const mapWrap = document.querySelector(".map_wrap");
+
+      let isResizing = false;
+
+      dragHandle.addEventListener("mousedown", function (e) {
+        isResizing = true;
+      });
+
+      document.addEventListener("mousemove", function (e) {
+        if (!isResizing) return;
+
+        const newWidth = e.clientX;
+        if (newWidth > 200 && newWidth < 600) {
+          menuWrap.style.width = newWidth + "px";
+          mapWrap.style.width = `calc(100% - ${newWidth + 10}px)`;
+        }
+      });
+
+      document.addEventListener("mouseup", function () {
+        isResizing = false;
+      });
     </script>
   </body>
 </html>
