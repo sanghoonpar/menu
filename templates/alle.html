@@ -10,9 +10,9 @@
     <div id="my_bg"></div>
     <div id="object">
       <div class="navbar">
-        <a href="/user"><img id="image" class="box" style="width: 60px; height: 30px" src="/static/images/map.png" /></a>
-        <a href="/"><img id="image" class="box" style="width: 30px; height: 30px" src="/static/images/home.png" /></a>
-        <a href="/manual"><img id="image" class="box" style="width: 30px; height: 30px" src="/static/images/manual.png" /></a>
+        <a href="/manual">{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}</a>
+        <a href="/">{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}</a>
+        <a href="/user">{{ lucide.icon('circle-user-round', stroke_width=2, width=32, height=32) }}</a>
       </div>
       <form action="/alle_sub" method="post" onsubmit="allergy()">
         <div id="ob">

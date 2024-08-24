@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>음식점 추천</title>
   </head>
+  <link rel="stylesheet" href="/static/css/common.css">
   <style>
       @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 
@@ -119,9 +120,9 @@
     </div>
 
     <div class="navbar">
-      <a onclick="send()"><img id="image" class="box" style="width: 30px; height: 30px" src="/static/images/send.png" /></a>
-      <a href="/"><img id="image" class="box" style="width: 30px; height: 30px" src="/static/images/home.png" /></a>
-      <a href="/manual"><img id="image" class="box" style="width: 30px; height: 30px" src="/static/images/manual.png" /></a>
+      <a onclick="send()">{{ lucide.icon('send-horizontal', stroke_width=2, width=32, height=32) }}</a>
+      <a href="/">{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}</a>
+      <a href="/manual">{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}</a>
     </div>
 
     <script>

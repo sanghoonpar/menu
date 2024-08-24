@@ -2,6 +2,7 @@ import os, run_service, requests
 from flask import Flask, request, render_template#, session, url_for, redirect
 #from flask_lucide import Lucide
 from dotenv import load_dotenv
+from flask_lucide import Lucide
 load_dotenv()
 # lucide = Lucide(app)
 
@@ -28,6 +29,7 @@ h = '.html'
 a_t, crd, ad, alle, dat, Id, food = n, n, n, n, n, [n,'?','?','?','?'], n
 
 app = Flask(__name__, template_folder = 'templates')
+lucide = Lucide(app)
 app.secret_key = os.environ.get('sec_key')
 user = {}
 
