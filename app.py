@@ -59,7 +59,7 @@ def kakaocallback():
 def logout():
     global a_t, crd, ad, Id, dat, alle, food
 
-    a_t, crd, ad, Id, dat, alle = n, n, n, n, n, [n,'?','?','?','?'], n
+    a_t, crd, ad, Id, dat, alle = n, n, n, n, [n,'?','?','?','?'], n
     return render_template('lo' + h)
     #session.pop('user', None)
     #return redirect(url_for('index')), login()
