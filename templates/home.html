@@ -9,22 +9,32 @@
   <link rel="stylesheet" href="/static/css/common.css" />
   <body>
     <div class="container">
-    <div id="my_bg"></div>
-    <div class="navbar">
-      <a href="/manual">{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}</a>
-      <a href="/">{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}</a>
-      <a href="/map">{{ lucide.icon('map-pin', stroke_width=2, width=32, height=32) }}</a>
+      <div id="my_bg"></div>
+      <div class="navbar">
+        <a href="/manual"
+          >{{ lucide.icon('book', stroke_width=2, width=32, height=32)
+          }}메뉴얼</a
+        >
+        <a href="/"
+          >{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}홈</a
+        >
+        <a href="/map"
+          >{{ lucide.icon('map-pin', stroke_width=2, width=32, height=32)
+          }}지도</a
+        >
+      </div>
+      <div id="object">
+        <h1 style="font-size: 6ch; font-weight: bold">음식점추천</h1>
+        <img src="/static/images/logo.png" alt="Logo" />
+        <h3>당신의 위치기반 날씨정보를 이용해 음식점을 추천해드립니다.</h3>
+        <a href="{{c_b_u}}">
+          <img
+            src="/static/images/enter.png"
+            alt="Enter"
+            style="width: 200px"
+          />
+        </a>
+      </div>
     </div>
-    <div id="object">
-      
-
-      <h1 style="font-size: 6ch; font-weight: bold">음식점추천</h1>
-      <img src="/static/images/logo.png" alt="Logo" />
-      <h3>당신의 위치기반 날씨정보를 이용해 음식점을 추천해드립니다.</h3>
-      <a href="{{c_b_u}}">
-        <img src="/static/images/enter.png" alt="Enter" style="width: 200px" />
-      </a>
-    </div></div>
   </body>
 </html>
-

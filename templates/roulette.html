@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/static/css/common.css" />
   <body>
     <div id="menu">
+    <container></container>  
       <canvas id="rouletteCanvas" width="600" height="600"></canvas>
       <button onclick="rotate()">돌려돌려 돌림판</button>
       <div id="addDiv">
@@ -20,16 +21,17 @@
         style="margin-top: 20px; font-size: 1.5rem; font-weight: bold"
       ></div>
     </div>
+    </container>
 
     <div class="navbar">
       <a href="/manual"
-        >{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}</a
+        >{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}메뉴얼</a
       >
       <a href="/"
-        >{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}</a
+        >{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}홈</a
       >
       <a onclick="send()"
-        >{{ lucide.icon('send', stroke_width=2, width=32, height=32) }}</a
+        >{{ lucide.icon('send', stroke_width=2, width=32, height=32) }}전송</a
       >
     </div>
 
