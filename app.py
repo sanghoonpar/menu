@@ -44,7 +44,7 @@ def login(): return render_template('main' + h)
 def kakaocallback():
     global a_t, Id
 
-    a_t = run_service.get_token(request.args.get('code'), os.environ.get('k_cli_id'), os.environ.get('k_red_uri'))
+    a_t = run_service.g_t(request.args.get('code'), os.environ.get('k_cli_id'), os.environ.get('k_red_uri'))
     
     user_info = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {a_t}', 'Content-Type': 'application/x-www-form-urlencoded',}).json()
     # session['username'] = username
@@ -59,7 +59,7 @@ def kakaocallback():
 def logout():
     global a_t, crd, ad, Id, dat, alle, food
 
-    a_t, crd, ad, Id, dat, alle = n, n, n, n, n, [n,'?','?','?','?'], n
+    a_t, crd, ad, Id, dat, alle = n, n, n, n, [n,'?','?','?','?'], n
     return render_template('lo' + h)
     #session.pop('user', None)
     #return redirect(url_for('index')), login()
@@ -82,7 +82,7 @@ def select():
     global ad, crd
     if request.method == 'GET':
         if request.args.get('lat') != n and request.args.get('lon') != n:
-            ad = run_service.get_address(request.args.get('lat') + ', ' + request.args.get('lon'))
+            ad = run_service.g_a(request.args.get('lat') + ', ' + request.args.get('lon'))
             crd = request.args.get('lat') + ', ' + request.args.get('lon')
     return render_template('roulette' + h)
 
@@ -92,8 +92,8 @@ def service():
     global ad, a_t, crd, alle, dat, food
 
     food = request.args.get('food')
-    print(food)
-    dat = run_service.serve_code1(ad, a_t, food, crd)
+    food = n
+    dat = run_service.s_c1(ad, a_t, food, crd, os.environ.get('ser_key'))
 
     if ad != n and a_t != n:
         if dat[0] == 2: return render_template('success' + h)

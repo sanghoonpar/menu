@@ -4,108 +4,11 @@
     <meta charset="UTF-8" />
     <title>음식점 추천</title>
   </head>
-  <link rel="stylesheet" href="/static/css/common.css">
-  <style>
-      @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
-
-      * {font-family: Pretendard;
-        font-size: 0.9rem;}
-
-    body {background: #f7f8fc;
-      height: 960px;}
-
-    canvas {margin-top: 100px;
-      transition: 2s;}
-
-    button {z-index: 1000;
-      background: #febf00;
-      margin-top: 1rem;
-      padding: 0.8rem 1.8rem;
-      border: none;
-      font-size: 1.5rem;
-      font-weight: bold;
-      border-radius: 5px;
-      transition: 0.2s;
-      cursor: pointer;}
-
-    button:active {background: #444;
-      color: #f9f9f9;}
-
-    #menu {width: 100%;
-      height: 960px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      text-align: center;
-      flex-direction: column;
-      position: relative;}
-
-    #menu::before {margin-top: 100px;
-      content: "";
-      position: absolute;
-      width: 10px;
-      height: 50px;
-      border-radius: 5px;
-      background: #000;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 22;}
-    #object {display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;}
-    #object img {width: 130px;}
-    #object h3 {max-width: 80%;}
-    #object a {display: inline-block;}
-    .navbar {position: fixed;
-      bottom: 0;
-      width: 100%;
-      height: 10%;
-      background-color: whitesmoke;
-      display: flex;
-      justify-content: center;
-      align-items: center;}
-    .navbar a {float: left;
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 14px 20px;
-      text-decoration: none;}
-    .navbar a:hover {background-color: whitesmoke;
-      color: black;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;}
-    .navbar .dropdown {float: left;
-      overflow: hidden;}
-    .navbar .dropdown .dropbtn {cursor: pointer;
-      font-size: 10px;
-      border: none;
-      outline: none;
-      color: black;
-      padding: 14px 20px;
-      background-color: inherit;
-      font-family: inherit;
-      margin: 0;}
-    .navbar .dropdown-content {display: none;
-      position: absolute;
-      min-width: 160px;}
-    .navbar .dropdown-content a {float: none;
-      color: whitesmoke;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      text-align: left;}
-    .navbar .dropdown-content a:hover {background-color: whitesmoke;}
-    .navbar .dropdown:hover .dropdown-content {display: block;}
-    .result {margin-bottom: 90px;}
-  </style>
+  <link rel="stylesheet" href="/static/css/roulette.css" />
+  <link rel="stylesheet" href="/static/css/common.css" />
   <body>
     <div id="menu">
+    <container></container>  
       <canvas id="rouletteCanvas" width="600" height="600"></canvas>
       <button onclick="rotate()">돌려돌려 돌림판</button>
       <div id="addDiv">
@@ -113,23 +16,28 @@
         <button onclick="add()">메뉴 추가</button>
         <button onclick="remove()">메뉴 삭제</button>
       </div>
-      <div
-        id="resultText"
-        style="margin-top: 20px; font-size: 1.5rem; font-weight: bold"
-      ></div>
+      <div id="resultText" style="margin-bottom: 90px; font-size: 1.5rem; font-weight: bold; z-index: 99999999;"></div>
     </div>
 
     <div class="navbar">
-      <a href="/manual">{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}</a>
-      <a href="/">{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}</a>
-      <a onclick="send()">{{ lucide.icon('send', stroke_width=2, width=32, height=32) }}</a>
+      <a href="/manual"
+        >{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}메뉴얼</a
+      >
+      <a href="/"
+        >{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}홈</a
+      >
+      <a onclick="send()"
+        >{{ lucide.icon('send', stroke_width=2, width=32, height=32) }}전송</a
+      >
     </div>
+
+  </container>
 
     <script>
       function send() {
         const result = resultText.textContent.replace("결과: ", "");
         if (result && result !== "None") {
-          window.location.href = "service?food=" + (result);
+          window.location.href = "service?food=" + result;
         } else {
           alert("결과가 없습니다. 룰렛을 돌려주세요.");
         }

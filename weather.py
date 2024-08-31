@@ -3,12 +3,11 @@ from datetime import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-def weather(crd):
+def weather(crd, ke):
     dt = dict()
     de = datetime.now().date().strftime('%Y%m%d')
     dt['date'] = str(de[:4] + '/' + de[4:6] + '/' + de[6:])
     w_d = dict()
-    ke = os.environ.get('ser_key')
 
     for im in requests.get('http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=' + ke + '&dataType=json&base_date=' + de + '&base_time=0800&nx=' + crd[0] + '&ny=' + crd[1]).json().get('response').get('body').get('items')['item']:
         it = im['fcstValue']
@@ -25,4 +24,4 @@ def weather(crd):
             w_d['state'] = w_s
     dt['weather'] = w_d
     
-    return [dt, ke]
+    return dt

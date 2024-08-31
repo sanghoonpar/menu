@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import urllib, json, requests
 
 def send(tk, lc, res, dt):
