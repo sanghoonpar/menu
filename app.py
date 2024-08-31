@@ -92,7 +92,6 @@ def service():
     global ad, a_t, crd, alle, dat, food
 
     food = request.args.get('food')
-    food = n
     dat = run_service.s_c1(ad, a_t, food, crd, os.environ.get('ser_key'))
 
     if ad != n and a_t != n:
