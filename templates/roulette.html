@@ -7,15 +7,17 @@
   <link rel="stylesheet" href="/static/css/roulette.css" />
   <link rel="stylesheet" href="/static/css/common.css" />
   <body>
+    <div id = 'my_bg'></div>
     <div id="menu">
     <container></container>  
       <canvas id="rouletteCanvas" width="600" height="600"></canvas>
-      <button onclick="rotate()">돌려돌려 돌림판</button>
+      <button onclick="rotate()">가챠</button>
       <div id="addDiv">
         <input type="text" id="menuAdd" />
         <button onclick="add()">메뉴 추가</button>
         <button onclick="remove()">메뉴 삭제</button>
       </div>
+      <div id="resultText">결과: </div>
     </div>
 
     <div class="navbar">
@@ -29,12 +31,8 @@
     <script>
       function send() {
         const result = resultText.textContent.replace("결과: ", "");
-        if (result && result !== "None") {
-          window.location.href = "service?food=" + result;
-        } else {
-          alert("결과가 없습니다. 룰렛을 돌려주세요.");
-        }
-      }
+        if (result && result !== "None") {window.location.href = "service?food=" + result} 
+        else {alert("결과가 없습니다. 룰렛을 돌려주세요.")}}
 
       const $c = document.querySelector("#rouletteCanvas");
       const ctx = $c.getContext("2d");
@@ -56,8 +54,7 @@
               let g = Math.floor(Math.random() * 256);
               let b = Math.floor(Math.random() * 256);
               colors.push("rgb(" + r + "," + g + "," + b + ")");
-            }
-          }
+            }}
           ctx.fillStyle = colors[i % colors.length];
           ctx.moveTo(cw, ch);
           ctx.arc(cw, ch, cw, arc * i, arc * (i + 1));
@@ -73,17 +70,10 @@
         for (let i = 0; i < product.length; i++) {
           const angle = arc * i + arc / 2;
           ctx.save();
-          ctx.translate(
-            cw + Math.cos(angle) * (cw - 50),
-            ch + Math.sin(angle) * (ch - 50)
-          );
+          ctx.translate(cw + Math.cos(angle) * (cw - 50), ch + Math.sin(angle) * (ch - 50));
           ctx.rotate(angle + Math.PI / 2);
-          product[i].split(" ").forEach((text, j) => {
-            ctx.fillText(text, 0, 30 * j);
-          });
-          ctx.restore();
-        }
-      };
+          product[i].split(" ").forEach((text, j) => {ctx.fillText(text, 0, 30 * j)}) 
+          ctx.restore()}};
 
       const rotate = () => {
         const arc = 360 / product.length;
@@ -96,10 +86,8 @@
           const totalRotation = currentRotation % 360;
           const angleOffset = 90;
           const selectedArc = (totalRotation + angleOffset) % 360;
-          const selectedIndex =
-            Math.floor((360 - selectedArc) / arc) % product.length;
-          resultText.textContent = `결과: ${product[selectedIndex]}`;
-        }, 3000);
+          const selectedIndex = Math.floor((360 - selectedArc) / arc) % product.length;
+          resultText.textContent = `결과: ${product[selectedIndex]}`}, 3000);
       };
 
       const add = () => {

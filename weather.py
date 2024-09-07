@@ -3,7 +3,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-def weather(crd, ke):
+def wea(crd, ke):
     dt = dict()
     de = datetime.now().date().strftime('%Y%m%d')
     dt['date'] = str(de[:4] + '/' + de[4:6] + '/' + de[6:])

@@ -56,15 +56,23 @@ def al(): return render_template('alle' + h)
 @app.route('/manual')
 def manual(): return render_template('manual' + h)
 
-@app.route('/select_menu', methods = ['Get', 'Post'])
-def select():
+@app.route('/choose', methods = ['Get', 'Post'])
+def choose():
 
-    global ad, crd
+    global ad, crd, weat
     if request.method == 'GET':
         if request.args.get('lat') != n and request.args.get('lon') != n:
             ad = run_service.g_a(request.args.get('lat') + ', ' + request.args.get('lon'))
             crd = request.args.get('lat') + ', ' + request.args.get('lon')
-    return render_template('roulette' + h)
+    weat = run_service.weat(crd, os.environ.get('ser_key'))
+    print(weat)
+    return render_template('choose' + h)
+
+@app.route('/select_menu')
+def select(): return render_template('select_menu' + h)
+
+@app.route('/roulette')
+def gacha(): return render_template('roulette' + h)
 
 @app.route('/service', methods = ['Get', 'Post'])
 def service():
@@ -72,7 +80,7 @@ def service():
     global ad, a_t, crd, alle, dat, food
 
     food = request.args.get('food')
-    dat = run_service.s_c1(ad, a_t, food, crd, os.environ.get('ser_key'))
+    dat = run_service.s_c1(ad, a_t, food, weat)
 
     if ad != n and a_t != n:
         if dat[0] == 2: return render_template('success' + h)
