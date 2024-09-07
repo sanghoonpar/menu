@@ -2,18 +2,18 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>음식점 추천</title>
+    <link rel="stylesheet" href="/static/css/roulette.css" />
+    <link rel="stylesheet" href="/static/css/common.css" />
   </head>
-  <link rel="stylesheet" href="/static/css/roulette.css" />
-  <link rel="stylesheet" href="/static/css/common.css" />
   <body>
-    <div id = 'my_bg'></div>
     <div id="menu">
-    <container></container>  
+      <container></container>  
       <canvas id="rouletteCanvas" width="600" height="600"></canvas>
       <button onclick="rotate()">가챠</button>
       <div id="addDiv">
-        <input type="text" id="menuAdd" />
+        <input type="text" id="menuAdd" placeholder="메뉴를 추가하세요" />
         <button onclick="add()">메뉴 추가</button>
         <button onclick="remove()">메뉴 삭제</button>
       </div>
@@ -25,8 +25,6 @@
       <a href="/">{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}</a>
       <a onclick="send()">{{ lucide.icon('send', stroke_width=2, width=32, height=32) }}</a>
     </div>
-
-  </container>
 
     <script>
       function send() {
@@ -64,7 +62,7 @@
         }
 
         ctx.fillStyle = "#fff";
-        ctx.font = "18px Pretendard";
+        ctx.font = "24px Pretendard";
         ctx.textAlign = "center";
 
         for (let i = 0; i < product.length; i++) {

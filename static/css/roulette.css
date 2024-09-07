@@ -1,62 +1,126 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: Pretendard, sans-serif;
+}
+
+#menu {
+  text-align: center;
+}
+
+#rouletteCanvas {
+  width: 90vw;
+  height: 90vw;
+  max-width: 500px;
+  max-height: 500px;
+}
+
+#resultText {
+  font-size: 48px;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+  color: #333;
+}
+
+button {
+  font-size: 24px;
+  padding: 15px 30px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: #f0ad4e;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ec971f;
+}
+
+#menuAdd {
+  font-size: 18px;
+  padding: 10px;
+  width: 70%;
+  margin-top: 10px;
+}
+
+.navbar a {
+  display: inline-block;
+  font-size: 32px;
+  margin: 10px;
+}
+
+#addDiv {
+  margin-top: 20px;
+}
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 
 * {
-  font-family: Pretendard;
-  font-size: 0.8em;
+font-family: Pretendard;
+font-size: 0.8em;
 }
 body {
-  background: #f7f8fc;
-  height: 960px;
+background: #f7f8fc;
+height: 960px;
 }
 canvas {
-  margin-top: 100px;
-  transition: 2s;
+margin-top: 100px;
+transition: 2s;
 }
 button {
-  z-index: 1000;
-  background: #b5d692;
-  margin-top: 1rem;
-  padding: 0.8rem 1.8rem;
-  border: none;
-  font-size: 1.5rem;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: 0.2s;
-  cursor: pointer;
+z-index: 1000;
+background: #b5d692;
+margin-top: 1rem;
+padding: 0.8rem 1.8rem;
+border: none;
+font-size: 1.5rem;
+font-weight: bold;
+border-radius: 5px;
+transition: 0.2s;
+cursor: pointer;
 }
 button:active {
-  background: #444;
-  color: #f9f9f9;
+background: #444;
+color: #f9f9f9;
 }
 #menu {
-  width: 100%;
-  height: 960px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  flex-direction: column;
-  position: relative;
+width: 100%;
+height: 960px;
+overflow: hidden;
+display: flex;
+align-items: center;
+text-align: center;
+flex-direction: column;
+position: relative;
 }
 #menu::before {
-  margin-top: 100px;
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 50px;
-  border-radius: 5px;
-  background: #000;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 22;
+margin-top: 100px;
+content: "";
+position: absolute;
+width: 10px;
+height: 50px;
+border-radius: 5px;
+background: #000;
+top: -20px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 22;
 }
 #object img {
-  width: 130px;
+width: 130px;
 }
 #object h3 {
-  max-width: 80%;
+max-width: 80%;
 }
 #object a {
-  display: inline-block;
+display: inline-block;
+} #resultText {
+font-size: 36px;
+font-weight: bold;
+margin-top: 20px;
+text-align: center;
 }

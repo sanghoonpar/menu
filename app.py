@@ -1,5 +1,5 @@
 import os, run_service, requests
-from flask import Flask, request, render_template#, session, url_for, redirect
+from flask import Flask, request, render_template
 from dotenv import load_dotenv
 from flask_lucide import Lucide
 load_dotenv()
@@ -65,7 +65,6 @@ def choose():
             ad = run_service.g_a(request.args.get('lat') + ', ' + request.args.get('lon'))
             crd = request.args.get('lat') + ', ' + request.args.get('lon')
     weat = run_service.weat(crd, os.environ.get('ser_key'))
-    print(weat)
     return render_template('choose' + h)
 
 @app.route('/select_menu')
