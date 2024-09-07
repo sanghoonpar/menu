@@ -10,9 +10,6 @@
     ></script>
     <link rel="stylesheet" href="/static/css/map.css" />
     <link rel="stylesheet" href="/static/css/common.css" />
-    <style>
-
-    </style>
   </head>
   <body>
     <div class="container">
@@ -269,7 +266,7 @@
 
         const newWidth = e.clientX;
         if (newWidth > 200 && newWidth < 600) {
-          menuWrap.style.width = newWidth + "px";
+          menuWrap.style.width = newWidth + "%";
           mapWrap.style.width = `calc(100% - ${newWidth + 10}px)`;
         }
       });

@@ -21,21 +21,7 @@ def inintial():
 
     if crd != n: key1 = 0
     else: key1 = 1
-    
-    return render_template('home.html', c_b_u = os.environ.get('c_b_u'), key = key, key1 = key1)
-
-# @app.route('/make_cookie', methods=['POST'])
-# def make_cookie(): 
-#     username = request.form['username']
-#     password = request.form['password']    
-#     if username in user and user[username]['password'] == password:
-#        session['username'] = username
-
-#     if 'username' in session: 
-#        username = session['username']
-#        return render_template('home.html', user = f'로그인 완료 {username}님')
-    
-#     return render_template('home.html', user = '로그인 실패')
+    return render_template('home.html', c_b_u = os.environ.get('c_b_u'), key = key, key1 = key1, a = a_t)
 
 @app.route('/main')
 def login(): return render_template('main' + h)
@@ -47,11 +33,7 @@ def kakaocallback():
     a_t = run_service.g_t(request.args.get('code'), os.environ.get('k_cli_id'), os.environ.get('k_red_uri'))
     
     user_info = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {a_t}', 'Content-Type': 'application/x-www-form-urlencoded',}).json()
-    # session['username'] = username
 
-    # if 'username' in session: 
-    #    username = session['username']
-    #    return render_template('main.html', user = f'로그인 완료 {username}님')
     Id = user_info['properties']['nickname']
     return render_template('kakaocallback' + h, nick_name = Id)
 
@@ -61,8 +43,6 @@ def logout():
 
     a_t, crd, ad, Id, dat, alle = n, n, n, n, [n,'?','?','?','?'], n
     return render_template('lo' + h)
-    #session.pop('user', None)
-    #return redirect(url_for('index')), login()
 
 @app.route('/map')
 def map(): return render_template('map' + h, java_key = os.environ.get('k_java_key'))

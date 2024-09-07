@@ -21,9 +21,16 @@
       <h1 style="font-size: 6ch; font-weight: bold">음식점추천</h1>
       <img src="/static/images/logo.png" alt="Logo" />
       <h3>당신의 위치기반 날씨정보를 이용해 음식점을 추천해드립니다.</h3>
+      
+      {% if a %}
+      <a href="/logout">
+        <img src="/static/images/logout.png" style="width: 200px" />
+      </a>
+      {% else %}
       <a href="{{c_b_u}}">
         <img src="/static/images/enter.png" alt="Enter" style="width: 200px" />
       </a>
+      {% endif %}
     </div></div>
   </body>
 </html>
