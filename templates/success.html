@@ -5,22 +5,25 @@
 <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
 <title>음식점추천</title>
 </head>
-<link rel="stylesheet" href="/static/css/ending.css">
 <link rel="stylesheet" href="/static/css/common.css">
 <body>
-    <div id = 'my_bg'></div>
+    <div id="container">
+        <div class = 'navbar'>
+            <a href="/manual">{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}</a>
+            <a href="/">{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}</a>
+            <a href="/map">{{ lucide.icon('map-pin', stroke_width=2, width=32, height=32) }}</a>
+        </div>
         <div id = 'object'>
-            <div class = 'navbar'>
-                <a href="/manual">{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}메뉴얼</a>
-                <a href="/">{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}홈</a>
-                <a href="/map">{{ lucide.icon('map-pin', stroke_width=2, width=32, height=32) }}지도</a>
-            </div>
-            
+            <h3>id : {{id}}</h2>
+            <h3>기록 : {{rec}}</h3>
+            <h3>위치 : {{ad}}</h3>
+            <h3>기우 : {{wea}} 기온 : {{temp}}</h3>
+            <h3>미세먼지 : {{dust}}</h3>
             <h1 style = 'left: 500px;'>전송 성공</h1>
 
             <img style = 'height: 350px; width: 350px; top: 850px;' src = '/static/images/ryan.png'>
-
-        </div> 
+    </div> 
+    </div>
     </div>  
 </body>
 </html>

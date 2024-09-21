@@ -2,7 +2,7 @@
 
 * {
   font-family: Pretendard;
-  font-size: 0.9rem;
+  font-size: 0.8em;
 }
 body {
   background: #f7f8fc;
@@ -59,7 +59,4 @@ button:active {
 }
 #object a {
   display: inline-block;
-}
-.result {
-  margin-bottom: 90px;
 }

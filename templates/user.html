@@ -8,20 +8,16 @@
 <link rel="stylesheet" href="/static/css/user.css">
 <link rel="stylesheet" href="/static/css/common.css">
 <body>
-    <div id = 'my_bg'></div> 
     <div class = 'navbar'>
-        <a href = '/manual'>{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}메뉴얼</a>
-        <a href = '/'>{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}홈</a>
-        <a href="/map">{{ lucide.icon('map-pin', stroke_width=2, width=32, height=32) }}지도</a>
+        <a href = '/manual'>{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}</a>
+        <a href = '/'>{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}</a>
+        <a href="/map">{{ lucide.icon('map-pin', stroke_width=2, width=32, height=32) }}</a>
     </div>
             <div id = 'object'>
-                <h2>id : {{id}}</h2>
-                <h2>알레르기 : {{alle}}</h2>
-                <h2>기록 : {{rec}}</h2>
-                <h2>위치 : {{ad}}</h2>
-                <h2>기우 : {{wea}}</h2>
-                <h2>기온 : {{temp}}</h2>
-                <h2>미세먼지 : {{dust}}</h2>
+                <h3>id : {{id}}</h2>
+                    <h3>기록 : {{rec}}</h3>
+                    <h3>위치 : {{ad}}</h3>
+                    <h3>기우 : {{wea}} 기온 : {{temp}} 미세먼지 : {{dust}}</h3>
                 <button type = 'button' onclick = 'alle()' href = '/alle'>알레르기</button>
                 <button type = 'button' onclick = 'lo()' href = '/logout'>로그아웃</button>
             </div>

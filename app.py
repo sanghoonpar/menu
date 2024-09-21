@@ -1,5 +1,5 @@
-import os, run_service, requests
-from flask import Flask, request, render_template#, session, url_for, redirect
+import os, run_service, requests, menu_choose
+from flask import Flask, request, render_template
 from dotenv import load_dotenv
 from flask_lucide import Lucide
 load_dotenv()
@@ -21,24 +21,7 @@ def inintial():
 
     if crd != n: key1 = 0
     else: key1 = 1
-    
-    return render_template('home.html', c_b_u = os.environ.get('c_b_u'), key = key, key1 = key1)
-
-# @app.route('/make_cookie', methods=['POST'])
-# def make_cookie(): 
-#     username = request.form['username']
-#     password = request.form['password']    
-#     if username in user and user[username]['password'] == password:
-#        session['username'] = username
-
-#     if 'username' in session: 
-#        username = session['username']
-#        return render_template('home.html', user = f'로그인 완료 {username}님')
-    
-#     return render_template('home.html', user = '로그인 실패')
-
-@app.route('/main')
-def login(): return render_template('main' + h)
+    return render_template('home.html', c_b_u = os.environ.get('c_b_u'), key = key, key1 = key1, a = a_t)
 
 @app.route('/kakaocallback')
 def kakaocallback():
@@ -47,11 +30,7 @@ def kakaocallback():
     a_t = run_service.g_t(request.args.get('code'), os.environ.get('k_cli_id'), os.environ.get('k_red_uri'))
     
     user_info = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {a_t}', 'Content-Type': 'application/x-www-form-urlencoded',}).json()
-    # session['username'] = username
 
-    # if 'username' in session: 
-    #    username = session['username']
-    #    return render_template('main.html', user = f'로그인 완료 {username}님')
     Id = user_info['properties']['nickname']
     return render_template('kakaocallback' + h, nick_name = Id)
 
@@ -61,14 +40,9 @@ def logout():
 
     a_t, crd, ad, Id, dat, alle = n, n, n, n, [n,'?','?','?','?'], n
     return render_template('lo' + h)
-    #session.pop('user', None)
-    #return redirect(url_for('index')), login()
 
 @app.route('/map')
 def map(): return render_template('map' + h, java_key = os.environ.get('k_java_key'))
-
-@app.route('/user')
-def user(): return render_template('user' + h, alle = alle, id = Id, rec = dat[1], ad = ad, wea = dat[2], dust = str(dat[3]) + '㎍/㎥', temp = str(dat[4]) + '°C')
 
 @app.route('/alle')
 def al(): return render_template('alle' + h)
@@ -76,15 +50,23 @@ def al(): return render_template('alle' + h)
 @app.route('/manual')
 def manual(): return render_template('manual' + h)
 
-@app.route('/select_menu', methods = ['Get', 'Post'])
-def select():
+@app.route('/choose', methods = ['Get', 'Post'])
+def choose():
 
-    global ad, crd
+    global ad, crd, f_l, weat
     if request.method == 'GET':
         if request.args.get('lat') != n and request.args.get('lon') != n:
             ad = run_service.g_a(request.args.get('lat') + ', ' + request.args.get('lon'))
             crd = request.args.get('lat') + ', ' + request.args.get('lon')
-    return render_template('roulette' + h)
+    weat = run_service.weat(crd, os.environ.get('ser_key'))
+    f_l = menu_choose.m_c(weat)
+    return render_template('choose' + h)
+
+@app.route('/select_menu')
+def select(): return render_template('select_menu' + h, f_l = f_l)
+
+@app.route('/roulette')
+def gacha(): return render_template('roulette' + h, f_l = f_l)
 
 @app.route('/service', methods = ['Get', 'Post'])
 def service():
@@ -92,10 +74,9 @@ def service():
     global ad, a_t, crd, alle, dat, food
 
     food = request.args.get('food')
-    dat = run_service.s_c1(ad, a_t, food, crd, os.environ.get('ser_key'))
-
+    dat = run_service.s_c(ad, a_t, food, weat)
     if ad != n and a_t != n:
-        if dat[0] == 2: return render_template('success' + h)
+        if dat[0] == 2: return render_template('success' + h, rec = dat[1], ad = ad, wea = dat[2], dust = str(dat[3]) + '㎍/㎥', temp = str(dat[4]) + '°C', id = Id)
         else: return render_template('fail' + h)
     else: return render_template('try_again' + h)
 
