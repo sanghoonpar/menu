@@ -4,9 +4,15 @@
     <meta charset="utf-8" />
     <title>음식점추천</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </head>
   <link rel="stylesheet" href="/static/css/home.css" />
-  <link rel="stylesheet" href="/static/css/common.css" />
+<link rel="stylesheet" href="/static/css/common.css" />
   <body>
     <div class="container">
     <div class="navbar">
@@ -14,26 +20,39 @@
         <a href="/">{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}</a>
         <a href="/map">{{ lucide.icon('map-pin', stroke_width=2, width=32, height=32) }}</a>
       </div>
-
-      <div id="text">
         <div id="object">
-        <h4>1. 입장하기</h4>
-        <h4>2. 지도에 들어가 지도가 나올때까지</h4>
-        <h4>기다린 후 지도 좀 구경한 후 동그라미 누르기</h4>
-        <h4>3. 만약 직접 선택을 선택하면 먹을 음식을 고르고 전송 누르기</h4>
-        <h4>4. 만약 룰렛을 선택하면 룰렛을 굴리고 전송 누르기</h4>
-        <h4>5. 결과 확인하고 카카오톡 켜기</h4>
-        <h4>6. 그럼 결과가 거기 있을거임</h4>
-        <h4>7. 로그아웃을 누르면 첫 화면으로 돌아감</h4>
-        <h4>8. 날씨는 8시 기준임</h4>
-        <h4>9. 컴퓨터로 실행할 경우 위치정보가 다를 수 있음</h4>
-        <h4>
-          10. 지도에서 뒤로가기를 누르면 충분히 기다려야함 아니면 오류가 발생
-        </h4>
-        <h4>11. 지도는 한국 한정임</h4>
+<div class="swiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">Slide 1</div>
+    <div class="swiper-slide">Slide 2</div>
+    <div class="swiper-slide">Slide 3</div>
+  </div>
+  <div class="swiper-pagination"></div>
+
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+  <div class="swiper-scrollbar"></div>
+</div>
       </div>
     </div>
       </div>
     </div>
+    <script>
+      const swiper = new Swiper('.swiper', {
+  direction: 'vertical',
+  loop: true,
+  pagination: {
+    el: '.swiper-pagination',
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  scrollbar: {
+    el: '.swiper-scrollbar',
+  },
+});
+    </script>
   </body>
 </html>

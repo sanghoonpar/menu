@@ -127,9 +127,6 @@ body,
         font-weight: bold;
         cursor: default;
         color: #777;
-      }.lat_lon {
-        margin-bottom: 45px;
-        z-index: 10000;
       }#menu_wrap {
         width: 300px;
         z-index: 100;
