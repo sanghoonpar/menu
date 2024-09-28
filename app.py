@@ -54,6 +54,7 @@ def choose():
     crd = request.args.get('lat') + ', ' + request.args.get('lon')
     weat = run_service.weat(crd, os.environ.get('ser_key'))
     f_l = menu_choose.m_c(weat)
+    print(f_l)
     return render_template('choose' + h)
 
 @app.route('/select_menu')
@@ -75,7 +76,7 @@ def service():
     else: return render_template('try_again' + h)
 
 if __name__ == '__main__':
-    #app.debug = True
+    app.debug = True
     with open('cert.pem', 'w') as certfile: certfile.write(os.environ.get('cert_str'))
     with open('private_key.pem', 'w') as keyfile: keyfile.write(os.environ.get('pri_key_str'))
     app.run(port = 5051, ssl_context = ('cert.pem', 'private_key.pem'))

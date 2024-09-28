@@ -47,42 +47,40 @@
           const locPosition = new kakao.maps.LatLng(lat, lon);
           const map = new kakao.maps.Map(document.getElementById("map"), { center: locPosition });
           new kakao.maps.Marker({ position: locPosition, map });
-          new kakao.maps.Circle({center: locPosition, radius: 1500, strokeWeight: 5, strokeColor: "#B5D692", strokeOpacity: 1, fillColor: "#B5D692", fillOpacity: 0.7}).setMap(map);
+          new kakao.maps.Circle({ center: locPosition, radius: 1500, strokeWeight: 5, strokeColor: "#B5D692", strokeOpacity: 1, fillColor: "#B5D692", fillOpacity: 0.7 }).setMap(map);
           document.getElementById("currentLocation").innerText = `현재위치 : ${locPosition.getLat()}, ${locPosition.getLng()}`;
           const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
           const ps = new kakao.maps.services.Places();
           function sP() {
             ps.keywordSearch(document.getElementById("keyword").value, (data, status, pagination) => {
-              if (status === kakao.maps.services.Status.OK) displayPlaces(data, pagination);
-              else alert(status === kakao.maps.services.Status.ZERO_RESULT ? "검색 결과가 존재하지 않습니다." : "검색 중 오류가 발생했습니다.");
-            }, { location: locPosition });}
+              status === kakao.maps.services.Status.OK ? displayPlaces(data, pagination) : alert(status === kakao.maps.services.Status.ZERO_RESULT ? "검색 결과가 존재하지 않습니다." : "검색 중 오류가 발생했습니다.");}, { location: locPosition });}
           function displayPlaces(places, pagination) {
             const listEl = document.getElementById("placesList"), fragment = document.createDocumentFragment(), bounds = new kakao.maps.LatLngBounds();
             listEl.innerHTML = "";
             places.forEach((place, index) => {
               const placePosition = new kakao.maps.LatLng(place.y, place.x);
-              const marker = addMarker(placePosition, index);
-              const itemEl = getListItem(index, place);
+              const marker = aM(placePosition, index);
+              const itemEl = gLI(index, place);
               bounds.extend(placePosition);
-              ['mouseover', 'mouseout'].forEach(event => {
-                kakao.maps.event.addListener(marker, event, () => infowindow.setContent(event === 'mouseover' ? `<div style="padding:5px;z-index:1;">${place.place_name}</div>` : '') || infowindow.open(map, marker));});
+              ['mouseover', 'mouseout'].forEach(event => kakao.maps.event.addListener(marker, event, () => infowindow.setContent(event === 'mouseover' ? `<div style="padding:5px;z-index:1;">${place.place_name}</div>` : '') || infowindow.open(map, marker)));
               itemEl.onmouseover = () => infowindow.setContent(`<div style="padding:5px;z-index:1;">${place.place_name}</div>`) || infowindow.open(map, marker);
               itemEl.onmouseout = () => infowindow.close();
               fragment.appendChild(itemEl);});
             listEl.appendChild(fragment);
             map.setBounds(bounds);
-            displayPagination(pagination);}
-          function getListItem(index, place) {
+            dP(pagination);}
+          function gLI(index, place) {
             return Object.assign(document.createElement("li"), {className: "item", innerHTML: `<span class="markerbg marker_${index + 1}"></span><div class="info"><h5>${place.place_name}</h5><span>${place.road_address_name || place.address_name}</span><span class="tel">${place.phone}</span></div>`});}
-          function addMarker(position, idx) {
-            return new kakao.maps.Marker({position, map, image: new kakao.maps.MarkerImage("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png", new kakao.maps.Size(36, 37), { spriteSize: new kakao.maps.Size(36, 691), spriteOrigin: new kakao.maps.Point(0, idx * 46 + 10), offset: new kakao.maps.Point(13, 37) })});}
-          function displayPagination(pagination) {
+          function aM(position, idx) {
+            return new kakao.maps.Marker({position, map, image: new kakao.maps.MarkerImage("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png", new kakao.maps.Size(36, 37), {spriteSize: new kakao.maps.Size(36, 691), spriteOrigin: new kakao.maps.Point(0, idx * 46 + 10), offset: new kakao.maps.Point(13, 37)})});}
+          function dP(pagination) {
             const paginationEl = document.getElementById("pagination"), fragment = document.createDocumentFragment();
             paginationEl.innerHTML = "";
             for (let i = 1; i <= pagination.last; i++) {
-              fragment.appendChild(Object.assign(document.createElement("a"), {href: "#", innerHTML: i, className: i === pagination.current ? "on" : "", onclick: () => pagination.gotoPage(i)}));}
+              fragment.appendChild(Object.assign(document.createElement("a"), {
+                href: "#", innerHTML: i, className: i === pagination.current ? "on" : "", onclick: () => pagination.gotoPage(i)}));}
             paginationEl.appendChild(fragment);}
-          sP();});}
+      sP();});}
       iM();
       let isResizing = false;
       document.aEL("mousemove", (e) => {
