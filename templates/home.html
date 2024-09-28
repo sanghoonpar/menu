@@ -26,13 +26,14 @@
       
       {% if a %}
       <a href="/logout">
-        <img src="/static/images/logout.jpg" style="width: 200px" />
+        <button type="button" class="logout-button" >카카오 로그아웃</button>
       </a>
       {% else %}
       <a href="{{c_b_u}}">
-        <img src="/static/images/enter.png" alt="Enter" style="width: 200px" />
+        <button type="button" class="login-button" >카카오 로그인</button>
       </a>
       {% endif %}
-    </div></div>
+      </div>
+    </div>
   </body>
 </html>

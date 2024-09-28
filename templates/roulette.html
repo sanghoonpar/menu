@@ -14,35 +14,31 @@
         <a href="/">{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}</a>
         <a onclick="send()">{{ lucide.icon('send', stroke_width=2, width=32, height=32) }}</a>
       </div>
-      <div id="menu">
-        <div id="object">
-          <canvas id="roulette" width="300" height="300"></canvas>
-          <button onclick="rotate()">가챠</button>
-          <div id="addDiv">
-            <input type="text" id="menuAdd" placeholder="메뉴를 추가하세요" />
-            <button onclick="add()">메뉴 추가</button>
-            <button onclick="remove()">메뉴 삭제</button>
-          </div>
-          <div id="result">결과: </div>
-        </div>
+    <div id="menu">
+      <div id="object">
+      <canvas id="roulette" width="400" height="400"></canvas>
+      <button onclick="rotate()">가챠</button>
+      <div id="addDiv">
+        <input type="text" id="menuAdd" placeholder="메뉴를 추가하세요" />
+        <button onclick="add()">메뉴 추가</button>
+        <button onclick="remove()">메뉴 삭제</button>
       </div>
+      <div id="result">결과: </div>
+    </div>
+    </div>
     </div>
 
     <script>
       function send() {
         const result = resultText.textContent.replace("결과: ", "");
-        if (result && result !== "None") {
-          window.location.href = "service?food=" + result;
-        } else {
-          alert("결과가 없습니다. 룰렛을 돌려주세요.");
-        }
-      }
+        if (result && result !== "None") {window.location.href = "service?food=" + result} 
+        else {alert("결과가 없습니다. 룰렛을 돌려주세요.")}}
 
       const $c = document.querySelector("#roulette");
       const ctx = $c.getContext("2d");
       const menuAdd = document.querySelector("#menuAdd");
       const resultText = document.querySelector("#result");
-      const product = ['타코야끼', '찜닭', '카레', '샌드위치']
+      const product = ['타코야끼', '찜닭', '카레', '샌드위치', '스시', '국밥'];
       const colors = [];
       let currentRotation = 0;
 
@@ -50,17 +46,15 @@
         const [cw, ch] = [$c.width / 2, $c.height / 2];
         const arc = Math.PI / (product.length / 2);
         ctx.clearRect(0, 0, $c.width, $c.height);
-        colors.length = 0;
-
-        for (let i = 0; i < product.length; i++) {
-          let r = Math.floor(Math.random() * 256);
-          let g = Math.floor(Math.random() * 256);
-          let b = Math.floor(Math.random() * 256);
-          colors.push("rgb(" + r + "," + g + "," + b + ")");
-        }
-
         for (let i = 0; i < product.length; i++) {
           ctx.beginPath();
+          if (colors.length == 0) {
+            for (let l = 0; l < product.length; l++) {
+              let r = Math.floor(Math.random() * 256);
+              let g = Math.floor(Math.random() * 256);
+              let b = Math.floor(Math.random() * 256);
+              colors.push("rgb(" + r + "," + g + "," + b + ")");
+            }}
           ctx.fillStyle = colors[i % colors.length];
           ctx.moveTo(cw, ch);
           ctx.arc(cw, ch, cw, arc * i, arc * (i + 1));
@@ -70,7 +64,7 @@
         }
 
         ctx.fillStyle = "#fff";
-        ctx.font = `${Math.min(24, 150 / product.length)}px Pretendard`;
+        ctx.font = "24px Pretendard";
         ctx.textAlign = "center";
 
         for (let i = 0; i < product.length; i++) {
@@ -78,12 +72,8 @@
           ctx.save();
           ctx.translate(cw + Math.cos(angle) * (cw - 50), ch + Math.sin(angle) * (ch - 50));
           ctx.rotate(angle + Math.PI / 2);
-          product[i].split(" ").forEach((text, j) => {
-            ctx.fillText(text, 0, 30 * j);
-          });
-          ctx.restore();
-        }
-      };
+          product[i].split(" ").forEach((text, j) => {ctx.fillText(text, 0, 30 * j)}) 
+          ctx.restore()}};
 
       const rotate = () => {
         const arc = 360 / product.length;
@@ -92,13 +82,12 @@
         $c.style.transform = `rotate(${currentRotation}deg)`;
         $c.style.transition = `transform 3s ease-out`;
 
-        $c.addEventListener('transitionend', () => {
+        setTimeout(() => {
           const totalRotation = currentRotation % 360;
           const angleOffset = 90;
           const selectedArc = (totalRotation + angleOffset) % 360;
           const selectedIndex = Math.floor((360 - selectedArc) / arc) % product.length;
-          resultText.textContent = `결과: ${product[selectedIndex]}`;
-        }, { once: true });
+          resultText.textContent = `결과: ${product[selectedIndex]}`}, 3000);
       };
 
       const add = () => {
