@@ -1,20 +1,20 @@
 import xml.etree.ElementTree as elemTree, requests
 
-def d_w(dt, k):
+def d_w(t, k):
 
-    u_d = dict()
-    u_d['pm10'] = {'value' : float(elemTree.fromstring(requests.get('http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=서울&pageNo=1&numOfRows=100&returnType=xml&serviceKey=%s&ver=1.0'%(k) + 'serviceKey=' + k + '&dataType=json&dataGubun=HOUR&searchCondition=WEEK&itemCode=PM10').text).find('body').find('items').find('item').findtext('pm10Value'))}
-    d_d = u_d.get('pm10').get('value')
-    if d_d <= 30: p_s = '좋음'
-    elif d_d <= 80: p_s = '보통'
-    elif d_d <= 150: p_s = '나쁨'
-    else: p_s = '매우나쁨'
+    u = dict()
+    u['pm10'] = {'value' : float(elemTree.fromstring(requests.get('http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=서울&pageNo=1&numOfRows=100&returnType=xml&serviceKey=%s&ver=1.0'%(k) + 'serviceKey=' + k + '&dataType=json&dataGubun=HOUR&searchCondition=WEEK&itemCode=PM10').text).find('body').find('items').find('item').findtext('pm10Value'))}
+    d = u.get('pm10').get('value')
+    if d <= 30: p = '좋음'
+    elif d <= 80: p = '보통'
+    elif d <= 150: p = '나쁨'
+    else: p = '매우나쁨'
 
-    if d_d > 60: d_c = '1'
-    else: d_c = '0'
+    if d > 60: c = '1'
+    else: c = '0'
 
-    u_d.get('pm10')['state'] = p_s
-    u_d['code'] = d_c
-    dt['dust'] = u_d
+    u.get('pm10')['state'] = p
+    u['code'] = c
+    t['dust'] = u
     
-    return dt
+    return t

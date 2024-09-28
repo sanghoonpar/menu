@@ -1,13 +1,13 @@
 import random
 
-def m_c(data):
+def m_c(d):
 
-    if data.get('weather').get('code') != '0': weather_state = 1
-    elif data.get('dust').get('code') == '1':  weather_state = 2
-    else: weather_state = 3
+    if d.get('weather').get('code') != '0': w = 1
+    elif d.get('dust').get('code') == '1':  w = 2
+    else: w = 3
 
-    if weather_state == 1: foods_list = random.sample('부대찌개, 칼국수, 수제비, 짬뽕, 김치부침개, 파전, 김치찌개'.split(', '), 3)
-    elif weather_state == 2: foods_list = random.sample('도라지, 미나리, 마늘, 녹차, 오이'.split(', '), 3)
-    else: foods_list = random.sample('타코야끼, 찜닭, 카레, 샌드위치'.split(', '), 3)
+    if w == 1: f = random.sample('부대찌개, 칼국수, 수제비, 짬뽕, 김치부침개, 파전, 김치찌개'.split(', '), 3)
+    elif w == 2: f = random.sample('도라지, 미나리, 마늘, 녹차, 오이'.split(', '), 3)
+    else: f = random.sample('타코야끼, 찜닭, 카레, 샌드위치'.split(', '), 3)
 
-    return foods_list
+    return f
