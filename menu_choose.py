@@ -1,6 +1,10 @@
 import random
 
+<<<<<<< HEAD
 def m_c(d):
+=======
+def m_c(data):
+>>>>>>> origin/main
 
     if d.get('weather').get('code') != '0': w = 1
     elif d.get('dust').get('code') == '1':  w = 2

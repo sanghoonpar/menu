@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+<<<<<<< HEAD
 }
 #object h3 {
   font-style: oblique;
@@ -68,4 +69,18 @@ body {
   background-color: #ebd91a;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
   cursor: not-allowed;
+=======
+}#object {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}#object img {
+  width: 130px;
+}#object h3 {
+  max-width: 80%;
+}#object a {
+  display: inline-block;
+>>>>>>> origin/main
 }
