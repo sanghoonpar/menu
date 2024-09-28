@@ -26,8 +26,17 @@
         <div id="pagination"></div>
       </div>
 
+      <div id="drag_handle"></div>
+      
       <div class="map_wrap">
+<<<<<<< HEAD
         <div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+=======
+        <div
+          id="map"
+          style="width: 100%; height: 100%; position: relative; overflow: hidden"
+        ></div>
+>>>>>>> 9981c73c5a82b5eba295c67f006e6e4fa3185d73
       </div>
 
       <div class="navbar">
@@ -41,13 +50,16 @@
     <script>
       let lat, lon;
 
-      function send() {window.location.href = "choose?lat=" + lat + "&lon=" + lon;}
+      function send() {
+        window.location.href = "select_menu?lat=" + lat + "&lon=" + lon;
+      }
 
-      function iM() {
+      function initializeMap() {
         navigator.geolocation.getCurrentPosition((position) => {
           lat = position.coords.latitude;
           lon = position.coords.longitude;
           const locPosition = new kakao.maps.LatLng(lat, lon);
+<<<<<<< HEAD
 
           const mapContainer = document.getElementById("map");
           const mapOption = {center: locPosition,};
@@ -61,9 +73,16 @@
 
           displayCurrentLocation(locPosition);
 
+=======
+          const map = new kakao.maps.Map(document.getElementById("map"), { center: locPosition });
+          new kakao.maps.Marker({ position: locPosition, map });
+          new kakao.maps.Circle({ center: locPosition, radius: 1500, strokeWeight: 5, strokeColor: "#B5D692", strokeOpacity: 1, fillColor: "#B5D692", fillOpacity: 0.7 }).setMap(map);
+          document.getElementById("currentLocation").innerText = `현재위치 : ${locPosition.getLat()}, ${locPosition.getLng()}`;
+          const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+>>>>>>> 9981c73c5a82b5eba295c67f006e6e4fa3185d73
           const ps = new kakao.maps.services.Places();
-
           function sP() {
+<<<<<<< HEAD
             const keyword = document.getElementById("keyword").value;
             ps.keywordSearch(keyword, placesSearchCB, {location: locPosition,});}
 
@@ -76,14 +95,19 @@
             const listEl = document.getElementById("placesList");
             const fragment = document.createDocumentFragment();
             const bounds = new kakao.maps.LatLngBounds();
+=======
+            ps.keywordSearch(document.getElementById("keyword").value, (data, status, pagination) => {
+              status === kakao.maps.services.Status.OK ? displayPlaces(data, pagination) : alert(status === kakao.maps.services.Status.ZERO_RESULT ? "검색 결과가 존재하지 않습니다." : "검색 중 오류가 발생했습니다.");}, { location: locPosition });}
+          function displayPlaces(places, pagination) {
+            const listEl = document.getElementById("placesList"), fragment = document.createDocumentFragment(), bounds = new kakao.maps.LatLngBounds();
+>>>>>>> 9981c73c5a82b5eba295c67f006e6e4fa3185d73
             listEl.innerHTML = "";
-
             places.forEach((place, index) => {
               const placePosition = new kakao.maps.LatLng(place.y, place.x);
-              const marker = addMarker(placePosition, index);
-              const itemEl = getListItem(index, place);
-
+              const marker = aM(placePosition, index);
+              const itemEl = gLI(index, place);
               bounds.extend(placePosition);
+<<<<<<< HEAD
 
               (function (marker, place) {
                 kakao.maps.event.addListener(marker, "mouseover", function () {displayInfowindow(marker, place.place_name);});
@@ -97,6 +121,12 @@
 
               fragment.appendChild(itemEl);});
 
+=======
+              ['mouseover', 'mouseout'].forEach(event => kakao.maps.event.addListener(marker, event, () => infowindow.setContent(event === 'mouseover' ? `<div style="padding:5px;z-index:1;">${place.place_name}</div>` : '') || infowindow.open(map, marker)));
+              itemEl.onmouseover = () => infowindow.setContent(`<div style="padding:5px;z-index:1;">${place.place_name}</div>`) || infowindow.open(map, marker);
+              itemEl.onmouseout = () => infowindow.close();
+              fragment.appendChild(itemEl);});
+>>>>>>> 9981c73c5a82b5eba295c67f006e6e4fa3185d73
             listEl.appendChild(fragment);
             map.setBounds(bounds);}
 
@@ -161,15 +191,27 @@
             locationEl.innerText = "현재위치 : " + locPosition.getLat() + ", " + locPosition.getLng();}
 
           const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+<<<<<<< HEAD
           sP();});}
+=======
+          searchPlaces();
+        });
+      }
+>>>>>>> 9981c73c5a82b5eba295c67f006e6e4fa3185d73
 
-      iM();
+      initializeMap();
+
+      const dragHandle = document.getElementById("drag_handle");
       const menuWrap = document.getElementById("menu_wrap");
       const mapWrap = document.querySelector(".map_wrap");
 
       let isResizing = false;
 
-      document.aEL("mousemove", function (e) {
+      dragHandle.addEventListener("mousedown", function (e) {
+        isResizing = true;
+      });
+
+      document.addEventListener("mousemove", function (e) {
         if (!isResizing) return;
 
         const newWidth = e.clientX;
@@ -177,7 +219,13 @@
           menuWrap.style.width = newWidth + "px";
           mapWrap.style.width = `calc(100% - ${newWidth + 10}px)`;}});
 
+<<<<<<< HEAD
       document.aEL("mouseup", function () {isResizing = false;});
+=======
+      document.addEventListener("mouseup", function () {
+        isResizing = false;
+      });
+>>>>>>> 9981c73c5a82b5eba295c67f006e6e4fa3185d73
     </script>
   </body>
 </html>

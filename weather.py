@@ -1,13 +1,27 @@
-import os, requests
+import requests
 from datetime import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 9981c73c5a82b5eba295c67f006e6e4fa3185d73
 def wea(c, k):
     t = dict()
     e = datetime.now().date().strftime('%Y%m%d')
     t['date'] = str(e[:4] + '/' + e[4:6] + '/' + e[6:])
     d = dict()
+<<<<<<< HEAD
+=======
+=======
+def wea(crd, ke):
+    dt = dict()
+    de = datetime.now().date().strftime('%Y%m%d')
+    dt['date'] = str(de[:4] + '/' + de[4:6] + '/' + de[6:])
+    w_d = dict()
+>>>>>>> origin/main
+>>>>>>> 9981c73c5a82b5eba295c67f006e6e4fa3185d73
 
     for m in requests.get('http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=' + k + '&dataType=json&base_date=' + e + '&base_time=0800&nx=' + c[0] + '&ny=' + c[1]).json().get('response').get('body').get('items')['item']:
         i = m['fcstValue']
@@ -24,4 +38,12 @@ def wea(c, k):
             d['state'] = w
     t['weather'] = d
     
+<<<<<<< HEAD
     return t
+=======
+<<<<<<< HEAD
+    return t
+=======
+    return dt
+>>>>>>> origin/main
+>>>>>>> 9981c73c5a82b5eba295c67f006e6e4fa3185d73

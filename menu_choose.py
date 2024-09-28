@@ -1,6 +1,14 @@
 import random
 
+<<<<<<< HEAD
 def m_c(d):
+=======
+<<<<<<< HEAD
+def m_c(d):
+=======
+def m_c(data):
+>>>>>>> origin/main
+>>>>>>> 9981c73c5a82b5eba295c67f006e6e4fa3185d73
 
     if d.get('weather').get('code') != '0': w = 1
     elif d.get('dust').get('code') == '1':  w = 2
