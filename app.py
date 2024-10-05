@@ -54,7 +54,6 @@ def choose():
     crd = request.args.get('lat') + ', ' + request.args.get('lon')
     weat = run_service.weat(crd, os.environ.get('ser_key'))
     f_l = menu_choose.m_c(weat)
-    print(f_l)
     return render_template('choose' + h)
 
 @app.route('/select_menu')

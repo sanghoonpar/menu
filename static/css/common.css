@@ -42,6 +42,7 @@ body {
     padding: 14px 20px;
     text-decoration: none;
     flex: 1;
+    bottom: 0;
   }
   .navbar a:hover {
     background-color: whitesmoke;
