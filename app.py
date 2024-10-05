@@ -74,7 +74,7 @@ def service():
     food = request.args.get('food')
     dat = run_service.s_c(ad, a_t, food, weat)
     if ad != n and a_t != n:
-        if dat[0] == 1: return render_template('success' + h, rec = dat[1], ad = ad, wea = dat[2], dust = str(dat[3]) + '㎍/㎥', temp = str(dat[4]) + '°C', id = Id)
+        if dat[0] == 2: return render_template('success' + h, rec = dat[1], ad = ad, wea = dat[2], dust = str(dat[3]) + '㎍/㎥', temp = str(dat[4]) + '°C', id = Id)
         else: return render_template('fail' + h)
     else: return render_template('try_again' + h)
 
