@@ -27,10 +27,7 @@ def kakaocallback():
     global a_t, Id
 
     a_t = run_service.g_t(request.args.get('code'), os.environ.get('k_cli_id'), os.environ.get('k_red_uri'))
-    
-    user_info = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {a_t}', 'Content-Type': 'application/x-www-form-urlencoded',}).json()
-
-    Id = user_info['properties']['nickname']
+    Id = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {a_t}', 'Content-Type': 'application/x-www-form-urlencoded',}).json()['properties']['nickname']
     return render_template('kakaocallback' + h, nick_name = Id)
 
 @app.route('/logout')
