@@ -10,6 +10,7 @@ def d_w(t, k):
     elif d <= 150: p = '나쁨'
     else: p = '매우나쁨'
 
+
     if d > 60: c = '1'
     else: c = '0'
 

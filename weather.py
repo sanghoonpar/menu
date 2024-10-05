@@ -1,4 +1,4 @@
-import os, requests
+import requests
 from datetime import datetime
 from dotenv import load_dotenv
 load_dotenv()
@@ -23,5 +23,4 @@ def wea(c, k):
             d['code'] = i
             d['state'] = w
     t['weather'] = d
-    
     return t

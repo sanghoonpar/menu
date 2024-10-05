@@ -13,4 +13,5 @@ def s_r(l, f):
         if r[0] == r[2]: r.remove(r[0])
     if len(r) >= 3:
         if r[1] == r[2]: r.remove(r[1])
+
     return r

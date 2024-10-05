@@ -6,7 +6,7 @@ load_dotenv()
 
 n = None
 h = '.html'
-a_t, crd, ad, Id, dat, food = n, n, n, n, [n,'?','?','?','?'], n
+a_t, crd, ad, Id, dat, f_l, food = n, n, n, n, [n,'?','?','?','?'], n, n
 
 app = Flask(__name__, template_folder = 'templates')
 lucide = Lucide(app)
@@ -35,9 +35,9 @@ def kakaocallback():
 
 @app.route('/logout')
 def logout():
-    global a_t, crd, ad, Id, dat, food
+    global a_t, crd, ad, Id, dat, f_l, food
 
-    a_t, crd, ad, Id, dat = n, n, n, n, [n,'?','?','?','?']
+    a_t, crd, ad, Id, dat, f_l, food = n, n, n, n, [n,'?','?','?','?'], n, n
     return render_template('lo' + h)
 
 @app.route('/map')
@@ -58,10 +58,14 @@ def choose():
     return render_template('choose' + h)
 
 @app.route('/select_menu')
-def select(): return render_template('select_menu' + h, f_l = f_l)
+def select(): 
+    global f_l
+    return render_template('select_menu' + h, f_l = f_l)
 
 @app.route('/roulette')
-def gacha(): return render_template('roulette' + h, f_l = f_l)
+def gatcha(): 
+    global f_l
+    return render_template('roulette' + h, f_l = f_l)
 
 @app.route('/service', methods = ['Get', 'Post'])
 def service():
@@ -76,7 +80,7 @@ def service():
     else: return render_template('try_again' + h)
 
 if __name__ == '__main__':
-    #app.debug = True
+
     with open('cert.pem', 'w') as certfile: certfile.write(os.environ.get('cert_str'))
     with open('private_key.pem', 'w') as keyfile: keyfile.write(os.environ.get('pri_key_str'))
     app.run(port = 5051, ssl_context = ('cert.pem', 'private_key.pem'))
