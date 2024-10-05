@@ -3,25 +3,25 @@ from datetime import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-def weather(crd, ke):
-    dt = dict()
-    de = datetime.now().date().strftime('%Y%m%d')
-    dt['date'] = str(de[:4] + '/' + de[4:6] + '/' + de[6:])
-    w_d = dict()
+def wea(c, k):
+    t = dict()
+    e = datetime.now().date().strftime('%Y%m%d')
+    t['date'] = str(e[:4] + '/' + e[4:6] + '/' + e[6:])
+    d = dict()
 
-    for im in requests.get('http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=' + ke + '&dataType=json&base_date=' + de + '&base_time=0800&nx=' + crd[0] + '&ny=' + crd[1]).json().get('response').get('body').get('items')['item']:
-        it = im['fcstValue']
-        if im['category'] == 'TMP': w_d['tmp'] = it
+    for m in requests.get('http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=' + k + '&dataType=json&base_date=' + e + '&base_time=0800&nx=' + c[0] + '&ny=' + c[1]).json().get('response').get('body').get('items')['item']:
+        i = m['fcstValue']
+        if m['category'] == 'TMP': d['tmp'] = i
 
-        elif im['category'] == 'PTY':
-            if it == '1': w_s = '비'
-            elif it == '2': w_s = '비/눈'
-            elif it == '3': w_s = '눈'
-            elif it == '4': w_s = '소나기'
-            else: w_s = '없음'
+        elif m['category'] == 'PTY':
+            if i == '1': w = '비'
+            elif i == '2': w = '비/눈'
+            elif i == '3': w = '눈'
+            elif i == '4': w = '소나기'
+            else: w = '없음'
 
-            w_d['code'] = it
-            w_d['state'] = w_s
-    dt['weather'] = w_d
+            d['code'] = i
+            d['state'] = w
+    t['weather'] = d
     
-    return dt
+    return t

@@ -6,11 +6,10 @@ load_dotenv()
 
 n = None
 h = '.html'
-a_t, crd, ad, alle, Id, dat, food = n, n, n, n, n, [n,'?','?','?','?'], n
+a_t, crd, ad, Id, dat, food = n, n, n, n, [n,'?','?','?','?'], n
 
 app = Flask(__name__, template_folder = 'templates')
 lucide = Lucide(app)
-app.secret_key = os.environ.get('sec_key')
 user = {}
 
 @app.route('/')
@@ -21,7 +20,7 @@ def inintial():
 
     if crd != n: key1 = 0
     else: key1 = 1
-    return render_template('home.html', c_b_u = os.environ.get('c_b_u'), key = key, key1 = key1, a = a_t)
+    return render_template('home' + h, c_b_u = os.environ.get('c_b_u'), key = key, key1 = key1, a = a_t)
 
 @app.route('/kakaocallback')
 def kakaocallback():
@@ -36,30 +35,26 @@ def kakaocallback():
 
 @app.route('/logout')
 def logout():
-    global a_t, crd, ad, Id, dat, alle, food
+    global a_t, crd, ad, Id, dat, food
 
-    a_t, crd, ad, Id, dat, alle = n, n, n, n, [n,'?','?','?','?'], n
+    a_t, crd, ad, Id, dat = n, n, n, n, [n,'?','?','?','?']
     return render_template('lo' + h)
 
 @app.route('/map')
 def map(): return render_template('map' + h, java_key = os.environ.get('k_java_key'))
 
-@app.route('/alle')
-def al(): return render_template('alle' + h)
-
 @app.route('/manual')
 def manual(): return render_template('manual' + h)
 
-@app.route('/choose', methods = ['Get', 'Post'])
+@app.route('/choose')
 def choose():
 
     global ad, crd, f_l, weat
-    if request.method == 'GET':
-        if request.args.get('lat') != n and request.args.get('lon') != n:
-            ad = run_service.g_a(request.args.get('lat') + ', ' + request.args.get('lon'))
-            crd = request.args.get('lat') + ', ' + request.args.get('lon')
+    ad = run_service.g_a(request.args.get('lat') + ', ' + request.args.get('lon'))
+    crd = request.args.get('lat') + ', ' + request.args.get('lon')
     weat = run_service.weat(crd, os.environ.get('ser_key'))
     f_l = menu_choose.m_c(weat)
+    print(f_l)
     return render_template('choose' + h)
 
 @app.route('/select_menu')
@@ -71,7 +66,7 @@ def gacha(): return render_template('roulette' + h, f_l = f_l)
 @app.route('/service', methods = ['Get', 'Post'])
 def service():
     
-    global ad, a_t, crd, alle, dat, food
+    global ad, a_t, crd, dat, food, weat
 
     food = request.args.get('food')
     dat = run_service.s_c(ad, a_t, food, weat)
@@ -81,6 +76,7 @@ def service():
     else: return render_template('try_again' + h)
 
 if __name__ == '__main__':
+    #app.debug = True
     with open('cert.pem', 'w') as certfile: certfile.write(os.environ.get('cert_str'))
     with open('private_key.pem', 'w') as keyfile: keyfile.write(os.environ.get('pri_key_str'))
     app.run(port = 5051, ssl_context = ('cert.pem', 'private_key.pem'))

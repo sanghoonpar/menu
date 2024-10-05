@@ -1,62 +1,43 @@
 <!DOCTYPE html>
-<html lang = 'en'>
+<html lang="ko">
 <head>
-<meta charset = 'utf-8'>
-<meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
-<title>음식점추천</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>음식점 추천</title>
 </head>
-<link rel="stylesheet" href="/static/css/select_menu.css">
 <body>
-    <div id = 'my_bg'></div> 
-    <div class = 'navbar'>
-        <a href = '/manual'>{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}메뉴얼</a>
-        <a href = '/'>{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}홈</a>
-        <a href = '/send'>{{ lucide.icon('send-horizontal', stroke_width=2, width=32, height=32) }}전송</a>
-    </div>
-            <div id = 'object'>
-                <h3>비올때 먹을 음식 고르시오</h3>
-                <input type="checkbox" id="r_food" name="r_food_list[]" value="김치부침개" onclick="input(this)">
-                <label for="r_food">김치부침개</label>
-                <input type="checkbox" id="r_food" name="r_food_list[]" value="김치찌개" onclick="input(this)">
-                <label for="r_food">김치찌개</label>
-                <input type="checkbox" id="r_food" name="r_food_list[]" value="부대찌개" onclick="input(this)">
-                <label for="r_food">부대찌개</label>
-                <input type="checkbox" id="r_food" name="r_food_list[]" value="칼국수" onclick="input(this)">
-                <label for="r_food">칼국수</label>
-                <input type="checkbox" id="r_food" name="r_food_list[]" value="수제비" onclick="input(this)">
-                <label for="r_food">수제비</label>
-                <input type="checkbox" id="r_food" name="r_food_list[]" value="파전" onclick="input(this)">
-                <label for="r_food">파전</label>
-                <input type="checkbox" id="r_food" name="r_food_list[]" value="짬뽕" onclick="input(this)">
-                <label for="r_food">짬뽕</label>
-                
-                <h3>미세먼지 심할때 먹을 음식 고르시오</h3>
-                <input type="checkbox" id="d_food" name="d_food_list[]" value="알리오 올리오 파스타" onclick="input(this)">
-                <label for="d_food">알리오 올리오 파스타</label>
-                <input type="checkbox" id="d_food" name="d_food_list[]" value="마늘 볶음밥" onclick="input(this)">
-                <label for="d_food">마늘 볶음밥</label>
-                <input type="checkbox" id="d_food" name="d_food_list[]" value="도라지무침" onclick="input(this)">
-                <label for="d_food">도라지무침</label>
-                <input type="checkbox" id="d_food" name="d_food_list[]" value="오이소박이" onclick="input(this)">
-                <label for="d_food">오이소박이</label>
-                <input type="checkbox" id="d_food" name="d_food_list[]" value="황태해장국" onclick="input(this)">
-                <label for="d_food">황태해장국</label>
-                <input type="checkbox" id="d_food" name="d_food_list[]" value="미나리 전" onclick="input(this)">
-                <label for="d_food">미나리 전</label>
-                <input type="checkbox" id="d_food" name="d_food_list[]" value="배 스무디" onclick="input(this)">
-                <label for="d_food">배 스무디</label>
-                <input type="checkbox" id="d_food" name="d_food_list[]" value="미역국" onclick="input(this)">
-                <label for="d_food">미역국</label>
-                <input type="checkbox" id="d_food" name="d_food_list[]" value="녹차" onclick="input(this)">
-                <label for="d_food">녹차</label>
 
-                <h3>평소에 먹고 싶은 음식을 쓰시오</h3>
-                <input type="text" id="other_food" />
-                
-                <button type = 'submit'>랜덤으로 전송하기</button>
-            </div>
-        </div>
-    <script>
-    </script>
-    </body> 
+<h2>항목을 선택하세요:</h2>
+
+<form>
+    <div id="radioList"></div>
+
+    <br>
+    <input type="submit" value="전송">
+</form>
+
+<script>
+    alert("{{f_l}}")
+    const items = "{{f_l}}";
+
+    const radioListDiv = document.getElementById("radioList");
+
+    items.forEach((item, index) => {
+        const radioInput = document.createElement("input");
+        radioInput.type = "radio";
+        radioInput.id = `item${index}`;
+        radioInput.name = "fruit";
+        radioInput.value = item;
+
+        const label = document.createElement("label");
+        label.htmlFor = `item${index}`;
+        label.innerText = item;
+
+        radioListDiv.appendChild(radioInput);
+        radioListDiv.appendChild(label);
+        radioListDiv.appendChild(document.createElement("br"));
+    });
+</script>
+
+</body>
 </html>

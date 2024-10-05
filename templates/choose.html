@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>메뉴추천</title>
+  </head>
+  <body>
+    <div id="container">
+      <div class="navbar">
+        <a href="/manual">{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}</a>
+        <a href="/">{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}</a>
+        <a href="/map">{{ lucide.icon('map-pin', stroke_width=2, width=32, height=32) }}</a>
+      </div>
+        <input type="button" onclick="b()">직접 선택<br>
+        <input type="button" onclick="a()">룰렛<br>
+      </div>
+    <script>
+      function a(){window.location.href = "/roulette";}
+      function b(){window.location.href = "/select_menu";}
+    </script>
+  </body>
+</html>
