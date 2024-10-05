@@ -14,7 +14,6 @@ user = {}
 
 @app.route('/')
 def inintial():
-    
     if a_t != n: key = 0
     else: key = 1
 
@@ -25,7 +24,6 @@ def inintial():
 @app.route('/kakaocallback')
 def kakaocallback():
     global a_t, Id
-
     a_t = run_service.g_t(request.args.get('code'), os.environ.get('k_cli_id'), os.environ.get('k_red_uri'))
     Id = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {a_t}', 'Content-Type': 'application/x-www-form-urlencoded',}).json()['properties']['nickname']
     return render_template('kakaocallback' + h, nick_name = Id)
@@ -33,7 +31,6 @@ def kakaocallback():
 @app.route('/logout')
 def logout():
     global a_t, crd, ad, Id, dat, f_l, food
-
     a_t, crd, ad, Id, dat, f_l, food = n, n, n, n, [n,'?','?','?','?'], n, n
     return render_template('lo' + h)
 
@@ -45,7 +42,6 @@ def manual(): return render_template('manual' + h)
 
 @app.route('/choose')
 def choose():
-
     global ad, crd, f_l, weat
     ad = run_service.g_a(request.args.get('lat') + ', ' + request.args.get('lon'))
     crd = request.args.get('lat') + ', ' + request.args.get('lon')
@@ -65,9 +61,7 @@ def gatcha():
 
 @app.route('/service', methods = ['Get', 'Post'])
 def service():
-    
     global ad, a_t, crd, dat, food, weat
-
     food = request.args.get('food')
     dat = run_service.s_c(ad, a_t, food, weat)
     if ad != n and a_t != n:
