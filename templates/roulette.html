@@ -24,13 +24,14 @@
             <button onclick="add()">메뉴 추가</button>
             <button onclick="remove()">메뉴 삭제</button>
           </div>
-          <h4 id="productListDisplay">현재 메뉴: </h4>
+          <button id="productListDisplay">현재 메뉴: </h4>
           <h4>만약 주변에 음식을 파는 음식점이 없다면 나머지중에서 랜덤으로 1개가 전송됨</h4>
         </div>
       </div>
     </div>
 
     <script>
+
       function send() {
         const result = resultText.textContent.replace("결과: ", "");
         if (result && result !== "None") {window.location.href = "service?food=" + result} 
@@ -41,7 +42,8 @@
       const menuAdd = document.querySelector("#menuAdd");
       const resultText = document.querySelector("#result");
       const productDisplay = document.querySelector("#productListDisplay");
-      const product = ['타코야끼', '찜닭', '카레', '샌드위치'];
+      
+      const product = JSON.parse("{{f_l}}".replaceAll("&#39;",'"'));
       const colors = [];
       let currentRotation = 0;
 
