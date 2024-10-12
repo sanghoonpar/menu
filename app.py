@@ -6,6 +6,8 @@ load_dotenv()
 
 n = None
 h = '.html'
+def o(a): return os.environ.get(a)
+def a(b): return request.args.get(b)
 a_t, crd, ad, Id, dat, f_l, food = n, n, n, n, [n,'?','?','?','?'], n, n
 
 app = Flask(__name__, template_folder = 'templates')
@@ -19,12 +21,12 @@ def inintial():
 
     if crd != n: key1 = 0
     else: key1 = 1
-    return render_template('home' + h, c_b_u = os.environ.get('c_b_u'), key = key, key1 = key1, a = a_t)
+    return render_template('home' + h, c_b_u = o('c_b_u'), key = key, key1 = key1, a = a_t)
 
 @app.route('/kakaocallback')
 def kakaocallback():
     global a_t, Id
-    a_t = run_service.g_t(request.args.get('code'), os.environ.get('k_cli_id'), os.environ.get('k_red_uri'))
+    a_t = run_service.g_t(a('code'), o('k_cli_id'), o('k_red_uri'))
     Id = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {a_t}', 'Content-Type': 'application/x-www-form-urlencoded',}).json()['properties']['nickname']
     return render_template('kakaocallback' + h, nick_name = Id)
 
@@ -35,7 +37,7 @@ def logout():
     return render_template('lo' + h)
 
 @app.route('/map')
-def map(): return render_template('map' + h, java_key = os.environ.get('k_java_key'))
+def map(): return render_template('map' + h, java_key = o('k_java_key'))
 
 @app.route('/manual')
 def manual(): return render_template('manual' + h)
@@ -44,16 +46,16 @@ def manual(): return render_template('manual' + h)
 @app.route('/roulette')
 def gatcha(): 
     global f_l, ad, weat
-    ad = run_service.g_a(request.args.get('lat') + ', ' + request.args.get('lon'))
-    crd = request.args.get('lat') + ', ' + request.args.get('lon')
-    weat = run_service.weat(crd, os.environ.get('ser_key'))
+    ad = run_service.g_a(a('lat') + ', ' + a('lon'))
+    crd = a('lat') + ', ' + a('lon')
+    weat = run_service.weat(crd, o('ser_key'))
     f_l = menu_choose.m_c(weat)
     return render_template('roulette' + h, f_l = f_l)
 
 @app.route('/service', methods = ['Get', 'Post'])
 def service():
     global ad, a_t, crd, dat, food, weat
-    food = request.args.get('food')
+    food = a('food')
     dat = run_service.s_c(ad, a_t, food, weat)
     if ad != n and a_t != n:
         if dat[0] == 2: return render_template('success' + h, rec = dat[1], ad = ad, wea = dat[2], dust = str(dat[3]) + '㎍/㎥', temp = str(dat[4]) + '°C', id = Id)
@@ -62,6 +64,6 @@ def service():
 
 if __name__ == '__main__':
 
-    with open('cert.pem', 'w') as certfile: certfile.write(os.environ.get('cert_str'))
-    with open('private_key.pem', 'w') as keyfile: keyfile.write(os.environ.get('pri_key_str'))
+    with open('cert.pem', 'w') as certfile: certfile.write(o('cert_str'))
+    with open('private_key.pem', 'w') as keyfile: keyfile.write(o('pri_key_str'))
     app.run(port = 5051, ssl_context = ('cert.pem', 'private_key.pem'))
