@@ -12,7 +12,6 @@ a_t, crd, ad, Id, dat, f_l, food = n, n, n, n, [n,'?','?','?','?'], n, n
 
 app = Flask(__name__, template_folder = 'templates')
 lucide = Lucide(app)
-user = {}
 
 @app.route('/')
 def inintial():
