@@ -40,23 +40,14 @@ def map(): return render_template('map' + h, java_key = os.environ.get('k_java_k
 @app.route('/manual')
 def manual(): return render_template('manual' + h)
 
-@app.route('/choose')
-def choose():
-    global ad, crd, f_l, weat
+
+@app.route('/roulette')
+def gatcha(): 
+    global f_l, ad, weat
     ad = run_service.g_a(request.args.get('lat') + ', ' + request.args.get('lon'))
     crd = request.args.get('lat') + ', ' + request.args.get('lon')
     weat = run_service.weat(crd, os.environ.get('ser_key'))
     f_l = menu_choose.m_c(weat)
-    return render_template('choose' + h)
-
-@app.route('/select_menu')
-def select(): 
-    global f_l
-    return render_template('select_menu' + h, f_l = f_l)
-
-@app.route('/roulette')
-def gatcha(): 
-    global f_l
     return render_template('roulette' + h, f_l = f_l)
 
 @app.route('/service', methods = ['Get', 'Post'])
