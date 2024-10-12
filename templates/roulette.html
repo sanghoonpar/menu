@@ -16,15 +16,16 @@
       </div>
       <div id="menu">
         <div id="object">
-          <div id="result" style="font-size: 20px;">결과: </div>
+          <div id="result" style="font-size: 17px;">결과: </div>
           <canvas id="roulette" width="400" height="400" style="margin: 0%;"></canvas>
           <button onclick="rotate()">가챠</button>
           <div id="addDiv">
             <input type="text" id="menuAdd" placeholder="메뉴를 추가하세요" />
             <button onclick="add()">메뉴 추가</button>
             <button onclick="remove()">메뉴 삭제</button>
-            <div id="product"></div>
           </div>
+          <h4 id="productListDisplay">현재 메뉴: </h4>
+          <h4>만약 주변에 음식을 파는 음식점이 없다면 나머지중에서 랜덤으로 1개가 전송됨</h4>
         </div>
       </div>
     </div>
@@ -33,15 +34,19 @@
       function send() {
         const result = resultText.textContent.replace("결과: ", "");
         if (result && result !== "None") {window.location.href = "service?food=" + result} 
-        else {alert("결과가 없습니다. 룰렛을 돌려주세요.")}}
+        else {alert("결과가 없습니다. 룰렛을 돌려주세요.")}};
 
       const $c = document.querySelector("#roulette");
       const ctx = $c.getContext("2d");
       const menuAdd = document.querySelector("#menuAdd");
       const resultText = document.querySelector("#result");
-      const product = ["타코야끼", "찜닭", "카레", "샌드위치", "스시", "국밥"];
+      const productDisplay = document.querySelector("#productListDisplay");
+      const product = ['타코야끼', '찜닭', '카레', '샌드위치'];
       const colors = [];
       let currentRotation = 0;
+
+      const updateProductDisplay = () => {
+        productDisplay.textContent = "현재 메뉴: " + product.join(", ")};
 
       const newMake = () => {
         const [cw, ch] = [$c.width / 2, $c.height / 2];
@@ -54,14 +59,13 @@
               let r = Math.floor(Math.random() * 256);
               let g = Math.floor(Math.random() * 256);
               let b = Math.floor(Math.random() * 256);
-              colors.push("rgb(" + r + "," + g + "," + b + ")");}}
-            
+              colors.push("rgb(" + r + "," + g + "," + b + ")")}}
           ctx.fillStyle = colors[i % colors.length];
           ctx.moveTo(cw, ch);
           ctx.arc(cw, ch, cw, arc * i, arc * (i + 1));
           ctx.lineTo(cw, ch);
           ctx.fill();
-          ctx.closePath();}
+          ctx.closePath()}
 
         ctx.fillStyle = "#fff";
         ctx.font = "24px Pretendard";
@@ -72,7 +76,7 @@
           ctx.save();
           ctx.translate(cw + Math.cos(angle) * (cw - 50), ch + Math.sin(angle) * (ch - 50));
           ctx.rotate(angle + Math.PI / 2);
-          product[i].split(" ").forEach((text, j) => {ctx.fillText(text, 0, 30 * j)}) 
+          product[i].split(" ").forEach((text, j) => {ctx.fillText(text, 0, 30 * j)});
           ctx.restore()}};
 
       const rotate = () => {
@@ -97,8 +101,9 @@
           let b = Math.floor(Math.random() * 256);
           colors.push("rgb(" + r + "," + g + "," + b + ")");
           newMake();
+          updateProductDisplay();
           menuAdd.value = ""} 
-        else {alert("메뉴를 입력한 후 버튼을 클릭해 주세요.")}};
+        else {alert("메뉴를 입력한 후 버튼을 클릭하셈")}};
 
       const remove = () => {
         const itemToRemove = menuAdd.value;
@@ -107,10 +112,12 @@
           product.splice(index, 1);
           colors.splice(index, 1);
           newMake();
+          updateProductDisplay();
           menuAdd.value = ""} 
-        else {alert("존재하지 않는 메뉴입니다.")}};
+        else {alert("존재하지 않는 메뉴임.")}};
 
       newMake();
+      updateProductDisplay();
     </script>
   </body>
 </html>

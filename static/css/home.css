@@ -43,7 +43,7 @@ body {
 #object a {
   display: inline-block;
 }
-.login-button {
+.login-button, .logout-button {
   transition: background-color .3s, box-shadow .3s;
   padding: 12px 16px 12px 42px;
   border: none;
@@ -52,43 +52,6 @@ body {
   font-size: 15px;
   font-weight: 300;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  
-  background-image: url("/static/images/kakao-logo.png");
-  background-color: yellow;
-  background-repeat: no-repeat;
-  background-size: 12%;
-  background-position: 12px 11px;
-
-  width: 300px;
-  align-items: center;
-  justify-content: center;
-}
-.login-button:hover {
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
-}
-.login-button:active {
-  background-color: #ebd91a;
-}
-.login-button:focus {
-  outline: none;
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25), 0 0 0 3px #c8dafc;
-}
-.login-button:disabled {
-  filter: grayscale(100%);
-  background-color: #ebd91a;
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
-  cursor: not-allowed;
-}
-.logout-button {
-  transition: background-color .3s, box-shadow .3s;
-  padding: 12px 16px 12px 42px;
-  border: none;
-  border-radius: 3px;
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
-  font-size: 15px;
-  font-weight: 300;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  
   background-image: url("/static/images/kakao-logo.png");
   background-color: yellow;
   background-repeat: no-repeat;
@@ -97,18 +60,22 @@ body {
   width: 300px;
   align-items: center;
   justify-content: center;
+  position: absolute; /* 위치를 고정 */
+  bottom: 64px; /* navbar 바로 위로 배치 */
+  left: 50%; /* 중앙 정렬 */
+  transform: translateX(-50%); /* 정확한 중앙 위치 */
 }
-.logout-button:hover {
+.login-button:hover, .logout-button:hover {
   box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
 }
-.logout-button:active {
+.login-button:active, .logout-button:active {
   background-color: #ebd91a;
 }
-.logout-button:focus {
+.login-button:focus, .logout-button:focus {
   outline: none;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25), 0 0 0 3px #c8dafc;
 }
-.logout-button:disabled {
+.login-button:disabled, .logout-button:disabled {
   filter: grayscale(100%);
   background-color: #ebd91a;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
