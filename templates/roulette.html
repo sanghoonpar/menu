@@ -22,9 +22,9 @@
           <div id="addDiv">
             <input type="text" id="menuAdd" placeholder="메뉴를 추가하세요" />
             <button onclick="add()">메뉴 추가</button>
-            <button onclick="remove()">메뉴 삭제</button>
           </div>
-          <h3 id="productListDisplay">현재 메뉴: </h3>
+          <div id="pLD"></div>
+          <div id="menuButtons"></div>
         </div>
       </div>
     </div>
@@ -46,24 +46,32 @@
       const ctx = $c.getContext("2d");
       const menuAdd = document.querySelector("#menuAdd");
       const resultText = document.querySelector("#result");
-      const productDisplay = document.querySelector("#productListDisplay");
+      const productDisplay = document.querySelector("#pLD");
+      const menuButtons = document.querySelector("#menuButtons");
 
-      const product = JSON.parse("{{f_l}}".replaceAll("&#39;", '"'));
+      let product = JSON.parse("{{f_l}}".replaceAll("&#39;", '"'));
       const colors = [];
       let currentRotation = 0;
 
-      const updateProductDisplay = () => {productDisplay.textContent = "현재 메뉴: " + product.join(", ")};
+      const uPD = () => {productDisplay.textContent = "현재 메뉴: " + product.join(", "); rB()};
+
+      const rB = () => {
+        menuButtons.innerHTML = "";
+        product.forEach((item) => {
+          const button = document.createElement("button");
+          button.textContent = item;
+          button.onclick = () => remove(item);
+          menuButtons.appendChild(button)})};
 
       const newMake = () => {
         const [cw, ch] = [$c.width / 2, $c.height / 2];
         const arc = Math.PI / (product.length / 2);
         ctx.clearRect(0, 0, $c.width, $c.height);
 
-        for (let i = 0; i < product.length; i++) {
-          ctx.beginPath();
-          if (colors.length === 0) {
-            for (let l = 0; l < product.length; l++) {colors.push(getRandomColor());}}
-          ctx.fillStyle = colors[i % colors.length];
+        for (let i = 0; i < product.length; i++) {ctx.beginPath();
+          if (colors.length === 0) {for (let l = 0; l < product.length; l++) {colors.push(getRandomColor())}}
+          
+            ctx.fillStyle = colors[i % colors.length];
           ctx.moveTo(cw, ch);
           ctx.arc(cw, ch, cw, arc * i, arc * (i + 1));
           ctx.lineTo(cw, ch);
@@ -98,24 +106,19 @@
         if (menuAdd.value) {
           product.push(menuAdd.value);
           colors.push(getRandomColor());
-          newMake();
-          updateProductDisplay();
+          newMake(); uPD();
           menuAdd.value = ""} 
         else {alert("메뉴를 입력한 후 버튼을 클릭하세요.")}};
 
-      const remove = () => {
-        const itemToRemove = menuAdd.value;
+      const remove = (itemToRemove) => {
         const index = product.indexOf(itemToRemove);
         if (index !== -1) {
           product.splice(index, 1);
           colors.splice(index, 1);
-          newMake();
-          updateProductDisplay();
-          menuAdd.value = ""} 
+          newMake(); uPD()} 
         else {alert("존재하지 않는 메뉴입니다.")}};
 
-      newMake();
-      updateProductDisplay();
+      newMake(); uPD();
     </script>
   </body>
 </html>

@@ -15,12 +15,12 @@ canvas {
 button {
   z-index: 1000;
   background: #b5d692;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   padding: 0.8rem 1.8rem;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: 3px;
   transition: 0.2s;
   cursor: pointer;
 }
