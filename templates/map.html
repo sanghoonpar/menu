@@ -1,41 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>음식점추천</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey={{java_key}}&libraries=services"></script>
-    <link rel="stylesheet" href="/static/css/map.css" />
-    <link rel="stylesheet" href="/static/css/common.css" />
-</head>
-<body>
-    <div class="container">
-        <div id="menu_wrap" class="bg_white">
-            <div class="option">
-                <div>
-                    <form onsubmit="sP(); return false;">
-                        <h3 size="15">주변맛집</h3>
-                    </form>
+    <head>
+        <meta charset="utf-8" />
+        <title>음식점추천</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey={{java_key}}&libraries=services"></script>
+        <link rel="stylesheet" href="/static/css/map.css" />
+        <link rel="stylesheet" href="/static/css/common.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div id="menu_wrap" class="bg_white">
+                <div class="option">
+                    <div>
+                        <form onsubmit="sP(); return false;">
+                            <h3 size="15">주변맛집</h3>
+                        </form>
+                    </div>
                 </div>
+                <hr/>
+                <ul id="placesList"></ul>
+                <div id="pagination"></div>
             </div>
-            <hr/>
-            <ul id="placesList"></ul>
-            <div id="pagination"></div>
-        </div>
+            
+            <div class="map_wrap">
+                <div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+            </div>
 
-        <div id="drag_handle"></div>
-        
-        <div class="map_wrap">
-            <div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+            <div class="navbar">
+                <a href="/manual">{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}</a>
+                <a href="/">{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}</a>
+                <a onclick="draw()">{{ lucide.icon('circle', stroke_width=2, width=32, height=32) }}</a>
+            </div>
+            <div class="lat_lon"><h2 id="currentLocation">현재위치 :</h2></div>
         </div>
-
-        <div class="navbar">
-            <a href="/manual">{{ lucide.icon('book', stroke_width=2, width=32, height=32) }}</a>
-            <a href="/">{{ lucide.icon('square', stroke_width=2, width=32, height=32) }}</a>
-            <a onclick="draw()">{{ lucide.icon('circle', stroke_width=2, width=32, height=32) }}</a>
-        </div>
-        <div class="lat_lon"><h2 id="currentLocation">현재위치 :</h2></div>
-    </div>
-    <script src="/static/js/map.js"></script>
-</body>
+        <script src="/static/js/map.js"></script>
+    </body>
 </html>

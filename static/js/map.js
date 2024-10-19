@@ -109,7 +109,6 @@ let lat, lon;
 
         iM();
 
-        const dragHandle = document.getElementById("drag_handle");
         const menuWrap = document.getElementById("menu_wrap");
         const mapWrap = document.querySelector(".map_wrap");
 

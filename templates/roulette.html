@@ -18,7 +18,7 @@
         <div id="object">
           <div id="result" style="font-size: 17px;">결과: </div>
           <canvas id="roulette" width="400" height="400" style="margin-top: 0;"></canvas>
-          <button onclick="rotate()">드로우</button>
+          <button onclick="rotate()">가챠</button>
           <div id="addDiv">
             <input type="text" id="menuAdd" placeholder="메뉴를 추가하세요" />
             <button onclick="add()">메뉴 추가</button>
@@ -29,19 +29,26 @@
       </div>
     </div>
     <script>
+      const getRandomColor = () => {
+        let r = Math.floor(Math.random() * 256);
+        let g = Math.floor(Math.random() * 256);
+        let b = Math.floor(Math.random() * 256);
+        return `rgb(${r},${g},${b})`};
+
+      const getResult = () => resultText.textContent.replace("결과: ", "");
+
       function send() {
-        const result = resultText.textContent.replace("결과: ", "");
+        const result = getResult();
         if (result && result !== "None") {window.location.href = "service?food=" + result} 
-        else {alert("결과가 없습니다. 룰렛을 돌려주세요.")}};
+        else {alert("결과가 없습니다. 룰렛을 돌려주세요.")}}
 
       const $c = document.querySelector("#roulette");
       const ctx = $c.getContext("2d");
       const menuAdd = document.querySelector("#menuAdd");
       const resultText = document.querySelector("#result");
       const productDisplay = document.querySelector("#productListDisplay");
-      
-      const product = JSON.parse("{{f_l}}".replaceAll("&#39;",'"'));
 
+      const product = JSON.parse("{{f_l}}".replaceAll("&#39;", '"'));
       const colors = [];
       let currentRotation = 0;
 
@@ -51,26 +58,21 @@
         const [cw, ch] = [$c.width / 2, $c.height / 2];
         const arc = Math.PI / (product.length / 2);
         ctx.clearRect(0, 0, $c.width, $c.height);
+
         for (let i = 0; i < product.length; i++) {
           ctx.beginPath();
-          if (colors.length == 0) {
-            for (let l = 0; l < product.length; l++) {
-              let r = Math.floor(Math.random() * 256);
-              let g = Math.floor(Math.random() * 256);
-              let b = Math.floor(Math.random() * 256);
-              colors.push("rgb(" + r + "," + g + "," + b + ")")}}
+          if (colors.length === 0) {
+            for (let l = 0; l < product.length; l++) {colors.push(getRandomColor());}}
           ctx.fillStyle = colors[i % colors.length];
           ctx.moveTo(cw, ch);
           ctx.arc(cw, ch, cw, arc * i, arc * (i + 1));
           ctx.lineTo(cw, ch);
           ctx.fill();
-          ctx.closePath()}
+          ctx.closePath();
 
-        ctx.fillStyle = "#fff";
-        ctx.font = "24px Pretendard";
-        ctx.textAlign = "center";
-
-        for (let i = 0; i < product.length; i++) {
+          ctx.fillStyle = "#fff";
+          ctx.font = "24px Pretendard";
+          ctx.textAlign = "center";
           const angle = arc * i + arc / 2;
           ctx.save();
           ctx.translate(cw + Math.cos(angle) * (cw - 50), ch + Math.sin(angle) * (ch - 50));
@@ -95,14 +97,11 @@
       const add = () => {
         if (menuAdd.value) {
           product.push(menuAdd.value);
-          let r = Math.floor(Math.random() * 256);
-          let g = Math.floor(Math.random() * 256);
-          let b = Math.floor(Math.random() * 256);
-          colors.push("rgb(" + r + "," + g + "," + b + ")");
+          colors.push(getRandomColor());
           newMake();
           updateProductDisplay();
           menuAdd.value = ""} 
-        else {alert("메뉴를 입력한 후 버튼을 클릭하셈")}};
+        else {alert("메뉴를 입력한 후 버튼을 클릭하세요.")}};
 
       const remove = () => {
         const itemToRemove = menuAdd.value;
@@ -113,7 +112,7 @@
           newMake();
           updateProductDisplay();
           menuAdd.value = ""} 
-        else {alert("존재하지 않는 메뉴임.")}};
+        else {alert("존재하지 않는 메뉴입니다.")}};
 
       newMake();
       updateProductDisplay();
