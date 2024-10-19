@@ -18,14 +18,10 @@ let lat, lon;
             dCL(locPosition);
 
             const ps = new kakao.maps.services.Places();
-            function sP() {
-                const keyword = "주변맛집";
-                ps.keywordSearch(keyword, pSCB, {location: locPosition})}
+            function sP() {const keyword = "주변맛집"; ps.keywordSearch(keyword, pSCB, {location: locPosition})}
 
             function pSCB(data, status, pagination) {
-                if (status === kakao.maps.services.Status.OK) {
-                    dPlaces(data);
-                    dPagination(pagination)} 
+                if (status === kakao.maps.services.Status.OK) {dPlaces(data); dPagination(pagination)} 
                 else if (status === kakao.maps.services.Status.ZERO_RESULT) {alert("검색 결과가 존재하지 않습니다.")} 
                 else if (status === kakao.maps.services.Status.ERROR) {alert("검색 중 오류가 발생했습니다.")}}
 
@@ -73,8 +69,7 @@ let lat, lon;
                 const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions);
                 const marker = new kakao.maps.Marker({position: position, image: markerImage});
                 
-                marker.setMap(map);
-                return marker}
+                marker.setMap(map); return marker}
 
             function dPagination(pagination) {
                 const paginationEl = document.getElementById("pagination");
@@ -88,9 +83,7 @@ let lat, lon;
                     el.innerHTML = i;
 
                     if (i === pagination.current) {el.className = "on"} 
-                    else {el.onclick = (function (i) {return function () {pagination.gotoPage(i)}})(i)}
-
-                    fragment.appendChild(el)}
+                    else {el.onclick = (function (i) {return function () {pagination.gotoPage(i)}})(i)} fragment.appendChild(el)}
 
                 paginationEl.appendChild(fragment)}
 
@@ -103,8 +96,7 @@ let lat, lon;
                 const locationEl = document.getElementById("currentLocation");
                 locationEl.innerText = "현재위치 : " + locPosition.getLat() + ", " + locPosition.getLng()}
 
-            const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-            sP()})}
+            const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 }); sP()})}
 
     iM();
 
@@ -114,9 +106,7 @@ let lat, lon;
     let isResizing = false;
 
     document.addEventListener("mousemove", function (e) {
-        if (!isResizing) return;
-
-        const newWidth = e.clientX;
+        if (!isResizing) return; const newWidth = e.clientX;
         if (newWidth > 200 && newWidth < 600) {
             menuWrap.style.width = newWidth + "px";
             mapWrap.style.width = `calc(100% - ${newWidth + 10}px)`}});
