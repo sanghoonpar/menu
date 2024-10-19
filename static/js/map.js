@@ -1,8 +1,8 @@
 let lat, lon;
 
-        function send() {window.location.href = "roulette?lat=" + lat + "&lon=" + lon}
+        function draw() {window.location.href = "roulette?lat=" + lat + "&lon=" + lon}
 
-        function initializeMap() {
+        function iM() {
             navigator.geolocation.getCurrentPosition((position) => {
                 lat = position.coords.latitude;
                 lon = position.coords.longitude;
@@ -16,36 +16,36 @@ let lat, lon;
                 
                 circle.setMap(map);
 
-                displayCurrentLocation(locPosition);
+                dCL(locPosition);
 
                 const ps = new kakao.maps.services.Places();
                 function sP() {
                     const keyword = "주변맛집";
-                    ps.keywordSearch(keyword, placesSearchCB, {location: locPosition})}
+                    ps.keywordSearch(keyword, pSCB, {location: locPosition})}
 
-                function placesSearchCB(data, status, pagination) {
+                function pSCB(data, status, pagination) {
                     if (status === kakao.maps.services.Status.OK) {
-                        displayPlaces(data);
-                        displayPagination(pagination)} 
+                        dPlaces(data);
+                        dPagination(pagination)} 
                     else if (status === kakao.maps.services.Status.ZERO_RESULT) {alert("검색 결과가 존재하지 않습니다.")} 
                     else if (status === kakao.maps.services.Status.ERROR) {alert("검색 중 오류가 발생했습니다.")}}
 
-                function displayPlaces(places) {
+                function dPlaces(places) {
                     const listEl = document.getElementById("placesList");
                     const fragment = document.createDocumentFragment();
                     const bounds = new kakao.maps.LatLngBounds();
                     listEl.innerHTML = "";
                     places.forEach((place, index) => {
                         const placePosition = new kakao.maps.LatLng(place.y, place.x);
-                        const marker = addMarker(placePosition, index);
-                        const itemEl = getListItem(index, place);
+                        const marker = aM(placePosition, index);
+                        const itemEl = gLI(index, place);
                         bounds.extend(placePosition);
 
                         (function (marker, place) {
-                            kakao.maps.event.addListener(marker, "mouseover", function () {displayInfowindow(marker, place.place_name)});
+                            kakao.maps.event.addListener(marker, "mouseover", function () {dI(marker, place.place_name)});
                             kakao.maps.event.addListener(marker, "mouseout", function () {infowindow.close()});
 
-                            itemEl.onmouseover = function () {displayInfowindow(marker, place.place_name)};
+                            itemEl.onmouseover = function () {dI(marker, place.place_name)};
                             itemEl.onmouseout = function () {infowindow.close()}})(marker, place);
 
                         fragment.appendChild(itemEl)});
@@ -53,7 +53,7 @@ let lat, lon;
                     listEl.appendChild(fragment);
                     map.setBounds(bounds)}
 
-                function getListItem(index, place) {
+                function gLI(index, place) {
                     const el = document.createElement("li");
                     let itemStr = '<span class="markerbg marker_' + (index + 1) + '"></span>' + '<div class="info">' + "<h5>" + place.place_name + "</h5>";
 
@@ -66,7 +66,7 @@ let lat, lon;
 
                     return el}
 
-                function addMarker(position, idx) {
+                function aM(position, idx) {
                     
                     const imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png";
                     const imageSize = new kakao.maps.Size(36, 37);
@@ -77,7 +77,7 @@ let lat, lon;
                     marker.setMap(map);
                     return marker}
 
-                function displayPagination(pagination) {
+                function dPagination(pagination) {
                     const paginationEl = document.getElementById("pagination");
                     const fragment = document.createDocumentFragment();
 
@@ -95,19 +95,19 @@ let lat, lon;
 
                     paginationEl.appendChild(fragment)}
 
-                function displayInfowindow(marker, title) {
+                function dI(marker, title) {
                     const content = '<div style="padding:5px;z-index:1;">' + title + "</div>";
                     infowindow.setContent(content);
                     infowindow.open(map, marker)}
 
-                function displayCurrentLocation(locPosition) {
+                function dCL(locPosition) {
                     const locationEl = document.getElementById("currentLocation");
                     locationEl.innerText = "현재위치 : " + locPosition.getLat() + ", " + locPosition.getLng()}
 
                 const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
                 sP()})}
 
-        initializeMap();
+        iM();
 
         const dragHandle = document.getElementById("drag_handle");
         const menuWrap = document.getElementById("menu_wrap");
