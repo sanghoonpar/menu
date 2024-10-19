@@ -23,6 +23,7 @@ button {
   border-radius: 3px;
   transition: 0.2s;
   cursor: pointer;
+  margin-left: 1px;
 }
 button:active {
   background: #444;
