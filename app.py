@@ -8,7 +8,7 @@ n = None
 h = '.html'
 def o(a): return os.environ.get(a)
 def a(b): return request.args.get(b)
-a_t, crd, ad, Id, dat, f_l, food = n, n, n, n, [n,'?','?','?','?'], n, n
+a_t, crd, ad, Id, dat, f_l, food, weat = n, n, n, n, [n,'?','?','?','?'], n, n, n
 
 app = Flask(__name__, template_folder = 'templates')
 lucide = Lucide(app)
@@ -31,8 +31,8 @@ def kakaocallback():
 
 @app.route('/logout')
 def logout():
-    global a_t, crd, ad, Id, dat, f_l, food
-    a_t, crd, ad, Id, dat, f_l, food = n, n, n, n, [n,'?','?','?','?'], n, n
+    global a_t, crd, ad, Id, dat, f_l, food, weat
+    a_t, crd, ad, Id, dat, f_l, food, weat = n, n, n, n, [n,'?','?','?','?'], n, n, n
     return render_template('lo' + h)
 
 @app.route('/map')
