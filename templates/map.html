@@ -14,7 +14,7 @@
             <div class="option">
                 <div>
                     <form onsubmit="sP(); return false;">
-                        <input type="text" value="주변맛집" id="keyword" size="15" />
+                        <h3 size="15">주변맛집</h3>
                     </form>
                 </div>
             </div>
@@ -60,7 +60,7 @@
 
                 const ps = new kakao.maps.services.Places();
                 function sP() {
-                    const keyword = document.getElementById("keyword").value;
+                    const keyword = "주변맛집";
                     ps.keywordSearch(keyword, placesSearchCB, {location: locPosition})}
 
                 function placesSearchCB(data, status, pagination) {
