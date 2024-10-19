@@ -15,7 +15,6 @@ def g_a(l_l):
         address = str(geocoders.Nominatim(user_agent = 'South Korea', timeout = None).reverse(l_l)).split(', ')[i]
         if '동' in address: return address
 
-def s_c(l, t, f, w): 
-    return send(t, l, s_r(l, f), w)
+def s_c(l, t, f, w): return send(t, l, s_r(l, f), w)
 
 def weat(c, k): return d_w(wea(c, k), k)
