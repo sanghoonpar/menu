@@ -1,5 +1,8 @@
 var CACHE_NAME = 'pwa-manager';
-var urlsToCache = ['/templates/home.html', '/css/home.css']; // 절대 경로로 수정
+var urlsToCache = [
+    '/static/css/home.css',    // CSS 파일은 static 폴더 안에 위치
+    '/'                    // Flask에서 템플릿을 렌더링하는 URL 경로
+];
 
 // 서비스 워커 설치
 self.addEventListener('install', event => {
@@ -15,7 +18,6 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request).then(function(response) {
-            // 캐시 히트 - 응답 반환
             if (response) {
                 return response;
             }
@@ -38,29 +40,4 @@ self.addEventListener('activate', event => {
             );
         })
     );
-});
-
-// 홈 화면 추가 프로세스
-let deferredPrompt = null;
-
-window.addEventListener('beforeinstallprompt', function(event) {
-    event.preventDefault();
-    deferredPrompt = event;
-});
-
-// 버튼 클릭 이벤트 처리
-$(document).ready(function() {
-    $("#a2hs_btn").on("click", function(e) {
-        e.preventDefault();
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then(function(choiceResult) {
-                if (choiceResult.outcome === 'accepted') {
-                    deferredPrompt = null;
-                }
-            });
-        } else {
-            alert("홈 화면에 추가할 수 없습니다.");
-        }
-    });
 });
