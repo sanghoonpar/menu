@@ -1,5 +1,5 @@
 var CACHE_NAME = 'pwa-manager';
-var urlsToCache = ['/']; // Flask 또는 웹 서버에서 렌더링되는 home.html 경로로 수정
+var urlsToCache = ['/templates/home.html', '/css/home.css']; // 절대 경로로 수정
 
 // 서비스 워커 설치
 self.addEventListener('install', event => {
@@ -16,7 +16,9 @@ self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request).then(function(response) {
             // 캐시 히트 - 응답 반환
-            if (response) {return response}
+            if (response) {
+                return response;
+            }
             return fetch(event.request);
         })
     );
@@ -25,7 +27,17 @@ self.addEventListener('fetch', event => {
 // 서비스 워커 업데이트
 self.addEventListener('activate', event => {
     var cacheWhitelist = ['pwa-manager'];
-    event.waitUntil(caches.keys().then(cacheNames => {return Promise.all(cacheNames.map(cacheName => {if (cacheWhitelist.indexOf(cacheName) === -1) {return caches.delete(cacheName)}}))}));
+    event.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cacheName => {
+                    if (cacheWhitelist.indexOf(cacheName) === -1) {
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        })
+    );
 });
 
 // 홈 화면 추가 프로세스
@@ -42,8 +54,13 @@ $(document).ready(function() {
         e.preventDefault();
         if (deferredPrompt) {
             deferredPrompt.prompt();
-            deferredPrompt.userChoice.then(function(choiceResult) {if (choiceResult.outcome === 'accepted') {deferredPrompt = null}});
-        } 
-        else {alert("홈 화면에 추가할 수 없습니다.")}
+            deferredPrompt.userChoice.then(function(choiceResult) {
+                if (choiceResult.outcome === 'accepted') {
+                    deferredPrompt = null;
+                }
+            });
+        } else {
+            alert("홈 화면에 추가할 수 없습니다.");
+        }
     });
 });
