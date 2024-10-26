@@ -1,5 +1,5 @@
 var CACHE_NAME = 'pwa-manager';
-var urlsToCache = ['/home']; // Flask 또는 웹 서버에서 렌더링되는 home.html 경로로 수정
+var urlsToCache = ['/']; // Flask 또는 웹 서버에서 렌더링되는 home.html 경로로 수정
 
 // 서비스 워커 설치
 self.addEventListener('install', event => {
