@@ -26,7 +26,7 @@ def inintial():
 def kakaocallback():
     global a_t, Id
     a_t = run_service.g_t(a('code'), o('k_cli_id'), o('k_red_uri'))
-    Id = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {a_t}', 'Content-Type': 'application/x-www-form-urlencoded',}).json()['properties']['nickname']
+    Id = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {a_t}', 'Content-Type': 'application/x-www-form-urlencoded'}).json()['properties']['nickname']
     return render_template('kakaocallback' + h, nick_name = Id)
 
 @app.route('/logout')
@@ -40,7 +40,6 @@ def map(): return render_template('map' + h, java_key = o('k_java_key'))
 
 @app.route('/manual')
 def manual(): return render_template('manual' + h)
-
 
 @app.route('/roulette')
 def gatcha(): 
