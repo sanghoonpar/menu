@@ -9,7 +9,7 @@ body {
   height: 100%;
 }
 canvas {
-  margin-top: 100px;
+  margin-top: 75px;
   transition: 2s;
 }
 button {
@@ -23,7 +23,7 @@ button {
   border-radius: 3px;
   transition: 0.2s;
   cursor: pointer;
-  margin-left: 1px;
+  margin-left: 0.5px;
 }
 button:active {
   background: #444;
@@ -52,6 +52,4 @@ button:active {
   transform: translateX(-50%);
   z-index: 22;
 }
-#object img {width: 130px;}
-#object h3 {max-width: 80%;}
 #object a {display: inline-block;}

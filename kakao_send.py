@@ -10,7 +10,6 @@ def send(a, b, c, d):
     기우  : {d['weather']['state']}
     미세먼지 : {d['dust']['pm10']['value']} {d['dust']['pm10']['state']}
     '''
-
     def n(g): return {'web_url': g, 'mobile_web_url': g}
     def o(): return requests.post(url = g, data = i, headers = {'Authorization': 'Bearer ' + {'access_token' : a}.get('access_token'), 'scope':'talk_message'}).json()
     g = 'https://kapi.kakao.com/v2/api/talk/memo/default/send'

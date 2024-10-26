@@ -65,11 +65,6 @@ body,
       }
       #placesList .item .info {padding: 10px 0 10px 55px;}
       #placesList .info .gray {color: #8a8a8a;}
-      #placesList .info .jibun {
-        padding-left: 26px;
-        background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
-          no-repeat;
-      }
       #placesList .info .tel {color: #009900;}
       #placesList .item .markerbg {
         float: left;
