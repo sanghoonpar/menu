@@ -1,5 +1,5 @@
 var CACHE_NAME = 'pwa-manager';
-var urlsToCache = ['../templates/home.html', '/css/home.css']; // 절대 경로로 수정
+var urlsToCache = ['/templates/home.html', '/css/home.css']; // 절대 경로로 수정
 
 // 서비스 워커 설치
 self.addEventListener('install', event => {
