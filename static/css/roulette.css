@@ -6,7 +6,7 @@
 }
 body {
   background: #f7f8fc;
-  height: 960px;
+  height: 100%;
 }
 canvas {
   margin-top: 100px;
