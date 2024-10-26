@@ -1,7 +1,6 @@
 import xml.etree.ElementTree as elemTree, requests
 
 def d_w(t, k):
-
     u = dict()
     u['pm10'] = {'value' : float(elemTree.fromstring(requests.get('http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=서울&pageNo=1&numOfRows=100&returnType=xml&serviceKey=%s&ver=1.0'%(k) + 'serviceKey=%s&dataType=json&dataGubun=HOUR&searchCondition=WEEK&itemCode=PM10'%{k}).text).find('body').find('items').find('item').findtext('pm10Value'))}
     d = u.get('pm10').get('value')

@@ -53,13 +53,13 @@
       const colors = [];
       let currentRotation = 0;
 
-      const uPD = () => {productDisplay.textContent = "현재 메뉴: " + product.join(", "); rB()};
+      const uPD = () => {productDisplay.textContent = "현재 메뉴:", product.join(", "); rB()};
 
       const rB = () => {
         menuButtons.innerHTML = "";
         product.forEach((item) => {
           const button = document.createElement("button");
-          button.textContent = item;
+          button.textContent = item, "삭제";
           button.onclick = () => remove(item);
           menuButtons.appendChild(button)})};
 

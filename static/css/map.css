@@ -23,7 +23,7 @@ body,
       .map_wrap a, .map_wrap a:hover, .map_wrap a:active {color: #000;}
       .map_wrap {
         width: 100%;
-        height: 50%;
+        height: 75%;
         overflow-y: auto;
         position: absolute;
         overflow: hidden;
@@ -33,7 +33,7 @@ body,
         position: absolute;
         top: 0;
         width: 100%;
-        height: 50%;
+        height: 25%;
         background-color: white;
         overflow-y: auto;
       }.bg_white {background: #fff;}

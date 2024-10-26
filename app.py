@@ -46,8 +46,8 @@ def manual(): return render_template('manual' + h)
 def gatcha(): 
     global f_l, ad, weat
     ad = run_service.g_a(a('lat') + ', ' + a('lon'))
-    crd = a('lat') + ', ' + a('lon')
-    weat = run_service.weat(crd, o('ser_key'))
+    crd = a('lat') + ', ' + (a('lon'))
+    weat = run_service.weat(crd, o('ser_key1'), o('ser_key2'))
     f_l = menu_choose.m_c(weat)
     return render_template('roulette' + h, f_l = f_l)
 
