@@ -52,12 +52,6 @@ button:active {
   transform: translateX(-50%);
   z-index: 22;
 }
-#object img {
-  width: 130px;
-}
-#object h3 {
-  max-width: 80%;
-}
-#object a {
-  display: inline-block;
-}
+#object img {width: 130px;}
+#object h3 {max-width: 80%;}
+#object a {display: inline-block;}

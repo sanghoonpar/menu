@@ -81,9 +81,5 @@ body {
   display: block;
   text-align: left;
 }
-.navbar .dropdown-content a:hover {
-  background-color: whitesmoke;
-}
-.navbar .dropdown:hover .dropdown-content {
-  display: block;
-}
+.navbar .dropdown-content a:hover {background-color: whitesmoke;}
+.navbar .dropdown:hover .dropdown-content {display: block;}
