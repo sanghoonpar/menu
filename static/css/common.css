@@ -12,9 +12,9 @@ body {
   height: 100%;
 }
 .container {
-  max-width: 100vw;
+  max-width: 100lvw;
   width: 100%;
-  height: 100vh;
+  height: 100lvh;
   position: relative;
 }
 #object {
