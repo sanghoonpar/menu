@@ -32,7 +32,7 @@ body {
   height: 64px;
   background-color: whitesmoke;
   display: flex;
-  z-index: 9999999999;
+  z-index: 9999;
   justify-content: center;
   align-items: center;
 }
