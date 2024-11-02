@@ -11,9 +11,5 @@ def s_r(l, f):
             r.append(q[1])
     for i in range(len(r) - 1):
         if r[0] == r[1]: r.remove(r[0])
-    if len(r) >= 3:
-        if r[0] == r[2]: r.remove(r[0])
-    if len(r) >= 3: 
-        if r[1] == r[2]: r.remove(r[1])
 
     return r
