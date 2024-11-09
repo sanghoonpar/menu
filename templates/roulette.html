@@ -53,15 +53,20 @@
       const colors = [];
       let currentRotation = 0;
 
-      const uPD = () => {productDisplay.textContent = "현재 메뉴: " + product.join(", "); rB()};
 
-      const rB = () => {
+      const displayProducts = () => {
+        productDisplay.textContent = "현재 메뉴: " + product.join(", ");
+        makeRemoveButtons()
+      };
+
+      const makeRemoveButtons = () => {
         menuButtons.innerHTML = "";
         product.forEach((item) => {
           const button = document.createElement("button");
           button.textContent = item + " 삭제";
           button.onclick = () => remove(item);
-          menuButtons.appendChild(button)})};
+          menuButtons.appendChild(button)})
+      };
 
       const newMake = () => {
         const [cw, ch] = [$c.width / 2, $c.height / 2];
@@ -115,10 +120,10 @@
         if (index !== -1) {
           product.splice(index, 1);
           colors.splice(index, 1);
-          newMake(); uPD()} 
+          newMake(); displayProducts()} 
         else {alert("존재하지 않는 메뉴입니다.")}};
 
-      newMake(); uPD();
+      newMake(); displayProducts();
     </script>
   </body>
 </html>

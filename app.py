@@ -33,7 +33,7 @@ def kakaocallback():
 def logout():
     global access_token, coordinate, address, Id, result, food_list, food, data
     access_token, coordinate, address, Id, result, food_list, food, data = n, n, n, n, [n,"?","?","?","?"], n, n, n
-    return render_template("lo" + h)
+    return render_template("logout" + h)
 
 @app.route("/map")
 def map(): return render_template("map" + h, 

@@ -25,7 +25,7 @@ def weather(coordinate, key):
             elif i == "4": weather_state = "소나기"
             else: weather_state = "없음"
 
-            weather_data["code"] = '1'
-            weather_data["state"] = '비'
+            weather_data["code"] = i
+            weather_data["state"] = weather_state
     data["weather"] = weather_data
     return data

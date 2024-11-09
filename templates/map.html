@@ -13,7 +13,7 @@
             <div id="menu_wrap" class="bg_white">
                 <div class="option">
                     <div>
-                        <form onsubmit="sP(); return false;">
+                        <form onsubmit="searchPlaces(); return false;">
                             <h3 size="15">주변맛집</h3>
                         </form>
                     </div>
@@ -30,7 +30,7 @@
             <div class="navbar">
                 <a href="/manual">{{ lucide.icon("book", stroke_width=2, width=32, height=32) }}</a>
                 <a href="/">{{ lucide.icon("square", stroke_width=2, width=32, height=32) }}</a>
-                <a onclick="draw()">{{ lucide.icon("circle", stroke_width=2, width=32, height=32) }}</a>
+                <a onclick="redirectToRoulette()">{{ lucide.icon("circle", stroke_width=2, width=32, height=32) }}</a>
             </div>
             <div class="lat_lon"><h2 id="currentLocation">현재위치 :</h2></div>
         </div>
