@@ -27,7 +27,7 @@ def send(a, b, c, d):
 
     j = []
     k = []
-
+    
     for l in c:
         m = l.get("title").replace("<b> ", "").replace("<b> ", "")
         k.append(m)
@@ -46,5 +46,4 @@ def send(a, b, c, d):
                                                        "link" : h}]})}
     if o().get("result_code") == 0: e += 1
     else: print("메시지를 성공적으로 보내지 못했습니다. 오류메시지 : ", str(o()))
-
     return [e, k, d["weather"]["state"], d["dust"]["pm10"]["value"], d["weather"]["tmp"]]
