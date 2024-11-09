@@ -8,7 +8,13 @@ def wea(c, k):
     e = datetime.now().date().strftime('%Y%m%d')
     t['date'] = str(e[:4] + '/' + e[4:6] + '/' + e[6:])
     d = dict()
-    for m in requests.get("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst", {"serviceKey": k, "dataType": "json", "base_date": e, "base_time": "0800", "nx": c[0], "ny": c[1]}).json().get('response').get('body').get('items')['item']:
+    for m in requests.get("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst", 
+                          {"serviceKey": k, 
+                           "dataType": "json", 
+                           "base_date": e, 
+                           "base_time": "0800", 
+                           "nx": c[0], 
+                           "ny": c[1]}).json().get('response').get('body').get('items')['item']:
         i = m['fcstValue']
         if m['category'] == 'TMP': d['tmp'] = i
 

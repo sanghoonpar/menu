@@ -12,7 +12,14 @@ function iM() {
         const mapOption = {center: locPosition};
         const map = new kakao.maps.Map(mapContainer, mapOption);
         const marker = new kakao.maps.Marker({position: locPosition, map: map});
-        const circle = new kakao.maps.Circle({center: locPosition, radius: 1500, strokeWeight: 5, strokeColor: "#B5D692", strokeOpacity: 1, strokeStyle: "solid", fillColor: "#B5D692", fillOpacity: 0.7});
+        const circle = new kakao.maps.Circle({center: locPosition, 
+            radius: 1500, 
+            strokeWeight: 5, 
+            strokeColor: "#B5D692", 
+            strokeOpacity: 1, 
+            strokeStyle: "solid", 
+            fillColor: "#B5D692", 
+            fillOpacity: 0.7});
 
         circle.setMap(map);
 
