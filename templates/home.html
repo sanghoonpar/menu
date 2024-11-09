@@ -13,7 +13,7 @@
   </head>
   <body>
     <div class="container">
-      {% if a %}
+      {% if access_token %}
       <div id="login-section">
         <a href="/logout">
           <button type="button" class="logout-button">카카오 로그아웃</button>
@@ -26,7 +26,7 @@
       </div>
       {% else %}
       <div id="login-section">
-        <a href="{{c_b_u}}">
+        <a href="{{call_back_url}}">
           <button type="button" class="login-button">카카오 로그인</button>
         </a>
       </div>
