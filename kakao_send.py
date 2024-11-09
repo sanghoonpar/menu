@@ -36,10 +36,10 @@ def kakao_send(access_token, address, restaurants, data):
         restaurants_list.append(restaurant_title)
         if restaurant.get("telephone"): restaurant_title = restaurant_title, "\ntel) ", restaurant.get("telephone")
         contents.append({"title": "[" + restaurant.get("category") + "] " + restaurant_title, 
-                  "description": "".join(restaurant.get("address").split()[1:]), 
-                  "image_url": "https://freesvg.org/img/bentolunch.png?w=150&h=150&fit=fill", 
-                  "image_width": 50, "image_height": 50, 
-                  "link": gather_url("https://search.naver.com/search.naver?query=" + urllib.parse.quote(restaurant.get("address") + "" + restaurant_title))})
+            "description": "".join(restaurant.get("address").split()[1:]), 
+            "image_url": "https://freesvg.org/img/bentolunch.png?w=150&h=150&fit=fill", 
+            "image_width": 50, "image_height": 50, 
+            "link": gather_url("https://search.naver.com/search.naver?query=" + urllib.parse.quote(restaurant.get("address") + "" + restaurant_title))})
 
     template = {"template_object" : json.dumps({"object_type" : "list", 
                                          "header_title" : "현재 날씨에 따른 음식 추천", 
