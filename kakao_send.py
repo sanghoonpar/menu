@@ -29,7 +29,7 @@ def send(a, b, c, d):
     k = []
 
     for l in c:
-        m = l.get("title").replace("<b>", "").replace("<b>", "")
+        m = l.get("title").replace("<b> ", "").replace("<b> ", "")
         k.append(m)
         if l.get("telephone"): m = m, "\ntel) ", l.get("telephone")
         j.append({"title": "[" + l.get("category") + "] " + m, 

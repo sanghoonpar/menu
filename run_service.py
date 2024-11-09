@@ -8,15 +8,15 @@ import requests
 load_dotenv()
 
 def g_t(c, c_i, r_u): 
-    return requests.post('https://kauth.kakao.com/oauth/token', 
-                         data = {'grant_type': 'authorization_code', 
-                                 'client_id': c_i, 
-                                 'redirect_uri': r_u, 
-                                 'code': c}).json().get('access_token')
+    return requests.post("https://kauth.kakao.com/oauth/token", 
+                         data = {"grant_type": "authorization_code", 
+                                 "client_id": c_i, 
+                                 "redirect_uri": r_u, 
+                                 "code": c}).json().get("access_token")
 
 def g_a(crd): 
-    return list(reversed(str(geocoders.Nominatim(user_agent = 'South Korea', 
-                                                 timeout = None).reverse(crd)).split(', ')))[4]
+    return list(reversed(str(geocoders.Nominatim(user_agent = "South Korea", 
+                                                 timeout = None).reverse(crd)).split(", ")))[4]
 
 def s_c(l, t, f, w): 
     return send(t, l, s_r(l, f), w)
