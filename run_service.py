@@ -1,25 +1,25 @@
-from weather import wea
-from dust_weather import d_w
-from kakao_send import send
+from weather import weather
+from dust_weather import dust_weather
+from kakao_send import kakao_send
 from geopy import geocoders
-from naver_search import s_r
+from naver_search import search_restaurant
 from dotenv import load_dotenv
 import requests
 load_dotenv()
 
-def g_t(c, c_i, r_u): 
+def get_access_token(code, client_id, redirect_uri): 
     return requests.post("https://kauth.kakao.com/oauth/token", 
                          data = {"grant_type": "authorization_code", 
-                                 "client_id": c_i, 
-                                 "redirect_uri": r_u, 
-                                 "code": c}).json().get("access_token")
+                                 "client_id": client_id, 
+                                 "redirect_uri": redirect_uri, 
+                                 "code": code}).json().get("access_token")
 
-def g_a(crd): 
+def get_address(coordinate): 
     return list(reversed(str(geocoders.Nominatim(user_agent = "South Korea", 
-                                                 timeout = None).reverse(crd)).split(", ")))[4]
+                                                 timeout = None).reverse(coordinate)).split(", ")))[4]
 
-def s_c(l, t, f, w): 
-    return send(t, l, s_r(l, f), w)
+def run_service(address, access_token, food, data): 
+    return kakao_send(access_token, address, search_restaurant(address, food), data)
 
-def weat(c, k1, k2): 
-    return d_w(wea(c, k1), k2)
+def select_menu(coordinate, key1, key2): 
+    return dust_weather(weather(coordinate, key1), key2)

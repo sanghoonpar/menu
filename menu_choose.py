@@ -1,6 +1,6 @@
 import random
 
-def m_c(d):
+def menu_choose(d):
 
     if d.get("weather").get("code") != "0": w = 1
     elif d.get("dust").get("code") == "1":  w = 2
