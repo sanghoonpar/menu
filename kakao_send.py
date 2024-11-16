@@ -32,7 +32,7 @@ def kakao_send(access_token, address, restaurants, data):
     restaurants_list = []
 
     for restaurant in restaurants:
-        restaurant_title = restaurant.get("title").replace("<b>", "").replace("<b> ", "")
+        restaurant_title = restaurant.get("title").replace("<b>", "").replace("</b>", "")
         restaurants_list.append(restaurant_title)
         if restaurant.get("telephone"): restaurant_title = restaurant_title, "\ntel) ", restaurant.get("telephone")
         contents.append({"title": "[" + restaurant.get("category") + "] " + restaurant_title, 
