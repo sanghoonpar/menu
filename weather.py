@@ -8,13 +8,7 @@ def weather(crd, key):
     d_t = datetime.now().date().strftime("%Y%m%d")
     dt["date"] = str(d_t[:4] + "/" + d_t[4:6] + "/" + d_t[6:])
     w_d = dict()
-    for m in requests.get("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst", 
-                          {"serviceKey": key, 
-                           "dataType": "json", 
-                           "base_date": d_t, 
-                           "base_time": "0800", 
-                           "nx": crd[0], 
-                           "ny": crd[1]}).json().get("response").get("body").get("items")["item"]:
+    for m in requests.get("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst", {"serviceKey": key, "dataType": "json", "base_date": d_t, "base_time": "0800", "nx": crd[0], "ny": crd[1]}).json().get("response").get("body").get("items")["item"]:
         i = m["fcstValue"]
         if m["category"] == "TMP": w_d["tmp"] = i
 
