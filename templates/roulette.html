@@ -107,13 +107,14 @@
           const selectedIndex = Math.floor((360 - selectedArc) / arc) % product.length;
           resultText.textContent = `결과: ${product[selectedIndex]}`}, 3000)};
 
-      const add = () => {
-        if (menuAdd.value) {
-          product.push(menuAdd.value);
-          colors.push(getRandomColor());
-          newMake(); uPD();
-          menuAdd.value = ""}
-        else {alert("메뉴를 입력한 후 버튼을 클릭하세요.")}};
+          const add = () => {
+  if (menuAdd.value) {
+    product.push(menuAdd.value);
+    colors.push(getRandomColor());
+    newMake();
+    displayProducts();
+    menuAdd.value = ""} 
+  else {alert("메뉴를 입력한 후 버튼을 클릭하세요.")}};
 
       const remove = (itemToRemove) => {
         const index = product.indexOf(itemToRemove);
