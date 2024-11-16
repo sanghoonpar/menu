@@ -20,9 +20,7 @@ def inintial(): return render_template("home" + h, call_back_url = get_env("c_b_
 def kakaocallback():
     global a_t, Id
     a_t = run_service.get_access_token(get_args("code"), get_env("k_cli_id"), get_env("k_red_uri"))
-    Id = requests.get("https://kapi.kakao.com/v2/user/me", 
-                      headers = {"Authorization": f"Bearer {a_t}", 
-                                 "Content-Type": "application/x-www-form-urlencoded"}).json()["properties"]["nickname"]
+    Id = requests.get("https://kapi.kakao.com/v2/user/me", headers = {"Authorization": f"Bearer {a_t}", "Content-Type": "application/x-www-form-urlencoded"}).json()["properties"]["nickname"]
     return render_template("kakaocallback" + h, nick_name = Id)
 
 @app.route("/logout")
@@ -44,8 +42,7 @@ def gatcha():
     crd = get_args("lat") + ", " + (get_args("lon"))
     data = run_service.select_menu(crd, get_env("ser_key1"), get_env("ser_key2"))
     food_list = menu_choose.menu_choose(data)
-    return render_template("roulette" + h, 
-                           food_list = food_list)
+    return render_template("roulette" + h, food_list = food_list)
 
 @app.route("/service", methods = ["Get", "Post"])
 def service():
@@ -53,13 +50,7 @@ def service():
     food = get_args("food")
     result = run_service.run_service(address, a_t, food, data)
     if address != n and a_t != n:
-        if result[0] == 2: return render_template("success" + h, 
-                                                  record = result[1], 
-                                                  address = address, 
-                                                  weather_data = result[2], 
-                                                  dust = str(result[3]) + "㎍/㎥", 
-                                                  temp = str(result[4]) + "°C", 
-                                                  id = Id)
+        if result[0] == 2: return render_template("success" + h, record = result[1], address = address, weather_data = result[2], dust = str(result[3]) + "㎍/㎥", temp = str(result[4]) + "°C", id = Id)
         else: return render_template("fail" + h)
     else: return render_template("try_again" + h)
 
