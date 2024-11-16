@@ -28,11 +28,7 @@ def kakao_send(a, b, c, d):
         r_t = r.get("title").replace("<b>", "").replace("</b>", "")
         r_l.append(r_t)
         if r.get("telephone"): r_t = r_t, "\ntel) ", r.get("telephone")
-        contents.append({"title": "[" + r.get("category") + "] " + r_t, 
-            "description": "".join(r.get("address").split()[1:]), 
-            "image_url": "https://freesvg.org/img/bentolunch.png?w=150&h=150&fit=fill", 
-            "image_width": 50, "image_height": 50, 
-            "link": g_u("https://search.naver.com/search.naver?query=" + urllib.parse.quote(r.get("address") + "" + r_t))})
+        contents.append({"title": "[" + r.get("category") + "] " + r_t, "description": "".join(r.get("address").split()[1:]), "image_url": "https://freesvg.org/img/bentolunch.png?w=150&h=150&fit=fill", "image_width": 50, "image_height": 50, "link": g_u("https://search.naver.com/search.naver?query=" + urllib.parse.quote(r.get("address") + "" + r_t))})
 
     t = {"template_object" : json.dumps({"object_type" : "list", "header_title" : "현재 날씨에 따른 음식 추천", "header_link" : w_l, "contents" : contents, "buttons" : [{"title" : "날씨 상세보기", "link" : w_l}]})}
     if req().get("result_code") == 0: e += 1

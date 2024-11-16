@@ -9,7 +9,7 @@ def search_restaurant(add, f):
         if len(req) >= 2:
             res.append(req[0])
             res.append(req[1])
-    for i in range(len(res) - 1):
+    for i in range(len(res) - 1): 
         if res[0] == res[1]: res.remove(res[0])
     
     return res
