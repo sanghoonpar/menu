@@ -108,13 +108,19 @@
           resultText.textContent = `결과: ${product[selectedIndex]}`}, 3000)};
 
           const add = () => {
-  if (menuAdd.value) {
-    product.push(menuAdd.value);
-    colors.push(getRandomColor());
-    newMake();
-    displayProducts();
-    menuAdd.value = ""} 
-  else {alert("메뉴를 입력한 후 버튼을 클릭하세요.")}};
+            if (menuAdd.value) {
+              if (product.length >= 3) {
+                alert("메뉴는 최대 3개까지만 추가할 수 있습니다.");
+                return;
+              }
+              product.push(menuAdd.value);
+              colors.push(getRandomColor());
+              newMake();
+              displayProducts();
+              menuAdd.value = "";
+            } 
+            else {alert("메뉴를 입력한 후 버튼을 클릭하세요.")}
+          };
 
       const remove = (itemToRemove) => {
         const index = product.indexOf(itemToRemove);
