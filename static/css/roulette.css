@@ -6,7 +6,7 @@
 }
 body {
   background: #f7f8fc;
-  height: 100%;
+  max-height: 200%;
 }
 canvas {
   margin-top: 75px;
@@ -16,7 +16,7 @@ button {
   z-index: 1000;
   background: #b5d692;
   margin-top: 0.5rem;
-  padding: 0.6rem 1rem;
+  padding: 1rem 1.8rem;
   border: none;
   font-size: 1rem;
   font-weight: bold;
