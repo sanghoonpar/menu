@@ -12,14 +12,7 @@ function initializeMap() {
         const mapOptions = { center: currentLocation };
         const map = new kakao.maps.Map(mapContainer, mapOptions);
         const marker = new kakao.maps.Marker({ position: currentLocation, map: map });
-        const circle = new kakao.maps.Circle({center: currentLocation, 
-                                              radius: 1500, 
-                                              strokeWeight: 5, 
-                                              strokeColor: "#B5D692", 
-                                              strokeOpacity: 1, 
-                                              strokeStyle: "solid", 
-                                              fillColor: "#B5D692", 
-                                              fillOpacity: 0.7});
+        const circle = new kakao.maps.Circle({center: currentLocation, radius: 1500, strokeWeight: 5, strokeColor: "#B5D692", strokeOpacity: 1, strokeStyle: "solid", fillColor: "#B5D692", fillOpacity: 0.7});
 
         circle.setMap(map);
 
@@ -54,13 +47,8 @@ function initializeMap() {
                 bounds.extend(placePosition);
 
                 (function (marker, place) {
-                    kakao.maps.event.addListener(marker, 
-                                                "mouseover", 
-                                                function () {displayInfoWindow(marker, 
-                                                                               place.place_name)});
-                    kakao.maps.event.addListener(marker, 
-                                                 "mouseout", 
-                                                 function () {infowindow.close()});
+                    kakao.maps.event.addListener(marker, "mouseover", function () {displayInfoWindow(marker, place.place_name)});
+                    kakao.maps.event.addListener(marker, "mouseout", function () {infowindow.close()});
 
                     itemEl.onmouseover = function () {displayInfoWindow(marker, place.place_name)};
                     itemEl.onmouseout = function () {infowindow.close()};
@@ -87,9 +75,7 @@ function initializeMap() {
         function createMarker(position, idx) {
             const imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png";
             const imageSize = new kakao.maps.Size(36, 37);
-            const imgOptions = {spriteSize: new kakao.maps.Size(36, 691), 
-                                spriteOrigin: new kakao.maps.Point(0, idx * 46 + 10), 
-                                offset: new kakao.maps.Point(13, 37)};
+            const imgOptions = {spriteSize: new kakao.maps.Size(36, 691), spriteOrigin: new kakao.maps.Point(0, idx * 46 + 10), offset: new kakao.maps.Point(13, 37)};
             const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions);
             const marker = new kakao.maps.Marker({ position: position, image: markerImage });
 
