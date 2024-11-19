@@ -19,7 +19,7 @@ def weather(crd, key):
             elif i == "4": weather_state = "소나기"
             else: weather_state = "없음"
 
-            w_d["code"] = i
+            w_d["code"] = "4"
             w_d["state"] = "소나기"
     dt["weather"] = w_d
     return dt
